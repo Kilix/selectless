@@ -65,6 +65,7 @@
   "dependencies": {
     "prop-types": "^15.5.10",
     "ramda": "true0.24.1",
-    "react": "^15.5.4"
+    "react": "^15.5.4",
+    "recompose": "0.23.5"
   }
 }
