@@ -1,0 +1,70 @@
+{
+  "name": "react-selectless",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "jsnext:main": "dist/react-selectless.es.js",
+  "module": "dist/react-selectless.es.js",
+  "author": "wcastand <wcastand@gmail.com> (https://github.com/wcastand)",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn run build:lib && yarn run build:dist",
+    "prebuild:lib": "rm -rf lib/*",
+    "build:lib": "babel --out-dir lib src --ignore test.js",
+    "prebuild:umd": "rm -rf dist/*",
+    "prebuild:dist": "rm -rf dist/*",
+    "build:dist": "rollup -c && rollup -c --environment PRODUCTION",
+    "build:watch": "npm-watch",
+    "test": "jest src",
+    "test:watch": "jest src --watch",
+    "format": "prettier --no-semi --single-quote --trailing-comma all --tab-width 2 --jsx-bracket-same-line true --bracket-spacing false --print-width 100 --write 'src/**/*.js'",
+    "prepublish": "yarn run build",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "link": "yarn run build && yarn link",
+    "lint": "eslint 'src/**/*.js'"
+  },
+  "devDependencies": {
+    "@storybook/addon-options": "^3.0.1",
+    "@storybook/react": "^3.0.1",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "7.2.3",
+    "babel-jest": "^20.0.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "4.0.0",
+    "eslint-config-prettier": "2.1.1",
+    "eslint-plugin-prettier": "2.1.1",
+    "eslint-plugin-react": "7.0.1",
+    "fela": "^5.0.0",
+    "fela-dom": "^5.0.0",
+    "jest": "^20.0.4",
+    "npm-watch": "^0.1.9",
+    "prettier": "^1.4.4",
+    "react-dom": "^15.5.4",
+    "react-fela": "^5.0.0",
+    "rollup": "^0.42.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-inject": "^2.0.0",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-uglify": "^2.0.1"
+  },
+  "watch": {
+    "build:lib": "src/**/*.js"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "ramda": "true0.24.1",
+    "react": "^15.5.4"
+  }
+}
