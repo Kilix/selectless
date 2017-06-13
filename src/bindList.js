@@ -8,13 +8,14 @@ import {renderOrCloneComponent} from './utils'
 export default List => {
   class BindList extends React.Component {
     render() {
-      const {options, renderItem, ...props} = this.props
-      return renderOrCloneComponent(
-        List,
-        props,
-        options && options.map(o => renderOrCloneComponent(renderItem, {key: o.value, data: o})),
-      )
+      const {opened, options, renderItem, renderList, ...props} = this.props
+      const items = options.map(o => renderOrCloneComponent(renderItem, {key: o.value, data: o}))
+      return typeof renderList === 'undefined'
+        ? opened ? renderOrCloneComponent(List, props, items) : null
+        : renderList({List, opened, items})
     }
   }
-  return compose(getContext({options: PropTypes.array.isRequired}))(BindList)
+  return compose(
+    getContext({opened: PropTypes.bool.isRequired, options: PropTypes.array.isRequired}),
+  )(BindList)
 }

@@ -13,9 +13,6 @@ setOptions({
 })
 
 function loadStories() {
-  require('../stories/simple.js')
-  require('../stories/multi.js')
-  require('../stories/search.js')
   require('../stories/context.js')
 }
 

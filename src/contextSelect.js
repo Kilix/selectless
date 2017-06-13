@@ -40,6 +40,7 @@ class ContextSelect extends React.Component {
       placeholder,
       transform,
     } = this.props
+    const {opened, options, selectedValue} = this.state
     return {
       caseSensitiveSearch,
       clearSearchValue,
@@ -52,7 +53,9 @@ class ContextSelect extends React.Component {
       onSelectValue: this.onSelectValue,
       clearValue: this.clearValue,
       clearOneValue: this.clearOneValue,
-      ...this.state,
+      opened,
+      options,
+      selectedValue,
     }
   }
 

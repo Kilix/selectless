@@ -1,6 +1,5 @@
-export SimpleSelect from './simpleSelect'
 export ContextSelect from './contextSelect'
 export bindItem from './bindItem'
 export bindLabel from './bindLabel'
 export bindList from './bindList'
-export withSearch from './withSearch'
+export bindSearch from './bindSearch'
