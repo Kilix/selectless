@@ -8,14 +8,14 @@ import {renderOrCloneComponent} from './utils'
 export default (Label, opts = {autobind: true}) => {
   class BindLabel extends React.Component {
     render() {
-      const {toggleSelect, placeholder, selectedValue, renderChild, ...props} = this.props
+      const {toggleSelect, placeholder, selectedValue, render, ...props} = this.props
       const value = selectedValue && selectedValue[0]
 
       const childProps = opts.autobind ? {placeholder, value} : {placeholder, value, toggleSelect}
       const ElProps = opts.autobind ? {onClick: () => toggleSelect()} : {}
 
-      const children = typeof renderChild !== 'undefined'
-        ? renderChild(childProps)
+      const children = typeof render !== 'undefined'
+        ? render(childProps)
         : value ? value.label : placeholder
 
       return renderOrCloneComponent(

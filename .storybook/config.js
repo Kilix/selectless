@@ -13,7 +13,7 @@ setOptions({
 })
 
 function loadStories() {
-  require('../stories/context.js')
+  require('../stories/sync.js')
 }
 
 configure(loadStories, module)
