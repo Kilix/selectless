@@ -12,6 +12,7 @@ import toUpper from 'ramda/src/toUpper'
 import symmetricDifference from 'ramda/src/symmetricDifference'
 import prop from 'ramda/src/prop'
 import tap from 'ramda/src/tap'
+import pick from 'ramda/src/pick'
 import R from 'ramda'
 import {renderOrCloneComponent} from './utils'
 
@@ -31,6 +32,10 @@ class ContextSelect extends React.Component {
         ? [this.transform(this.props.defaultValue)]
         : [],
     })
+  }
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.selectedValue !== this.state.selectedValue)
+      this.props.onChange(nextState.selectedValue)
   }
 
   getChildContext() {
@@ -95,17 +100,38 @@ class ContextSelect extends React.Component {
   clearSearchValue = () => this.setState({searchValue: ''})
   onChangeSearchValue = query => this.setState({searchValue: query})
 
+  renderInputs = () => {
+    return map(
+      v =>
+        <input
+          key={v.label}
+          name={`${this.props.name}[${v.label}]`}
+          type="hidden"
+          value={v.value}
+        />,
+      this.state.selectedValue,
+    )
+  }
   render() {
-    return React.Children.only(this.props.children)
+    const containerProps = pick(['classname', 'style'], this.props)
+    return (
+      <div {...containerProps}>
+        {this.renderInputs()}
+        {this.props.children}
+      </div>
+    )
   }
 }
 
 ContextSelect.propTypes = {
+  classname: PropTypes.string,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
+  onChange: PropTypes.func,
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
+  style: PropTypes.object,
   transform: PropTypes.func,
 }
 
@@ -114,26 +140,26 @@ ContextSelect.defaultProps = {
   placeholder: 'Select an options',
 }
 ContextSelect.childContextTypes = {
-  caseSensitiveSearch: PropTypes.bool,
+  caseSensitiveSearch: PropTypes.bool.isRequired,
+  clearValue: PropTypes.func.isRequired,
+  clearOneValue: PropTypes.func.isRequired,
+  clearSearchValue: PropTypes.func.isRequired,
   defaultValue: PropTypes.any,
-  hasSearch: PropTypes.bool,
+  hasSearch: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
-  opened: PropTypes.bool,
-  selectedValue: PropTypes.array,
-  searchValue: PropTypes.string,
+  onSelectValue: PropTypes.func.isRequired,
+  onChangeSearchValue: PropTypes.func.isRequired,
+  opened: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.array.isRequired,
+  searchValue: PropTypes.string.isRequired,
 
   transform: PropTypes.func,
-  toggleCaseSensitive: PropTypes.func,
-  toggleSearch: PropTypes.func,
-  toggleSelect: PropTypes.func,
-  onSelectValue: PropTypes.func,
-  clearValue: PropTypes.func,
-  clearOneValue: PropTypes.func,
-  clearSearchValue: PropTypes.func,
-  onChangeSearchValue: PropTypes.func,
+  toggleCaseSensitive: PropTypes.func.isRequired,
+  toggleSearch: PropTypes.func.isRequired,
+  toggleSelect: PropTypes.func.isRequired,
 }
 
 export default ContextSelect

@@ -10,7 +10,7 @@ const simpleOptions = [
   {value: 'tokyo', label: 'Tokyo'},
 ]
 
-const Container = props => <div {...props} />
+const Container = props => <ContextSelect {...props} />
 const CLabel = bindLabel(<label />)
 
 const rendering = ({placeholder, value}) => <strong>{value ? value.label : placeholder}</strong>
@@ -30,95 +30,83 @@ const renderingTag = ({tag, clear}) =>
     <button onClick={clear}>Clear</button>
   </div>
 
+const onChange = () => {}
+
 storiesOf('Selectless - Sync', module)
   .add('Basic', () =>
-    <ContextSelect name="context" options={simpleOptions}>
-      <Container>
-        <CLabel />
-        <List renderItem={Item} />
-      </Container>
-    </ContextSelect>,
+    <Container name="context" onChange={onChange} options={simpleOptions}>
+      <CLabel />
+      <List renderItem={Item} />
+    </Container>,
   )
   .add('Custom placeholder', () =>
-    <ContextSelect name="context" options={simpleOptions} placeholder="Select a city">
-      <Container>
-        <CLabel />
-        <List renderItem={Item} />
-      </Container>
-    </ContextSelect>,
+    <Container
+      name="context"
+      onChange={onChange}
+      options={simpleOptions}
+      placeholder="Select a city">
+      <CLabel />
+      <List renderItem={Item} />
+    </Container>,
   )
   .add('Custom Label', () =>
-    <ContextSelect name="context" options={simpleOptions}>
-      <Container>
-        <CLabel render={rendering} />
-        <List renderItem={Item} />
-      </Container>
-    </ContextSelect>,
+    <Container name="context" onChange={onChange} options={simpleOptions}>
+      <CLabel render={rendering} />
+      <List renderItem={Item} />
+    </Container>,
   )
   .add('Custom List', () =>
-    <ContextSelect name="context" options={simpleOptions}>
-      <Container>
-        <CLabel />
-        <List render={renderingList} renderItem={Item} />
-      </Container>
-    </ContextSelect>,
+    <Container name="context" onChange={onChange} options={simpleOptions}>
+      <CLabel />
+      <List render={renderingList} renderItem={Item} />
+    </Container>,
   )
   .add('Custom Item', () =>
-    <ContextSelect name="context" options={simpleOptions}>
-      <Container>
-        <CLabel />
-        <List renderItem={<Item render={renderingItem} />} />
-      </Container>
-    </ContextSelect>,
+    <Container name="context" onChange={onChange} options={simpleOptions}>
+      <CLabel />
+      <List renderItem={<Item render={renderingItem} />} />
+    </Container>,
   )
   .add('With Clear', () =>
-    <ContextSelect name="context" options={simpleOptions}>
-      <Container>
-        <div>
-          <Clear />
-          <br />
-          <Clear label="Custom clear" render={(label, props) => <i {...props}>{label}</i>} />
-        </div>
-        <CLabel />
-        <List renderItem={Item} />
-      </Container>
-    </ContextSelect>,
+    <Container name="context" onChange={onChange} options={simpleOptions}>
+      <div>
+        <Clear />
+        <br />
+        <Clear label="Custom clear" render={(label, props) => <i {...props}>{label}</i>} />
+      </div>
+      <CLabel />
+      <List renderItem={Item} />
+    </Container>,
   )
   .add('With Search', () =>
-    <ContextSelect name="context" options={simpleOptions}>
-      <Container style={{display: 'flex'}}>
-        <div style={{flex: 1}}>
+    <Container name="context" onChange={onChange} options={simpleOptions} style={{display: 'flex'}}>
+      <div style={{flex: 1}}>
+        <div>
+          <label>not caseSensitive - default render</label>
           <div>
-            <label>not caseSensitive - default render</label>
-            <div>
-              <Search />
-            </div>
-          </div>
-          <div>
-            <label>caseSensitive - custom render</label>
-            <Search caseSensitive render={renderingSearch} />
+            <Search />
           </div>
         </div>
-        <div style={{flex: 1}}>
-          <CLabel />
-          <List renderItem={<Item render={renderingItem} />} />
+        <div>
+          <label>caseSensitive - custom render</label>
+          <Search caseSensitive render={renderingSearch} />
         </div>
-      </Container>
-    </ContextSelect>,
+      </div>
+      <div style={{flex: 1}}>
+        <CLabel />
+        <List renderItem={<Item render={renderingItem} />} />
+      </div>
+    </Container>,
   )
   .add('Multi', () =>
-    <ContextSelect multi name="context" options={simpleOptions}>
-      <Container>
-        <TagList renderTag={Tag} />
-        <List renderItem={Item} />
-      </Container>
-    </ContextSelect>,
+    <Container multi name="context" onChange={onChange} options={simpleOptions}>
+      <TagList renderTag={Tag} />
+      <List renderItem={Item} />
+    </Container>,
   )
   .add('Multi Custom Tag', () =>
-    <ContextSelect multi name="context" options={simpleOptions}>
-      <Container>
-        <TagList renderTag={<Tag render={renderingTag} />} />
-        <List renderItem={Item} />
-      </Container>
-    </ContextSelect>,
+    <Container multi name="context" onChange={onChange} options={simpleOptions}>
+      <TagList renderTag={<Tag render={renderingTag} />} />
+      <List renderItem={Item} />
+    </Container>,
   )
