@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 import 'whatwg-fetch'
 
-import {Clear, AsyncSelect, Item, bindLabel, Search, List, TagList, Tag} from '../src'
+import {Clear, AsyncSelect, Item, Label, Search, List, TagList, Tag} from '../src'
 
 const simpleOptions = (query, cb) => {
   setTimeout(function() {
@@ -25,7 +25,6 @@ const fakeApi = query => {
 }
 
 const Container = props => <AsyncSelect {...props} />
-const CLabel = bindLabel(<label />)
 
 const rendering = ({placeholder, value}) => <strong>{value ? value.label : placeholder}</strong>
 const renderingList = ({opened, items}) =>
@@ -56,7 +55,7 @@ const onChange = () => {}
 storiesOf('Selectless - ASync', module)
   .add('Basic callback', () =>
     <Container name="context" onChange={onChange} loadOptions={simpleOptions}>
-      <CLabel />
+      <Label />
       <List renderItem={Item} />
     </Container>,
   )
@@ -79,7 +78,7 @@ storiesOf('Selectless - ASync', module)
         </div>
       </div>
       <div style={{flex: 1}}>
-        <CLabel />
+        <Label />
         <List renderItem={<Item render={renderingItem} />} />
       </div>
     </Container>,
@@ -95,7 +94,7 @@ storiesOf('Selectless - ASync', module)
         <Search />
       </div>
       <div style={{flex: 1}}>
-        <CLabel />
+        <Label />
         <List renderItem={<Item render={renderingItem} />} />
       </div>
     </Container>,
@@ -118,6 +117,21 @@ storiesOf('Selectless - ASync', module)
       name="context"
       onChange={onChange}
       stayOpenOnSelect
+      transform={option => ({label: option.username, value: option.id})}>
+      <div style={{flex: 1}}>
+        <Search />
+      </div>
+      <TagList renderTag={Tag} />
+      <List renderItem={<Item render={renderingItem} />} />
+    </Container>,
+  )
+  .add('Multi - Search - Debounce', () =>
+    <Container
+      debounce={1000}
+      loadOptions={fakeApi}
+      multi
+      name="context"
+      onChange={onChange}
       transform={option => ({label: option.username, value: option.id})}>
       <div style={{flex: 1}}>
         <Search />

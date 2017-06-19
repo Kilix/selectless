@@ -9,7 +9,7 @@ class Item extends React.Component {
   render() {
     const {data, isCurrent, isSelected, onSelectValue, render, ...props} = this.props
     return typeof render === 'undefined'
-      ? <div onClick={() => onSelectValue(data)} {...props}>
+      ? <div onClick={() => onSelectValue(data)} role="combobox" {...props}>
           {data.label}
         </div>
       : render({data, isCurrent, isSelected, onSelectValue})

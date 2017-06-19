@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 
-import {Clear, SyncSelect, Item, bindLabel, Search, List, TagList, Tag} from '../src'
+import {Clear, SyncSelect, Item, Label, Search, List, TagList, Tag} from '../src'
 
 const simpleOptions = [
   {value: 'paris', label: 'Paris'},
@@ -11,7 +11,6 @@ const simpleOptions = [
 ]
 
 const Container = props => <SyncSelect {...props} />
-const CLabel = bindLabel(<label />)
 
 const rendering = ({placeholder, value}) => <strong>{value ? value.label : placeholder}</strong>
 const renderingList = ({opened, items}) =>
@@ -35,13 +34,13 @@ const onChange = () => {}
 storiesOf('Selectless - Sync', module)
   .add('Basic', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
-      <CLabel />
+      <Label />
       <List renderItem={Item} />
     </Container>,
   )
   .add('Stay open', () =>
     <Container name="context" onChange={onChange} options={simpleOptions} stayOpenOnSelect>
-      <CLabel />
+      <Label />
       <List renderItem={Item} />
     </Container>,
   )
@@ -51,25 +50,25 @@ storiesOf('Selectless - Sync', module)
       onChange={onChange}
       options={simpleOptions}
       placeholder="Select a city">
-      <CLabel />
+      <Label />
       <List renderItem={Item} />
     </Container>,
   )
   .add('Custom Label', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
-      <CLabel render={rendering} />
+      <Label render={rendering} />
       <List renderItem={Item} />
     </Container>,
   )
   .add('Custom List', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
-      <CLabel />
+      <Label />
       <List render={renderingList} renderItem={Item} />
     </Container>,
   )
   .add('Custom Item', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
-      <CLabel />
+      <Label />
       <List renderItem={<Item render={renderingItem} />} />
     </Container>,
   )
@@ -80,7 +79,7 @@ storiesOf('Selectless - Sync', module)
         <br />
         <Clear label="Custom clear" render={(label, props) => <i {...props}>{label}</i>} />
       </div>
-      <CLabel />
+      <Label />
       <List renderItem={Item} />
     </Container>,
   )
@@ -99,7 +98,7 @@ storiesOf('Selectless - Sync', module)
         </div>
       </div>
       <div style={{flex: 1}}>
-        <CLabel />
+        <Label />
         <List renderItem={<Item render={renderingItem} />} />
       </div>
     </Container>,
