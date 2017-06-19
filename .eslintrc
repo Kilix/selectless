@@ -14,10 +14,6 @@
       "jsx": true
     }
   },
-  "rules": {
-    "semi": "off",
-    "react/jsx-sort-props": 1
-  },
   "plugins": [
     "react",
     "prettier"

@@ -1,4 +1,5 @@
-export ContextSelect from './contextSelect'
+export SyncSelect from './syncSelect'
+export AsyncSelect from './asyncSelect'
 export Item from './item'
 export bindLabel from './bindLabel'
 export List from './list'

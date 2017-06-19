@@ -1,24 +1,23 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {withContext} from 'recompose'
+import debounce from 'debounce'
 
-import filter from 'ramda/src/filter'
-import map from 'ramda/src/map'
-import compose from 'ramda/src/compose'
-import when from 'ramda/src/when'
-import ifElse from 'ramda/src/ifElse'
-import startsWith from 'ramda/src/startsWith'
-import toUpper from 'ramda/src/toUpper'
-import symmetricDifference from 'ramda/src/symmetricDifference'
-import prop from 'ramda/src/prop'
-import tap from 'ramda/src/tap'
-import pick from 'ramda/src/pick'
-import R from 'ramda'
+import {
+  filter,
+  map,
+  compose,
+  ifElse,
+  startsWith,
+  toUpper,
+  symmetricDifference,
+  prop,
+  pick,
+  when,
+} from 'ramda'
 import {renderOrCloneComponent} from './utils'
 
-class ContextSelect extends React.Component {
+class AsyncSelect extends Component {
   state = {
-    caseSensitiveSearch: false,
     hasSearch: false,
     opened: false,
     options: [],
@@ -26,8 +25,8 @@ class ContextSelect extends React.Component {
     selectedValue: [],
   }
   componentWillMount() {
+    this.loadOptions('')
     this.setState({
-      options: map(this.transform, this.props.options),
       selectedValue: typeof this.props.defaultValue !== 'undefined'
         ? [this.transform(this.props.defaultValue)]
         : [],
@@ -37,12 +36,22 @@ class ContextSelect extends React.Component {
     if (nextState.selectedValue !== this.state.selectedValue)
       this.props.onChange(nextState.selectedValue)
   }
+  callback = (error, options) => {
+    if (error !== null) return
+    const opts = map(this.transform, options)
+    this.setState({options: opts})
+  }
+  loadOptions = query => {
+    const promise = this.props.loadOptions(query, this.callback)
+    if (promise) {
+      promise.then(options => this.callback(null, options)).catch(err => this.callback(err))
+    }
+  }
 
   getChildContext() {
     const {defaultValue, name, multi, placeholder, transform} = this.props
-    const {caseSensitiveSearch, hasSearch, opened, options, searchValue, selectedValue} = this.state
+    const {hasSearch, opened, options, searchValue, selectedValue} = this.state
     return {
-      caseSensitiveSearch,
       defaultValue,
       hasSearch,
       name,
@@ -79,10 +88,10 @@ class ContextSelect extends React.Component {
   onSelectValue = data => {
     this.props.clearSearchValue && this.props.clearSearchValue()
     this.setState({
-      opened: false,
+      opened: this.props.stayOpenOnSelect,
       selectedValue: this.props.multi
-        ? symmetricDifference(this.state.selectedValue, [this.transform(data)])
-        : [this.transform(data)],
+        ? symmetricDifference(this.state.selectedValue, [data])
+        : [data],
     })
   }
 
@@ -98,68 +107,68 @@ class ContextSelect extends React.Component {
   }
 
   clearSearchValue = () => this.setState({searchValue: ''})
-  onChangeSearchValue = query => this.setState({searchValue: query})
+  onChangeSearchValue = debounce(query => {
+    this.loadOptions(query)
+    this.setState({searchValue: query})
+  }, this.props.debounce)
 
-  renderInputs = () => {
+  renderInputs = (selectedValue, name) => {
     return map(
-      v =>
-        <input
-          key={v.label}
-          name={`${this.props.name}[${v.label}]`}
-          type="hidden"
-          value={v.value}
-        />,
-      this.state.selectedValue,
+      v => <input key={v.label} name={`${name}[${v.label}]`} type="hidden" value={v.value} />,
+      selectedValue,
     )
   }
   render() {
     const containerProps = pick(['classname', 'style'], this.props)
     return (
       <div {...containerProps}>
-        {this.renderInputs()}
+        {this.renderInputs(this.state.selectedValue, this.props.name)}
         {this.props.children}
       </div>
     )
   }
 }
 
-ContextSelect.propTypes = {
+AsyncSelect.propTypes = {
   classname: PropTypes.string,
+  debounce: PropTypes.number,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
   onChange: PropTypes.func,
-  options: PropTypes.array.isRequired,
+  loadOptions: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
   transform: PropTypes.func,
 }
 
-ContextSelect.defaultProps = {
+AsyncSelect.defaultProps = {
+  debounce: 300,
   multi: false,
   placeholder: 'Select an options',
+  stayOpenOnSelect: false,
 }
-ContextSelect.childContextTypes = {
-  caseSensitiveSearch: PropTypes.bool.isRequired,
+AsyncSelect.childContextTypes = {
   clearValue: PropTypes.func.isRequired,
   clearOneValue: PropTypes.func.isRequired,
   clearSearchValue: PropTypes.func.isRequired,
   defaultValue: PropTypes.any,
   hasSearch: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
-  multi: PropTypes.bool,
+  multi: PropTypes.bool.isRequired,
   options: PropTypes.array.isRequired,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
   onSelectValue: PropTypes.func.isRequired,
   onChangeSearchValue: PropTypes.func.isRequired,
   opened: PropTypes.bool.isRequired,
   selectedValue: PropTypes.array.isRequired,
   searchValue: PropTypes.string.isRequired,
 
-  transform: PropTypes.func,
   toggleCaseSensitive: PropTypes.func.isRequired,
   toggleSearch: PropTypes.func.isRequired,
   toggleSelect: PropTypes.func.isRequired,
+  transform: PropTypes.func.isRequired,
 }
 
-export default ContextSelect
+export default AsyncSelect

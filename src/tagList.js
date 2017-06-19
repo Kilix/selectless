@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {compose, getContext} from 'recompose'
-import map from 'ramda/src/map'
+import {map} from 'ramda'
 
 import {renderOrCloneComponent} from './utils'
 

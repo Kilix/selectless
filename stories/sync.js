@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 
-import {Clear, ContextSelect, Item, bindLabel, Search, List, TagList, Tag} from '../src'
+import {Clear, SyncSelect, Item, bindLabel, Search, List, TagList, Tag} from '../src'
 
 const simpleOptions = [
   {value: 'paris', label: 'Paris'},
@@ -10,7 +10,7 @@ const simpleOptions = [
   {value: 'tokyo', label: 'Tokyo'},
 ]
 
-const Container = props => <ContextSelect {...props} />
+const Container = props => <SyncSelect {...props} />
 const CLabel = bindLabel(<label />)
 
 const rendering = ({placeholder, value}) => <strong>{value ? value.label : placeholder}</strong>
@@ -35,6 +35,12 @@ const onChange = () => {}
 storiesOf('Selectless - Sync', module)
   .add('Basic', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
+      <CLabel />
+      <List renderItem={Item} />
+    </Container>,
+  )
+  .add('Stay open', () =>
+    <Container name="context" onChange={onChange} options={simpleOptions} stayOpenOnSelect>
       <CLabel />
       <List renderItem={Item} />
     </Container>,

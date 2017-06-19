@@ -2,7 +2,7 @@ import {configure} from '@storybook/react'
 import {setOptions} from '@storybook/addon-options'
 
 setOptions({
-  name: 'React Selectliss',
+  name: 'React Selectless',
   url: 'https://github.com',
   goFullScreen: false,
   showLeftPanel: true,
@@ -14,6 +14,7 @@ setOptions({
 
 function loadStories() {
   require('../stories/sync.js')
+  require('../stories/async.js')
 }
 
 configure(loadStories, module)
