@@ -52,7 +52,7 @@ const renderingTag = ({tag, clear}) =>
 
 const onChange = () => {}
 
-storiesOf('Selectless - ASync', module)
+storiesOf('Selectless - Async', module)
   .add('Basic callback', () =>
     <Container name="context" onChange={onChange} loadOptions={simpleOptions}>
       <Label />

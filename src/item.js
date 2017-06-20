@@ -7,9 +7,10 @@ import {renderOrCloneComponent} from './utils'
 
 class Item extends React.Component {
   render() {
-    const {data, isCurrent, isSelected, onSelectValue, render, ...props} = this.props
+    const {currentRef, data, isCurrent, isSelected, onSelectValue, render, ...props} = this.props
+
     return typeof render === 'undefined'
-      ? <div onClick={() => onSelectValue(data)} role="combobox" {...props}>
+      ? <div onClick={() => onSelectValue(data)} ref={currentRef} role="option" {...props}>
           {data.label}
         </div>
       : render({data, isCurrent, isSelected, onSelectValue})

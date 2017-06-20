@@ -4,6 +4,8 @@ import {storiesOf} from '@storybook/react'
 
 import {Clear, SyncSelect, Item, Label, Search, List, TagList, Tag} from '../src'
 
+import SuperCustomComponent from './superComponent'
+
 const simpleOptions = [
   {value: 'paris', label: 'Paris'},
   {value: 'newyork', label: 'New-York'},
@@ -28,7 +30,6 @@ const renderingTag = ({tag, clear}) =>
     <span>{tag.label}</span>
     <button onClick={clear}>Clear</button>
   </div>
-
 const onChange = () => {}
 
 storiesOf('Selectless - Sync', module)
@@ -113,5 +114,10 @@ storiesOf('Selectless - Sync', module)
     <Container multi name="context" onChange={onChange} options={simpleOptions}>
       <TagList renderTag={<Tag render={renderingTag} />} />
       <List renderItem={Item} />
+    </Container>,
+  )
+  .add('Full Custom Component', () =>
+    <Container name="context" onChange={onChange} options={simpleOptions}>
+      <SuperCustomComponent />
     </Container>,
   )

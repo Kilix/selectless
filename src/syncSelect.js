@@ -101,7 +101,7 @@ class SyncSelect extends Component {
     this.setState({opened: opened !== null ? opened : !this.state.opened})
 
   onSelectValue = data => {
-    this.props.clearSearchValue && this.props.clearSearchValue()
+    this.props.clearSearchOnSelect && this.clearSearchValue()
     this.setState({
       opened: this.props.stayOpenOnSelect,
       selectedValue: this.props.multi
@@ -121,7 +121,7 @@ class SyncSelect extends Component {
     })
   }
 
-  clearSearchValue = () => this.setState({searchValue: ''})
+  clearSearchValue = () => this.setState({searchValue: '', options: this.computeOptions('')})
   onChangeSearchValue = query =>
     this.setState({
       searchValue: query,
@@ -135,7 +135,8 @@ class SyncSelect extends Component {
     )
   }
   render() {
-    const containerProps = pick(['classname', 'style'], this.props)
+    const containerProps = pick(['className', 'style'], this.props)
+
     return (
       <div {...containerProps}>
         {this.renderInputs(this.state.selectedValue, this.props.name)}
@@ -146,7 +147,8 @@ class SyncSelect extends Component {
 }
 
 SyncSelect.propTypes = {
-  classname: PropTypes.string,
+  className: PropTypes.string,
+  clearSearchOnSelect: PropTypes.bool,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
@@ -162,6 +164,7 @@ SyncSelect.defaultProps = {
   multi: false,
   placeholder: 'Select an options',
   stayOpenOnSelect: false,
+  clearSearchOnSelect: false,
 }
 SyncSelect.childContextTypes = {
   caseSensitiveSearch: PropTypes.bool.isRequired,

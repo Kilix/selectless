@@ -9,11 +9,10 @@ class Clear extends React.Component {
   render() {
     const {clearValue, label, render} = this.props
     const props = omit(['clearValue', 'label', 'render'], this.props)
-    const ElProps = {onClick: clearValue}
 
     return typeof render !== 'undefined'
-      ? render(label, {...ElProps, ...props})
-      : <button {...props} {...ElProps}>{label ? label : 'Clear'}</button>
+      ? render({clearValue, label})
+      : <span {...props} onClick={clearValue}>{label ? label : 'Clear'}</span>
   }
 }
 

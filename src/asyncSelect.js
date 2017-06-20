@@ -107,10 +107,14 @@ class AsyncSelect extends Component {
   }
 
   clearSearchValue = () => this.setState({searchValue: ''})
-  onChangeSearchValue = debounce(query => {
+
+  _onChangeSearchValue = debounce(query => {
     this.loadOptions(query)
-    this.setState({searchValue: query})
   }, this.props.debounce)
+  onChangeSearchValue = query => {
+    this.setState({searchValue: query})
+    this._onChangeSearchValue(query)
+  }
 
   renderInputs = (selectedValue, name) => {
     return map(
@@ -119,7 +123,7 @@ class AsyncSelect extends Component {
     )
   }
   render() {
-    const containerProps = pick(['classname', 'style'], this.props)
+    const containerProps = pick(['className', 'style'], this.props)
     return (
       <div {...containerProps}>
         {this.renderInputs(this.state.selectedValue, this.props.name)}
@@ -130,7 +134,7 @@ class AsyncSelect extends Component {
 }
 
 AsyncSelect.propTypes = {
-  classname: PropTypes.string,
+  className: PropTypes.string,
   debounce: PropTypes.number,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,

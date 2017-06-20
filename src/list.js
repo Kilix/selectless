@@ -1,4 +1,5 @@
 import React from 'react'
+import {findDOMNode} from 'react-dom'
 import PropTypes from 'prop-types'
 import {getContext} from 'recompose'
 
@@ -41,6 +42,27 @@ class List extends React.Component {
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyEvent)
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    if (
+      nextProps.opened &&
+      nextState.currentValue !== this.state.currentValue &&
+      this.item !== null
+    ) {
+      const {currentValue} = this.state
+      const wrapper = findDOMNode(this.node)
+      const item = findDOMNode(this.item)
+      const wrapperHeight = wrapper.getBoundingClientRect().height
+      const itemHeight = item.getBoundingClientRect().height
+      const ratio = wrapperHeight / itemHeight
+      const offset = itemHeight * currentValue
+      if (
+        offset < wrapper.scrollTop ||
+        offset > wrapper.scrollTop + currentValue % Math.floor(ratio) * itemHeight
+      )
+        wrapper.scrollTop = currentValue * itemHeight
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (
@@ -88,6 +110,7 @@ class List extends React.Component {
       }
     }
   }
+  setRef = l => (this.node = l)
 
   render() {
     const {opened, options, render, renderItem, selectedValue, ...props} = this.props
@@ -104,20 +127,24 @@ class List extends React.Component {
       props,
     )
 
-    const items = map(
-      o =>
-        renderOrCloneComponent(renderItem, {
-          key: o.value.toString(),
-          data: o,
-          isCurrent: currentValue === findIndex(equals(o), options),
-          isSelected: contains(o, selectedValue),
-        }),
-      options,
-    )
+    const items = map(o => {
+      const isCurrent = currentValue === findIndex(equals(o), options)
+      return renderOrCloneComponent(renderItem, {
+        key: o.value.toString(),
+        data: o,
+        isCurrent,
+        isSelected: contains(o, selectedValue),
+        currentRef: ref => (isCurrent ? (this.item = ref) : null),
+      })
+    }, options)
 
     return typeof render === 'undefined'
-      ? opened ? <div {...myprops}>{items}</div> : null
-      : render({opened, items})
+      ? opened
+        ? <div ref={this.setRef} {...myprops} role="listbox">
+            {items}
+          </div>
+        : null
+      : render({opened, items, ref: this.setRef})
   }
 }
 

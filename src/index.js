@@ -1,5 +1,6 @@
 export SyncSelect from './syncSelect'
 export AsyncSelect from './asyncSelect'
+export createSelectComponent from './createSelectComponent'
 export Item from './item'
 export Label from './label'
 export List from './list'
