@@ -7,22 +7,13 @@ import {renderOrCloneComponent} from './utils'
 
 class Label extends React.Component {
   render() {
-    const {
-      children,
-      opened,
-      placeholder,
-      render,
-      selectedValue,
-      toggleSelect,
-      ...props
-    } = this.props
+    const {opened, placeholder, render, selectedValue, toggleSelect, ...props} = this.props
     const value = selectedValue && selectedValue[0]
     return typeof render === 'undefined'
       ? <div onClick={() => toggleSelect()} {...props}>
           {value ? value.label : placeholder}
-          {children ? children : null}
         </div>
-      : render({children, opened, placeholder, toggleSelect, value})
+      : render({opened, placeholder, toggleSelect, value})
   }
 }
 const enhance = compose(

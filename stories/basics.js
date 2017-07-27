@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 import {Provider, createComponent} from 'react-fela'
+import {compose} from 'recompose'
 import 'whatwg-fetch'
 
 import createRenderer from './felaProvider'
-import {AsyncSelect, SyncSelect, createSelectComponent} from '../src'
+import {AsyncSelect, SyncSelect, createSelectComponent, withKeyboardEvent} from '../src'
 
 import simpleOptions from './options'
 const fakeApi = query => {
@@ -46,7 +47,7 @@ const felaProvider = story =>
   </Provider>
 
 const I = createComponent(
-  () => ({
+  ({focused}) => ({
     position: 'absolute',
     top: 0,
     left: 0,
@@ -59,9 +60,10 @@ const I = createComponent(
     fontFamily: 'sans-serif',
     fontSize: 14,
     fontWeight: 'normal',
+    zIndex: focused ? 10 : 0,
   }),
   'input',
-  ['onChange', 'onFocus', 'onKeyUp', 'type', 'value'],
+  ['onChange', 'onClick', 'onFocus', 'onBlur', 'onKeyUp', 'type', 'value'],
 )
 const L = createComponent(
   ({color}) => ({
@@ -83,6 +85,7 @@ const L = createComponent(
 )
 const Toggle = createComponent(
   ({opened}) => ({
+    zIndex: 11,
     position: 'absolute',
     top: 0,
     right: 5,
@@ -102,6 +105,7 @@ const Toggle = createComponent(
 )
 const Clear = createComponent(
   () => ({
+    zIndex: 11,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -122,10 +126,45 @@ const Clear = createComponent(
   'button',
   ['onClick'],
 )
+
+const Ul = createComponent(() => ({
+  fontFamily: 'sans-serif',
+  fontSize: 14,
+  fontWeight: 'normal',
+  backgroundColor: '#FAFAFA',
+  borderTop: '1px solid #333',
+  borderBottomLeftRadius: 3,
+  borderBottomRightRadius: 3,
+  overflow: 'auto',
+  maxHeight: 200,
+}))
+const Li = createComponent(
+  ({color}) => ({
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: 38,
+    paddingLeft: 8,
+    color: color,
+    borderBottom: '1px solid #F1F1F1',
+    cursor: 'pointer',
+    transition: 'all .3s ease-out',
+    ':hover': {paddingLeft: 14, color},
+  }),
+  'div',
+  ['onClick'],
+)
+
+const SlideIn = createComponent(({opened}) => ({
+  overflow: 'hidden',
+  height: opened ? 300 : 0,
+  transition: 'height .2s ease',
+}))
 const SearchLabel = enhance(
   ({
     clearSearchValue,
     clearValue,
+    hasSearch,
     onChangeSearchValue,
     searchValue,
     toggleCaseSensitive,
@@ -146,15 +185,23 @@ const SearchLabel = enhance(
       }}>
       <I
         type="text"
-        onChange={e => onChangeSearchValue(e.target.value)}
-        onFocus={() => toggleSearch(true)}
-        onKeyUp={e => {
+        focused={hasSearch}
+        onFocus={() => {
           if (!opened) toggleSelect(true)
+        }}
+        onBlur={() => {
+          toggleSelect(false)
+          toggleSearch(false)
+          clearSearchValue()
+        }}
+        onClick={() => !opened && toggleSelect(true)}
+        onKeyUp={e => {
           if (e.keyCode === 8 && searchValue === '') {
             onChangeSearchValue('')
             clearValue(e)
-          }
+          } else if (searchValue !== '') toggleSearch(true)
         }}
+        onChange={e => onChangeSearchValue(e.target.value)}
         value={searchValue}
       />
       <L
@@ -181,63 +228,39 @@ const SearchLabel = enhance(
       />
     </div>,
 )
+class ListC extends React.Component {
+  render() {
+    const {currentValue, clearSearchValue, onSelectValue, opened, options} = this.props
+    return (
+      <SlideIn opened={opened}>
+        <Ul innerRef={ref => (this.list = ref)}>
+          {options.map((o, idx) =>
+            <Li
+              key={o.label}
+              color={idx === currentValue ? 'orange' : '#333'}
+              // {...idx === 0 && {innerRef: ref => (this.item = ref)}} can o provide for a specific item to use
+              onClick={() => {
+                clearSearchValue()
+                onSelectValue(o)
+              }}>
+              {o.label}
+            </Li>,
+          )}
+        </Ul>
+      </SlideIn>
+    )
+  }
+}
+const List = compose(enhance, withKeyboardEvent)(ListC)
 
-const Ul = createComponent(
-  () => ({
-    fontFamily: 'sans-serif',
-    fontSize: 14,
-    fontWeight: 'normal',
-    backgroundColor: '#FAFAFA',
-    borderTop: '1px solid #333',
-    borderBottomLeftRadius: 3,
-    borderBottomRightRadius: 3,
-    overflow: 'auto',
-    maxHeight: 200,
-  }),
-  'div',
-)
-const Li = createComponent(
-  () => ({
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    height: 38,
-    paddingLeft: 8,
-    color: '#B1B1B1',
-    borderBottom: '1px solid #F1F1F1',
-    cursor: 'pointer',
-    transition: 'all .3s ease-out',
-    ':hover': {paddingLeft: 14, color: '#333'},
-  }),
-  'div',
-  ['onClick'],
-)
-
-const SlideIn = createComponent(({opened}) => ({
-  overflow: 'hidden',
-  height: opened ? 300 : 0,
-  transition: 'height .2s ease',
-}))
-const List = enhance(({clearSearchValue, onSelectValue, opened, options}) =>
-  <SlideIn opened={opened}>
-    <Ul>
-      {options.map(o =>
-        <Li
-          key={o.label}
-          onClick={() => {
-            clearSearchValue()
-            onSelectValue(o)
-          }}>
-          {o.label}
-        </Li>,
-      )}
-    </Ul>
-  </SlideIn>,
-)
 storiesOf('Selectless - Basic', module)
   .addDecorator(felaProvider)
   .add('Basic', () =>
-    <SyncSelect name="context" onChange={() => {}} options={simpleOptions} style={{width: 300}}>
+    <SyncSelect
+      name="context"
+      onChange={(/*data*/) => {}}
+      options={simpleOptions}
+      style={{width: 300}}>
       <SearchLabel />
       <List />
     </SyncSelect>,
@@ -245,7 +268,7 @@ storiesOf('Selectless - Basic', module)
   .add('Async', () =>
     <AsyncSelect
       name="context"
-      onChange={() => {}}
+      onChange={(/*data*/) => {}}
       loadOptions={fakeApi}
       transform={data => ({label: data.username, value: data.id.toString()})}
       style={{width: 300}}>

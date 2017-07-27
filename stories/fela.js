@@ -4,7 +4,17 @@ import {storiesOf} from '@storybook/react'
 import {Provider, createComponent} from 'react-fela'
 
 import createRenderer from './felaProvider'
-import {Clear, SyncSelect, Item, Label, Search, List, TagList, Tag} from '../src'
+import {
+  Clear,
+  SyncSelect,
+  Item,
+  Label,
+  Search,
+  List,
+  TagList,
+  Tag,
+  createSelectComponent,
+} from '../src'
 import simpleOptions from './options'
 
 const renderer = createRenderer()
@@ -147,7 +157,6 @@ const Ftem = createComponent(
     },
   }),
   Item,
-  ['data', 'isCurrent', 'isSelected', 'currentRef'],
 )
 
 storiesOf('Selectless - Fela', module).addDecorator(felaProvider).add('Basic callback', () =>

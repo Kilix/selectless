@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {compose, getContext} from 'recompose'
+import {compose, getContext, renderComponent, withProps, mapProps} from 'recompose'
 import {pick} from 'ramda'
 
 import {renderOrCloneComponent} from './utils'
 
-export default p => BaseComponent => {
-  const enhance = compose(
+export default p =>
+  compose(
     getContext({
       caseSensitiveSearch: PropTypes.bool,
       clearValue: PropTypes.func.isRequired,
@@ -30,14 +30,5 @@ export default p => BaseComponent => {
       toggleSelect: PropTypes.func.isRequired,
       transform: PropTypes.func.isRequired,
     }),
+    mapProps(props => pick(['className', 'style', ...p], props)),
   )
-
-  class extendedComponent extends React.Component {
-    render() {
-      const props = pick(p, this.props)
-      return renderOrCloneComponent(BaseComponent, props)
-    }
-  }
-
-  return enhance(extendedComponent)
-}

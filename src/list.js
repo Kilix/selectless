@@ -21,16 +21,8 @@ import {
   __,
 } from 'ramda'
 
-import {renderOrCloneComponent} from './utils'
-const closestAvailable = (currentValue, optionsLength, fn) => {
-  if (fn(currentValue) > currentValue) {
-    if (currentValue < optionsLength - 1) return fn(currentValue)
-    else return 0
-  } else {
-    if (currentValue !== 0) return fn(currentValue)
-    else return optionsLength - 1
-  }
-}
+import createSelectComponent from './createSelectComponent'
+import {closestAvailable, renderOrCloneComponent} from './utils'
 
 class List extends React.Component {
   state = {currentValue: null}
@@ -134,6 +126,7 @@ class List extends React.Component {
         data: o,
         isCurrent,
         isSelected: contains(o, selectedValue),
+        passThrough: ['data', 'isCurrent', 'isSelected', 'currentRef'],
         currentRef: ref => (isCurrent ? (this.item = ref) : null),
       })
     }, options)
@@ -148,15 +141,14 @@ class List extends React.Component {
   }
 }
 
-const enhance = compose(
-  getContext({
-    caseSensitiveSearch: PropTypes.bool,
-    hasSearch: PropTypes.bool,
-    opened: PropTypes.bool.isRequired,
-    options: PropTypes.array.isRequired,
-    searchValue: PropTypes.string,
-    selectedValue: PropTypes.array,
-    onSelectValue: PropTypes.func,
-  }),
-)
+const enhance = createSelectComponent([
+  'caseSensitiveSearch',
+  'hasSearch',
+  'opened',
+  'options',
+  'searchValue',
+  'selectedValue',
+  'onSelectValue',
+  'renderItem',
+])
 export default enhance(List)
