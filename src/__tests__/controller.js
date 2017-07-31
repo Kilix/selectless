@@ -1,39 +1,39 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import {SyncSelect} from './'
-import controller from './controller'
+import {Select} from '../'
+import controller from '../controller'
 
 test('should return all context', () => {
   const enhance = controller()
   const Test = props => (
     expect(Object.keys(props)).toEqual([
       'caseSensitiveSearch',
-      'clearValue',
-      'clearOneValue',
       'clearSearchValue',
-      'defaultValue',
       'hasSearch',
-      'name',
-      'multi',
-      'options',
-      'placeholder',
-      'onSelectValue',
       'onChangeSearchValue',
-      'opened',
-      'selectedValue',
       'searchValue',
+      'options',
       'sourceOptions',
       'toggleCaseSensitive',
       'toggleSearch',
-      'toggleSelect',
       'transform',
+      'clearValue',
+      'clearOneValue',
+      'defaultValue',
+      'name',
+      'multi',
+      'placeholder',
+      'onSelectValue',
+      'opened',
+      'selectedValue',
+      'toggleSelect',
     ]),
     <div />
   )
   const STest = enhance(Test)
   const component = renderer.create(
-    <SyncSelect name="test" options={[{value: 0, label: 'Test'}]}><STest /></SyncSelect>,
+    <Select name="test" options={[{value: 0, label: 'Test'}]}><STest /></Select>,
   )
 })
 
@@ -42,6 +42,6 @@ test('should pass only selected props', () => {
   const Test = props => (expect(Object.keys(props)).toEqual(['name', 'opened']), <div />)
   const STest = enhance(Test)
   const component = renderer.create(
-    <SyncSelect name="test" options={[{value: 0, label: 'Test'}]}><STest /></SyncSelect>,
+    <Select name="test" options={[{value: 0, label: 'Test'}]}><STest /></Select>,
   )
 })

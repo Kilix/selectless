@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {compose, getContext} from 'recompose'
 
-import {renderOrCloneComponent} from './utils'
+import controller from '../controller'
+import {renderOrCloneComponent} from '../utils'
 
 class Label extends React.Component {
   render() {
@@ -16,13 +16,5 @@ class Label extends React.Component {
       : render({opened, placeholder, toggleSelect, value})
   }
 }
-const enhance = compose(
-  getContext({
-    opened: PropTypes.bool,
-    placeholder: PropTypes.string,
-    selectedValue: PropTypes.array,
-    toggleSelect: PropTypes.func,
-  }),
-)
-
+const enhance = controller(['opened', 'placeholder', 'selectedValue', 'toggleSelect'])
 export default enhance(Label)

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {compose, getContext} from 'recompose'
-import {omit} from 'ramda'
+import omit from 'ramda/src/omit'
 
-import {renderOrCloneComponent} from './utils'
+import controller from '../controller'
+import {renderOrCloneComponent} from '../utils'
 
 class Search extends React.Component {
   state = {value: ''}
@@ -37,6 +37,7 @@ class Search extends React.Component {
         'toggleSearch',
         'toggleSelect',
         'render',
+        'searchValue',
       ],
       this.props,
     )
@@ -50,7 +51,7 @@ class Search extends React.Component {
       toggleSelect,
     } = this.props
     const {value} = this.state
-    const ElProps = {value, onChange: this.onChange, onFocus: () => toggleSelect(true), clearValue}
+    const ElProps = {value, onChange: this.onChange, onFocus: () => toggleSelect(true)}
 
     return typeof render !== 'undefined'
       ? render({
@@ -67,16 +68,14 @@ class Search extends React.Component {
   }
 }
 
-const enhance = compose(
-  getContext({
-    clearSearchValue: PropTypes.func,
-    clearValue: PropTypes.func,
-    onChangeSearchValue: PropTypes.func,
-    searchValue: PropTypes.string,
-    toggleCaseSensitive: PropTypes.func,
-    toggleSearch: PropTypes.func,
-    toggleSelect: PropTypes.func,
-  }),
-)
+const enhance = controller([
+  'clearSearchValue',
+  'clearValue',
+  'onChangeSearchValue',
+  'searchValue',
+  'toggleCaseSensitive',
+  'toggleSearch',
+  'toggleSelect',
+])
 
 export default enhance(Search)

@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {compose, getContext} from 'recompose'
 import {map} from 'ramda'
 
-import {renderOrCloneComponent} from './utils'
+import controller from '../controller'
+import {renderOrCloneComponent} from '../utils'
 
 class TagList extends React.Component {
   renderTags = map(tag =>
@@ -28,12 +28,5 @@ class TagList extends React.Component {
         })
   }
 }
-const enhance = compose(
-  getContext({
-    toggleSelect: PropTypes.func,
-    placeholder: PropTypes.string,
-    selectedValue: PropTypes.array,
-  }),
-)
-
+const enhance = controller(['toggleSelect', 'placeholder', 'selectedValue'])
 export default enhance(TagList)

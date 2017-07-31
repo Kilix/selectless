@@ -14,28 +14,19 @@ import {
   pick,
   when,
 } from 'ramda'
-import {renderOrCloneComponent} from './utils'
+import CoreSelect from './core'
 
 class AsyncSelect extends Component {
   state = {
+    caseSensitiveSearch: false,
     hasSearch: false,
-    opened: false,
     options: [],
     searchValue: '',
-    selectedValue: [],
   }
   componentWillMount() {
     this.loadOptions('')
-    this.setState({
-      selectedValue: typeof this.props.defaultValue !== 'undefined'
-        ? [this.transform(this.props.defaultValue)]
-        : [],
-    })
   }
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.selectedValue !== this.state.selectedValue)
-      this.props.onChange(nextState.selectedValue)
-  }
+
   callback = (error, options) => {
     if (error !== null) return
     const opts = map(this.transform, options)
@@ -49,27 +40,17 @@ class AsyncSelect extends Component {
   }
 
   getChildContext() {
-    const {defaultValue, name, multi, placeholder, transform} = this.props
-    const {hasSearch, opened, options, searchValue, selectedValue} = this.state
+    const {caseSensitiveSearch, hasSearch, options, searchValue} = this.state
     return {
-      defaultValue,
+      caseSensitiveSearch,
       hasSearch,
-      name,
-      multi,
-      placeholder,
-      transform: this.transform,
       toggleCaseSensitive: this.toggleCaseSensitive,
       toggleSearch: this.toggleSearch,
-      toggleSelect: this.toggleSelect,
-      onSelectValue: this.onSelectValue,
-      clearValue: this.clearValue,
-      clearOneValue: this.clearOneValue,
       clearSearchValue: this.clearSearchValue,
       onChangeSearchValue: this.onChangeSearchValue,
-      opened,
+      transform: this.transform,
       options,
       searchValue,
-      selectedValue,
     }
   }
 
@@ -82,54 +63,19 @@ class AsyncSelect extends Component {
   toggleCaseSensitive = (active = null) =>
     this.setState({caseSensitiveSearch: active !== null ? active : !this.state.caseSensitiveSearch})
 
-  toggleSelect = (opened = null) =>
-    this.setState({opened: opened !== null ? opened : !this.state.opened})
-
-  onSelectValue = data => {
-    this.props.clearSearchValue && this.props.clearSearchValue()
-    this.setState({
-      opened: this.props.stayOpenOnSelect,
-      selectedValue: this.props.multi
-        ? symmetricDifference(this.state.selectedValue, [data])
-        : [data],
-    })
-  }
-
-  clearValue = e => {
-    this.setState({selectedValue: []})
-    e.stopPropagation()
-  }
-
-  clearOneValue = t => {
-    this.setState({
-      selectedValue: filter(v => v.value !== t.value, this.state.selectedValue),
-    })
-  }
-
   clearSearchValue = () => this.setState({searchValue: ''})
 
   _onChangeSearchValue = debounce(query => {
     this.loadOptions(query)
   }, this.props.debounce)
+
   onChangeSearchValue = query => {
     this.setState({searchValue: query})
     this._onChangeSearchValue(query)
   }
-
-  renderInputs = (selectedValue, name) => {
-    return map(
-      v => <input key={v.label} name={`${name}[${v.label}]`} type="hidden" value={v.value} />,
-      selectedValue,
-    )
-  }
   render() {
-    const containerProps = pick(['className', 'style'], this.props)
-    return (
-      <div {...containerProps}>
-        {this.renderInputs(this.state.selectedValue, this.props.name)}
-        {this.props.children}
-      </div>
-    )
+    const {defaultChildren, ...props} = this.props
+    return defaultChildren({...props, options: this.state.options})
   }
 }
 
@@ -148,30 +94,23 @@ AsyncSelect.propTypes = {
 }
 
 AsyncSelect.defaultProps = {
-  debounce: 300,
   multi: false,
   placeholder: 'Select an options',
   stayOpenOnSelect: false,
+  debounce: 300,
+  defaultChildren: props => <CoreSelect {...props} />,
 }
+
 AsyncSelect.childContextTypes = {
-  clearValue: PropTypes.func.isRequired,
-  clearOneValue: PropTypes.func.isRequired,
+  caseSensitiveSearch: PropTypes.bool.isRequired,
   clearSearchValue: PropTypes.func.isRequired,
-  defaultValue: PropTypes.any,
   hasSearch: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
-  multi: PropTypes.bool.isRequired,
   options: PropTypes.array.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  onSelectValue: PropTypes.func.isRequired,
   onChangeSearchValue: PropTypes.func.isRequired,
-  opened: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.array.isRequired,
   searchValue: PropTypes.string.isRequired,
 
   toggleCaseSensitive: PropTypes.func.isRequired,
   toggleSearch: PropTypes.func.isRequired,
-  toggleSelect: PropTypes.func.isRequired,
   transform: PropTypes.func.isRequired,
 }
 

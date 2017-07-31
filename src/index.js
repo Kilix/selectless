@@ -1,11 +1,18 @@
-export SyncSelect from './syncSelect'
-export AsyncSelect from './asyncSelect'
-export controller from './controller'
-export Item from './item'
-export Label from './label'
-export List from './list'
-export Search from './search'
-export Clear from './clear'
-export TagList from './tagList'
-export Tag from './tag'
-export {withKeyboardEvent} from './utils'
+import Select from './sync'
+import AsyncSelect from './async'
+import controller from './controller'
+import {withKeyboardEvent} from './utils'
+
+import Item from './components/item'
+import Label from './components/label'
+import List from './components/list'
+import Search from './components/search'
+import Clear from './components/clear'
+import TagList from './components/tagList'
+import Tag from './components/tag'
+
+Select.Async = AsyncSelect
+
+export {Select, controller, Item, Label, List, Search, Clear, TagList, Tag, withKeyboardEvent}
+
+export default Select

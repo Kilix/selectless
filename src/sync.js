@@ -13,65 +13,36 @@ import {
   pick,
   when,
 } from 'ramda'
-import {renderOrCloneComponent} from './utils'
+import CoreSelect from './core'
 
 class SyncSelect extends Component {
   state = {
     caseSensitiveSearch: false,
     hasSearch: false,
-    opened: false,
     sourceOptions: [],
     options: [],
     searchValue: '',
-    selectedValue: [],
   }
   componentWillMount() {
     const opts = map(this.transform, this.props.options)
     this.setState({
       sourceOptions: opts,
       options: this.computeOptions('', opts),
-      selectedValue: typeof this.props.defaultValue !== 'undefined'
-        ? [this.transform(this.props.defaultValue)]
-        : [],
     })
   }
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.selectedValue !== this.state.selectedValue)
-      this.props.onChange(nextState.selectedValue)
-  }
-
   getChildContext() {
-    const {defaultValue, name, multi, placeholder, transform} = this.props
-    const {
-      caseSensitiveSearch,
-      hasSearch,
-      opened,
-      options,
-      searchValue,
-      selectedValue,
-      sourceOptions,
-    } = this.state
+    const {caseSensitiveSearch, hasSearch, options, searchValue, sourceOptions} = this.state
     return {
       caseSensitiveSearch,
-      defaultValue,
       hasSearch,
-      name,
-      multi,
-      placeholder,
-      transform: this.transform,
       toggleCaseSensitive: this.toggleCaseSensitive,
       toggleSearch: this.toggleSearch,
-      toggleSelect: this.toggleSelect,
-      onSelectValue: this.onSelectValue,
-      clearValue: this.clearValue,
-      clearOneValue: this.clearOneValue,
       clearSearchValue: this.clearSearchValue,
       onChangeSearchValue: this.onChangeSearchValue,
-      opened,
-      options,
       searchValue,
-      selectedValue,
       sourceOptions,
+      options,
+      transform: this.transform,
     }
   }
 
@@ -97,30 +68,6 @@ class SyncSelect extends Component {
   toggleCaseSensitive = (active = null) =>
     this.setState({caseSensitiveSearch: active !== null ? active : !this.state.caseSensitiveSearch})
 
-  toggleSelect = (opened = null) =>
-    this.setState({opened: opened !== null ? opened : !this.state.opened})
-
-  onSelectValue = data => {
-    this.props.clearSearchOnSelect && this.clearSearchValue()
-    this.setState({
-      opened: this.props.stayOpenOnSelect,
-      selectedValue: this.props.multi
-        ? symmetricDifference(this.state.selectedValue, [this.transform(data)])
-        : [this.transform(data)],
-    })
-  }
-
-  clearValue = e => {
-    this.setState({selectedValue: []})
-    e.stopPropagation()
-  }
-
-  clearOneValue = t => {
-    this.setState({
-      selectedValue: filter(v => v.value !== t.value, this.state.selectedValue),
-    })
-  }
-
   clearSearchValue = () => this.setState({searchValue: '', options: this.computeOptions('')})
   onChangeSearchValue = query =>
     this.setState({
@@ -128,21 +75,9 @@ class SyncSelect extends Component {
       options: this.computeOptions(query),
     })
 
-  renderInputs = (selectedValue, name) => {
-    return map(
-      v => <input key={v.label} name={`${name}[${v.label}]`} type="hidden" value={v.value} />,
-      selectedValue,
-    )
-  }
   render() {
-    const containerProps = pick(['className', 'style'], this.props)
-
-    return (
-      <div {...containerProps}>
-        {this.renderInputs(this.state.selectedValue, this.props.name)}
-        {this.props.children}
-      </div>
-    )
+    const {defaultChildren, ...props} = this.props
+    return defaultChildren({...props, options: this.state.options})
   }
 }
 
@@ -158,6 +93,7 @@ SyncSelect.propTypes = {
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
   transform: PropTypes.func,
+  defaultChildren: PropTypes.func.isRequired,
 }
 
 SyncSelect.defaultProps = {
@@ -165,28 +101,20 @@ SyncSelect.defaultProps = {
   placeholder: 'Select an options',
   stayOpenOnSelect: false,
   clearSearchOnSelect: false,
+  defaultChildren: props => <CoreSelect {...props} />,
 }
+
 SyncSelect.childContextTypes = {
   caseSensitiveSearch: PropTypes.bool.isRequired,
-  clearValue: PropTypes.func.isRequired,
-  clearOneValue: PropTypes.func.isRequired,
   clearSearchValue: PropTypes.func.isRequired,
-  defaultValue: PropTypes.any,
   hasSearch: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
-  multi: PropTypes.bool.isRequired,
-  options: PropTypes.array.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  onSelectValue: PropTypes.func.isRequired,
   onChangeSearchValue: PropTypes.func.isRequired,
-  opened: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.array.isRequired,
   searchValue: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
   sourceOptions: PropTypes.array.isRequired,
 
   toggleCaseSensitive: PropTypes.func.isRequired,
   toggleSearch: PropTypes.func.isRequired,
-  toggleSelect: PropTypes.func.isRequired,
   transform: PropTypes.func.isRequired,
 }
 

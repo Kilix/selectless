@@ -15,8 +15,6 @@ setOptions({
 function loadStories() {
   require('../stories/sync.js')
   require('../stories/async.js')
-  require('../stories/basics.js')
-  require('../stories/fela.js')
 }
 
 configure(loadStories, module)

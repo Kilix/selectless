@@ -1,34 +1,30 @@
 import PropTypes from 'prop-types'
 import {compose, getContext, mapProps} from 'recompose'
-import {pick, when} from 'ramda'
+import {pick, ifElse} from 'ramda'
 
-export default p =>
-  compose(
-    getContext({
-      caseSensitiveSearch: PropTypes.bool,
-      clearValue: PropTypes.func.isRequired,
-      clearOneValue: PropTypes.func.isRequired,
-      clearSearchValue: PropTypes.func.isRequired,
-      defaultValue: PropTypes.any,
-      hasSearch: PropTypes.bool.isRequired,
-      name: PropTypes.string.isRequired,
-      multi: PropTypes.bool.isRequired,
-      options: PropTypes.array.isRequired,
-      placeholder: PropTypes.string.isRequired,
-      onSelectValue: PropTypes.func.isRequired,
-      onChangeSearchValue: PropTypes.func.isRequired,
-      opened: PropTypes.bool.isRequired,
-      selectedValue: PropTypes.array.isRequired,
-      searchValue: PropTypes.string.isRequired,
-      sourceOptions: PropTypes.array,
-
-      toggleCaseSensitive: PropTypes.func.isRequired,
-      toggleSearch: PropTypes.func.isRequired,
-      toggleSelect: PropTypes.func.isRequired,
-      transform: PropTypes.func.isRequired,
-    }),
-    when(
-      () => typeof p !== 'undefined',
-      mapProps(props => pick(['className', 'style', ...p], props)),
-    ),
-  )
+const defaultContext = [
+  'caseSensitiveSearch',
+  'clearSearchValue',
+  'hasSearch',
+  'onChangeSearchValue',
+  'searchValue',
+  'options',
+  'sourceOptions',
+  'toggleCaseSensitive',
+  'toggleSearch',
+  'transform',
+  'clearValue',
+  'clearOneValue',
+  'defaultValue',
+  'name',
+  'multi',
+  'placeholder',
+  'onSelectValue',
+  'opened',
+  'selectedValue',
+  'toggleSelect',
+]
+export default (p = defaultContext) => {
+  const pp = p.reduce((acc, val) => ({...acc, [val]: PropTypes.any}), {})
+  return compose(getContext(pp))
+}

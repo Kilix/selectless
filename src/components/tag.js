@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {compose, getContext} from 'recompose'
 
-import {renderOrCloneComponent} from './utils'
+import controller from '../controller'
+import {renderOrCloneComponent} from '../utils'
 
 class Tag extends React.Component {
   clearTag = e => {
@@ -19,10 +19,5 @@ class Tag extends React.Component {
   }
 }
 
-const enhance = compose(
-  getContext({
-    clearOneValue: PropTypes.func,
-  }),
-)
-
+const enhance = controller(['clearOneValue'])
 export default enhance(Tag)

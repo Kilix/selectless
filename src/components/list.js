@@ -1,7 +1,6 @@
 import React from 'react'
 import {findDOMNode} from 'react-dom'
 import PropTypes from 'prop-types'
-import {getContext} from 'recompose'
 
 import {
   omit,
@@ -21,8 +20,8 @@ import {
   __,
 } from 'ramda'
 
-import controller from './controller'
-import {closestAvailable, renderOrCloneComponent} from './utils'
+import controller from '../controller'
+import {closestAvailable, renderOrCloneComponent} from '../utils'
 
 class List extends React.Component {
   state = {currentValue: null}
@@ -40,7 +39,8 @@ class List extends React.Component {
     if (
       nextProps.opened &&
       nextState.currentValue !== this.state.currentValue &&
-      this.item !== null
+      this.item !== null &&
+      this.node !== null
     ) {
       const {currentValue} = this.state
       const wrapper = findDOMNode(this.node)
@@ -149,6 +149,5 @@ const enhance = controller([
   'searchValue',
   'selectedValue',
   'onSelectValue',
-  'renderItem',
 ])
 export default enhance(List)

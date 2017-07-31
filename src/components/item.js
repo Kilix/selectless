@@ -1,13 +1,22 @@
 /* eslint-disable */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {compose, getContext} from 'recompose'
 
-import {renderOrCloneComponent} from './utils'
+import controller from '../controller'
+import {renderOrCloneComponent} from '../utils'
 
 class Item extends React.Component {
   render() {
-    const {currentRef, data, isCurrent, isSelected, onSelectValue, render, ...props} = this.props
+    const {
+      currentRef,
+      data,
+      isCurrent,
+      isSelected,
+      onSelectValue,
+      render,
+      passThrough,
+      ...props
+    } = this.props
     return typeof render === 'undefined'
       ? <div onClick={() => onSelectValue(data)} ref={currentRef} role="option" {...props}>
           {data.label}
@@ -15,5 +24,5 @@ class Item extends React.Component {
       : render({data, isCurrent, isSelected, onSelectValue})
   }
 }
-const enhance = compose(getContext({onSelectValue: PropTypes.func}))
+const enhance = controller(['onSelectValue'])
 export default enhance(Item)

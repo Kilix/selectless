@@ -2,15 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 
-import {Clear, Select, Item, Label, Search, List, TagList, Tag} from '../src'
-import {
-  rendering,
-  renderingList,
-  renderingItem,
-  renderingSearch,
-  renderingTag,
-  onChange,
-} from './dummy'
+import {Clear, SyncSelect, Item, Label, Search, List, TagList, Tag} from '../src'
+
+import SuperCustomComponent from './superComponent'
 
 const simpleOptions = [
   {value: 'paris', label: 'Paris'},
@@ -18,7 +12,25 @@ const simpleOptions = [
   {value: 'tokyo', label: 'Tokyo'},
 ]
 
-const Container = props => <Select {...props} />
+const Container = props => <SyncSelect {...props} />
+
+const rendering = ({placeholder, value}) => <strong>{value ? value.label : placeholder}</strong>
+const renderingList = ({opened, items}) =>
+  <div><h2>My Custom List</h2>{opened ? items : 'Empty list'}</div>
+const renderingItem = ({data, isSelected, onSelectValue}) =>
+  <i onClick={() => onSelectValue(data)} style={{color: isSelected ? 'red' : 'black'}}>
+    {data.label}
+  </i>
+const renderingSearch = ({onFocus, ...props}) =>
+  <div onClick={onFocus}>
+    <input style={{backgroundColor: 'red'}} type="text" {...props} />
+  </div>
+const renderingTag = ({tag, clear}) =>
+  <div>
+    <span>{tag.label}</span>
+    <button onClick={clear}>Clear</button>
+  </div>
+const onChange = () => {}
 
 storiesOf('Selectless - Sync', module)
   .add('Basic', () =>
@@ -29,16 +41,6 @@ storiesOf('Selectless - Sync', module)
   )
   .add('Stay open', () =>
     <Container name="context" onChange={onChange} options={simpleOptions} stayOpenOnSelect>
-      <Label />
-      <List renderItem={Item} />
-    </Container>,
-  )
-  .add('Default value', () =>
-    <Container
-      name="context"
-      onChange={onChange}
-      options={simpleOptions}
-      defaultValue={{label: 'Paris', value: 'paris'}}>
       <Label />
       <List renderItem={Item} />
     </Container>,
@@ -76,10 +78,7 @@ storiesOf('Selectless - Sync', module)
       <div>
         <Clear />
         <br />
-        <Clear
-          label="Custom clear"
-          render={({label, clearValue}) => <i onClick={clearValue}>{label}</i>}
-        />
+        <Clear label="Custom clear" render={(label, props) => <i {...props}>{label}</i>} />
       </div>
       <Label />
       <List renderItem={Item} />
@@ -115,5 +114,10 @@ storiesOf('Selectless - Sync', module)
     <Container multi name="context" onChange={onChange} options={simpleOptions}>
       <TagList renderTag={<Tag render={renderingTag} />} />
       <List renderItem={Item} />
+    </Container>,
+  )
+  .add('Full Custom Component', () =>
+    <Container name="context" onChange={onChange} options={simpleOptions}>
+      <SuperCustomComponent />
     </Container>,
   )
