@@ -21,7 +21,7 @@ import {
   __,
 } from 'ramda'
 
-import createSelectComponent from './createSelectComponent'
+import controller from './controller'
 import {closestAvailable, renderOrCloneComponent} from './utils'
 
 class List extends React.Component {
@@ -141,7 +141,7 @@ class List extends React.Component {
   }
 }
 
-const enhance = createSelectComponent([
+const enhance = controller([
   'caseSensitiveSearch',
   'hasSearch',
   'opened',

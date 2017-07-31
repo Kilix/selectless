@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
-import {Provider, createComponent} from 'react-fela'
+import {Provider, createComponentWithProxy} from 'react-fela'
 import {compose} from 'recompose'
 import 'whatwg-fetch'
 
@@ -11,10 +11,10 @@ import {AsyncSelect, SyncSelect, createSelectComponent, withKeyboardEvent} from 
 import simpleOptions from './options'
 const fakeApi = query => {
   return fetch(
-    query === ''
-      ? 'https://jsonplaceholder.typicode.com/users'
-      : `https://jsonplaceholder.typicode.com/users?username=${query}`,
-  ).then(response => response.json())
+    query === '' ? 'https://swapi.co/api/people' : `https://swapi.co/api/people/?search=${query}`,
+  )
+    .then(response => response.json())
+    .then(r => r.results)
 }
 
 const renderer = createRenderer()
@@ -46,7 +46,7 @@ const felaProvider = story =>
     {story()}
   </Provider>
 
-const I = createComponent(
+const I = createComponentWithProxy(
   ({focused}) => ({
     position: 'absolute',
     top: 0,
@@ -63,9 +63,8 @@ const I = createComponent(
     zIndex: focused ? 10 : 0,
   }),
   'input',
-  ['onChange', 'onClick', 'onFocus', 'onBlur', 'onKeyUp', 'type', 'value'],
 )
-const L = createComponent(
+const L = createComponentWithProxy(
   ({color}) => ({
     position: 'absolute',
     top: 0,
@@ -81,9 +80,8 @@ const L = createComponent(
     color,
   }),
   'label',
-  ['onClick'],
 )
-const Toggle = createComponent(
+const Toggle = createComponentWithProxy(
   ({opened}) => ({
     zIndex: 11,
     position: 'absolute',
@@ -101,9 +99,8 @@ const Toggle = createComponent(
     transform: opened ? 'rotate(180deg)' : 'rotate(0deg)',
   }),
   'button',
-  ['onClick'],
 )
-const Clear = createComponent(
+const Clear = createComponentWithProxy(
   () => ({
     zIndex: 11,
     display: 'flex',
@@ -124,10 +121,9 @@ const Clear = createComponent(
     cursor: 'pointer',
   }),
   'button',
-  ['onClick'],
 )
 
-const Ul = createComponent(() => ({
+const Ul = createComponentWithProxy(() => ({
   fontFamily: 'sans-serif',
   fontSize: 14,
   fontWeight: 'normal',
@@ -138,7 +134,7 @@ const Ul = createComponent(() => ({
   overflow: 'auto',
   maxHeight: 200,
 }))
-const Li = createComponent(
+const Li = createComponentWithProxy(
   ({color}) => ({
     display: 'flex',
     justifyContent: 'flex-start',
@@ -152,10 +148,9 @@ const Li = createComponent(
     ':hover': {paddingLeft: 14, color},
   }),
   'div',
-  ['onClick'],
 )
 
-const SlideIn = createComponent(({opened}) => ({
+const SlideIn = createComponentWithProxy(({opened}) => ({
   overflow: 'hidden',
   height: opened ? 300 : 0,
   transition: 'height .2s ease',
@@ -238,8 +233,8 @@ class ListC extends React.Component {
             <Li
               key={o.label}
               color={idx === currentValue ? 'orange' : '#333'}
-              // {...idx === 0 && {innerRef: ref => (this.item = ref)}} can o provide for a specific item to use
-              onClick={() => {
+              onClick={e => {
+                console.log('test')
                 clearSearchValue()
                 onSelectValue(o)
               }}>
@@ -270,7 +265,7 @@ storiesOf('Selectless - Basic', module)
       name="context"
       onChange={(/*data*/) => {}}
       loadOptions={fakeApi}
-      transform={data => ({label: data.username, value: data.id.toString()})}
+      transform={data => ({label: data.name, value: data.name})}
       style={{width: 300}}>
       <SearchLabel />
       <List />

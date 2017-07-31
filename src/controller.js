@@ -1,9 +1,6 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import {compose, getContext, renderComponent, withProps, mapProps} from 'recompose'
-import {pick} from 'ramda'
-
-import {renderOrCloneComponent} from './utils'
+import {compose, getContext, mapProps} from 'recompose'
+import {pick, when} from 'ramda'
 
 export default p =>
   compose(
@@ -30,5 +27,8 @@ export default p =>
       toggleSelect: PropTypes.func.isRequired,
       transform: PropTypes.func.isRequired,
     }),
-    mapProps(props => pick(['className', 'style', ...p], props)),
+    when(
+      () => typeof p !== 'undefined',
+      mapProps(props => pick(['className', 'style', ...p], props)),
+    ),
   )

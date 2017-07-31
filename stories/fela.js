@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
-import {Provider, createComponent} from 'react-fela'
+import {Provider, createComponentWithProxy} from 'react-fela'
 
 import createRenderer from './felaProvider'
 import {
@@ -24,7 +24,7 @@ const felaProvider = story =>
     {story()}
   </Provider>
 
-const Select = createComponent(() => ({
+const Select = createComponentWithProxy(() => ({
   backgroundColor: '#fff',
   borderColor: '#d9d9d9 #ccc #b3b3b3',
   borderRadius: '4px',
@@ -43,7 +43,7 @@ const Select = createComponent(() => ({
   width: '100%',
 }))
 
-const Fabel = createComponent(
+const Fabel = createComponentWithProxy(
   () => ({
     zIndex: 9,
     pointerEvents: 'none',
@@ -59,7 +59,7 @@ const Fabel = createComponent(
   Label,
 )
 
-const Flear = createComponent(
+const Flear = createComponentWithProxy(
   () => ({
     zIndex: 12,
     position: 'absolute',
@@ -106,7 +106,7 @@ const Fearch = ({
     value={value}
   />
 
-const FFF = createComponent(
+const FFF = createComponentWithProxy(
   () => ({
     zIndex: 8,
     position: 'absolute',
@@ -121,10 +121,9 @@ const FFF = createComponent(
     color: '#333',
   }),
   'input',
-  ['onChange', 'onClick', 'onKeyUp', 'type', 'value'],
 )
 
-const Fist = createComponent(
+const Fist = createComponentWithProxy(
   () => ({
     zIndex: 15,
     position: 'relative',
@@ -141,10 +140,9 @@ const Fist = createComponent(
     borderColor: '#d9d9d9 #ccc #b3b3b3',
   }),
   List,
-  ['renderItem'],
 )
 
-const Ftem = createComponent(
+const Ftem = createComponentWithProxy(
   ({isSelected, isCurrent}) => ({
     padding: 8,
     cursor: 'pointer',
