@@ -3,10 +3,7 @@
   "env": {
     "es6": true
   },
-  "extends": [
-    "prettier/react",
-    "prettier"
-  ],
+  "extends": ["prettier/react", "prettier"],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -14,8 +11,5 @@
       "jsx": true
     }
   },
-  "plugins": [
-    "react",
-    "prettier"
-  ]
+  "plugins": ["react", "prettier"]
 }

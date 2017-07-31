@@ -47,7 +47,7 @@
     "fela-preset-web": "5.0.5",
     "jest": "20.0.4",
     "npm-watch": "0.1.9",
-    "prettier": "1.4.4",
+    "prettier": "1.5.3",
     "react-dom": "15.5.4",
     "react-fela": "5.1.1",
     "react-test-renderer": "15.6.1",

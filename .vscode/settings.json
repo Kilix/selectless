@@ -9,5 +9,5 @@
     "prettier.printWidth": 100,
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
-    "eslint.enable": true
+    "eslint.enable": false
 }
