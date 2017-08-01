@@ -1,6 +1,10 @@
 import React from 'react'
 import {findDOMNode} from 'react-dom'
-import {add, subtract, findIndex, equals, __} from 'ramda'
+import add from 'ramda/src/add'
+import subtract from 'ramda/src/subtract'
+import findIndex from 'ramda/src/findIndex'
+import equals from 'ramda/src/equals'
+import __ from 'ramda/src/__'
 
 export function renderOrCloneComponent(BaseComponent, props, children) {
   if (React.isValidElement(BaseComponent)) {
@@ -26,6 +30,7 @@ export function withKeyboardEvent(BaseComponent) {
       document.addEventListener('keydown', this.handleKeyEvent)
     }
     componentWillUnmount() {
+      this.setRef(null)
       document.removeEventListener('keydown', this.handleKeyEvent)
     }
     componentWillReceiveProps(nextProps) {
@@ -46,23 +51,25 @@ export function withKeyboardEvent(BaseComponent) {
     }
     componentDidUpdate(nextProps, nextState) {
       const {currentValue} = this.state
-      if (nextProps.opened && nextState.currentValue !== currentValue && this.ref.item !== null) {
-        const wrapper = findDOMNode(this.ref.list)
-        const item = typeof item === 'undefined' ? wrapper.firstChild : findDOMNode(this.ref.item)
-
-        if (wrapper !== null && item !== null) {
-          const wrapperHeight = wrapper.getBoundingClientRect().height
-          const itemHeight = item.getBoundingClientRect().height
-          const ratio = wrapperHeight / itemHeight
-          const offset = itemHeight * currentValue
-          if (
-            offset < wrapper.scrollTop ||
-            offset > wrapper.scrollTop + currentValue % Math.floor(ratio) * itemHeight
-          )
-            wrapper.scrollTop = currentValue * itemHeight
+      if (nextProps.opened && nextState.currentValue !== currentValue && this.list !== null) {
+        const wrapper = findDOMNode(this.list)
+        if (wrapper !== null) {
+          const item = typeof item === 'undefined' ? wrapper.firstChild : findDOMNode(this.item)
+          if (item !== null) {
+            const wrapperHeight = wrapper.getBoundingClientRect().height
+            const itemHeight = item.getBoundingClientRect().height
+            const ratio = wrapperHeight / itemHeight
+            const offset = itemHeight * currentValue
+            if (
+              offset < wrapper.scrollTop ||
+              offset > wrapper.scrollTop + currentValue % Math.floor(ratio) * itemHeight
+            )
+              wrapper.scrollTop = currentValue * itemHeight
+          }
         }
       }
     }
+    setRef = ref => (this.list = ref)
     handleKeyEvent = e => {
       const {onSelectValue, toggleSelect, toggleSearch, opened, options} = this.props
       const {currentValue} = this.state
@@ -95,9 +102,9 @@ export function withKeyboardEvent(BaseComponent) {
       }
     }
     render() {
-      return React.cloneElement(<BaseComponent />, {
+      return renderOrCloneComponent(BaseComponent, {
         currentValue: this.state.currentValue,
-        ref: ref => (this.ref = ref),
+        setRef: this.setRef,
         ...this.props,
       })
     }

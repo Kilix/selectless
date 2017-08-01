@@ -6,9 +6,9 @@ import {compose} from 'recompose'
 import 'whatwg-fetch'
 
 import createRenderer from './felaProvider'
-import {AsyncSelect, SyncSelect, createSelectComponent, withKeyboardEvent} from '../src'
+import {Select, controller, withKeyboardEvent} from '../src'
 
-import simpleOptions from './options'
+import simpleOptions from './old/options'
 const fakeApi = query => {
   return fetch(
     query === '' ? 'https://swapi.co/api/people' : `https://swapi.co/api/people/?search=${query}`,
@@ -18,7 +18,7 @@ const fakeApi = query => {
 }
 
 const renderer = createRenderer()
-const enhance = createSelectComponent([
+const enhance = controller([
   'caseSensitiveSearch',
   'clearValue',
   'clearOneValue',
@@ -181,14 +181,6 @@ const SearchLabel = enhance(
       <I
         type="text"
         focused={hasSearch}
-        onFocus={() => {
-          if (!opened) toggleSelect(true)
-        }}
-        onBlur={() => {
-          toggleSelect(false)
-          toggleSearch(false)
-          clearSearchValue()
-        }}
         onClick={() => !opened && toggleSelect(true)}
         onKeyUp={e => {
           if (e.keyCode === 8 && searchValue === '') {
@@ -225,18 +217,19 @@ const SearchLabel = enhance(
 )
 class ListC extends React.Component {
   render() {
-    const {currentValue, clearSearchValue, onSelectValue, opened, options} = this.props
+    const {currentValue, clearSearchValue, onSelectValue, opened, options, setRef} = this.props
     return (
       <SlideIn opened={opened}>
-        <Ul innerRef={ref => (this.list = ref)}>
+        <Ul innerRef={ref => setRef(ref)}>
           {options.map((o, idx) =>
             <Li
               key={o.label}
               color={idx === currentValue ? 'orange' : '#333'}
               onClick={e => {
-                console.log('test')
                 clearSearchValue()
                 onSelectValue(o)
+                e.preventDefault()
+                e.stopPropagation()
               }}>
               {o.label}
             </Li>,
@@ -248,20 +241,16 @@ class ListC extends React.Component {
 }
 const List = compose(enhance, withKeyboardEvent)(ListC)
 
-storiesOf('Selectless - Basic', module)
+storiesOf('Selectless - Full Custom', module)
   .addDecorator(felaProvider)
   .add('Basic', () =>
-    <SyncSelect
-      name="context"
-      onChange={(/*data*/) => {}}
-      options={simpleOptions}
-      style={{width: 300}}>
+    <Select name="context" onChange={(/*data*/) => {}} options={simpleOptions} style={{width: 300}}>
       <SearchLabel />
       <List />
-    </SyncSelect>,
+    </Select>,
   )
   .add('Async', () =>
-    <AsyncSelect
+    <Select.Async
       name="context"
       onChange={(/*data*/) => {}}
       loadOptions={fakeApi}
@@ -269,5 +258,5 @@ storiesOf('Selectless - Basic', module)
       style={{width: 300}}>
       <SearchLabel />
       <List />
-    </AsyncSelect>,
+    </Select.Async>,
   )

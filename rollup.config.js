@@ -22,7 +22,7 @@ const plugins = [
     'process.env.NODE_ENV': JSON.stringify(prod ? 'production' : 'development'),
   }),
   json(),
-  nodeResolve(),
+  nodeResolve({jsnext: true, main: true}),
   babel({
     babelrc: false,
     plugins: [
@@ -43,8 +43,14 @@ export default {
   entry: 'src/index.js',
   moduleName: 'react-selectless',
   exports: 'named',
-  external: ['react', 'prop-types', 'recompose', 'ramda'],
-  globals: {react: 'React', 'prop-types': 'PropTypes', ramda: 'ramda', recompose: 'recompose'},
+  external: ['react', 'react-dom', 'prop-types', 'recompose', 'ramda'],
+  globals: {
+    react: 'React',
+    'react-dom': 'reactDom',
+    'prop-types': 'PropTypes',
+    ramda: 'ramda',
+    recompose: 'recompose',
+  },
   targets,
   plugins,
 }

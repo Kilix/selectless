@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
-import {compose, getContext, mapProps} from 'recompose'
-import {pick, ifElse} from 'ramda'
+import {compose, getContext} from 'recompose'
 
 const defaultContext = [
   'caseSensitiveSearch',

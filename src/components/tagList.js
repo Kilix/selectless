@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {map} from 'ramda'
+import map from 'ramda/src/map'
 
 import controller from '../controller'
 import {renderOrCloneComponent} from '../utils'

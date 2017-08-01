@@ -2,18 +2,9 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'debounce'
 
-import {
-  filter,
-  map,
-  compose,
-  ifElse,
-  startsWith,
-  toUpper,
-  symmetricDifference,
-  prop,
-  pick,
-  when,
-} from 'ramda'
+import filter from 'ramda/src/filter'
+import map from 'ramda/src/map'
+
 import CoreSelect from './core'
 
 class AsyncSelect extends Component {

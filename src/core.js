@@ -1,18 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
-import {
-  filter,
-  map,
-  compose,
-  ifElse,
-  startsWith,
-  toUpper,
-  symmetricDifference,
-  prop,
-  pick,
-  when,
-} from 'ramda'
+import filter from 'ramda/src/filter'
+import map from 'ramda/src/map'
+import pick from 'ramda/src/pick'
 
 class SyncSelect extends Component {
   state = {

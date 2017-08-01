@@ -16,6 +16,7 @@ function loadStories() {
   require('../stories/sync.js')
   require('../stories/async.js')
   require('../stories/fela.js')
+  require('../stories/basics.js')
 }
 
 configure(loadStories, module)
