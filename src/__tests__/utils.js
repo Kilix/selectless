@@ -1,8 +1,8 @@
 import React from 'react'
 import {mount} from 'enzyme'
 
-import Select from '../src/'
-import {renderOrCloneComponent, closestAvailable} from '../src/utils'
+import Select from '../'
+import {renderOrCloneComponent, closestAvailable} from '../utils'
 
 const options = [{label: 'Paris', value: 'paris'}, {label: 'NYC', value: 'new-york'}]
 

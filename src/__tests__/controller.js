@@ -1,8 +1,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import {Select} from '../src/'
-import controller from '../src/controller'
+import {Select} from '../'
+import controller from '../controller'
 
 test('should return all context', () => {
   const enhance = controller()

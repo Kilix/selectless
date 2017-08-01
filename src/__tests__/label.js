@@ -1,8 +1,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Select from '../src/'
-import Label from '../src/components/label'
+import Select from '../'
+import Label from '../components/label'
 
 const options = [{label: 'Paris', value: 'paris'}, {label: 'Tokyo', value: 'tokyo'}]
 

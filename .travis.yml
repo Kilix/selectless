@@ -1,21 +1,19 @@
 sudo: false
 language: node_js
-cache: yarn
+cache:
+  directories:
+    - node_modules
 notifications:
   email: false
 node_js:
-  - '6'
-before_script:
-  - yarn global add codecov
+  - '8'
 script:
-  - npm test
-  - npm run format
+  - npm start validate
 after_success:
-  - codecov
-  - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
-  - python travis_after_all.py
-  - export $(cat .to_export_back) &> /dev/null
+  - npx codecov
+  - npm i -g semantic-release
+  - semantic-release pre && npm publish && semantic-release post
+  - npm start validate.examples
 branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
-    
+  only:
+    - master
