@@ -14,13 +14,13 @@
     "prebuild:dist": "rm -rf dist/*",
     "build:dist": "rollup -c && rollup -c --environment PRODUCTION",
     "build:watch": "npm-watch",
-    "test": "jest src",
-    "test:watch": "jest src --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "format": "prettier --no-semi --single-quote --trailing-comma all --tab-width 2 --jsx-bracket-same-line true --bracket-spacing false --print-width 100 --write 'src/**/*.js'",
     "prepublish": "yarn run build",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "link": "yarn run build && yarn link",
-    "lint": "eslint 'src/**/*.js'"
+    "lint": "eslint 'src/**/*.js' '__tests__'"
   },
   "devDependencies": {
     "@storybook/addon-options": "3.0.1",

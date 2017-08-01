@@ -1,8 +1,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import {Select} from '../'
-import controller from '../controller'
+import {Select} from '../src/'
+import controller from '../src/controller'
 
 test('should return all context', () => {
   const enhance = controller()
@@ -33,7 +33,9 @@ test('should return all context', () => {
   )
   const STest = enhance(Test)
   const component = renderer.create(
-    <Select name="test" options={[{value: 0, label: 'Test'}]}><STest /></Select>,
+    <Select name="test" options={[{value: 0, label: 'Test'}]}>
+      <STest />
+    </Select>,
   )
 })
 
@@ -42,6 +44,8 @@ test('should pass only selected props', () => {
   const Test = props => (expect(Object.keys(props)).toEqual(['name', 'opened']), <div />)
   const STest = enhance(Test)
   const component = renderer.create(
-    <Select name="test" options={[{value: 0, label: 'Test'}]}><STest /></Select>,
+    <Select name="test" options={[{value: 0, label: 'Test'}]}>
+      <STest />
+    </Select>,
   )
 })

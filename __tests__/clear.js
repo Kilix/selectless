@@ -2,8 +2,8 @@ import React from 'react'
 import {mount, shallow} from 'enzyme'
 import renderer from 'react-test-renderer'
 
-import Select from '../'
-import Clear from '../components/clear'
+import Select from '../src/'
+import Clear from '../src/components/clear'
 
 const options = [{label: 'Paris', value: 'paris'}, {label: 'Tokyo', value: 'tokyo'}]
 it('Clear', () => {

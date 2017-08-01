@@ -1,9 +1,9 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Select from '../'
-import TagList from '../components/tagList'
-import Tag from '../components/tag'
+import Select from '../src/'
+import TagList from '../src/components/tagList'
+import Tag from '../src/components/tag'
 
 const options = [{label: 'Paris', value: 'paris'}, {label: 'Tokyo', value: 'tokyo'}]
 
