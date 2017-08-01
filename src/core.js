@@ -21,9 +21,8 @@ class SyncSelect extends Component {
   }
   componentWillMount() {
     this.setState({
-      selectedValue: typeof this.props.defaultValue !== 'undefined'
-        ? [this.props.defaultValue]
-        : [],
+      selectedValue:
+        typeof this.props.defaultValue !== 'undefined' ? [this.props.defaultValue] : [],
     })
   }
   componentWillUpdate(nextProps, nextState) {
@@ -52,7 +51,7 @@ class SyncSelect extends Component {
     this.setState({opened: opened !== null ? opened : !this.state.opened})
 
   onSelectValue = data => {
-    this.props.clearSearchOnSelect && this.clearSearchValue()
+    this.props.clearSearchOnSelect && this.props.clearSearchValue()
     this.setState({
       opened: this.props.stayOpenOnSelect,
       selectedValue: this.props.multi

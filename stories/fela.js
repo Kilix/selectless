@@ -4,18 +4,8 @@ import {storiesOf} from '@storybook/react'
 import {Provider, createComponentWithProxy} from 'react-fela'
 
 import createRenderer from './felaProvider'
-import {
-  Clear,
-  SyncSelect,
-  Item,
-  Label,
-  Search,
-  List,
-  TagList,
-  Tag,
-  createSelectComponent,
-} from '../src'
-import simpleOptions from './options'
+import {Clear, Select, Item, Label, Search, List, TagList, Tag, controller} from '../src'
+import simpleOptions from './old/options'
 
 const renderer = createRenderer()
 
@@ -24,7 +14,7 @@ const felaProvider = story =>
     {story()}
   </Provider>
 
-const Select = createComponentWithProxy(() => ({
+const SelectContainer = createComponentWithProxy(() => ({
   backgroundColor: '#fff',
   borderColor: '#d9d9d9 #ccc #b3b3b3',
   borderRadius: '4px',
@@ -159,18 +149,18 @@ const Ftem = createComponentWithProxy(
 
 storiesOf('Selectless - Fela', module).addDecorator(felaProvider).add('Basic callback', () =>
   <div style={{width: 300, margin: '0 auto'}}>
-    <SyncSelect
+    <Select
       name="context"
       onChange={() => {}}
       options={simpleOptions}
       placeholder=""
       clearSearchOnSelect>
-      <Select>
+      <SelectContainer>
         <Fabel />
         <Flear />
         <Search render={Fearch} />
-      </Select>
+      </SelectContainer>
       <Fist renderItem={Ftem} />
-    </SyncSelect>
+    </Select>
   </div>,
 )

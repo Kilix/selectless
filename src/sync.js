@@ -77,7 +77,11 @@ class SyncSelect extends Component {
 
   render() {
     const {defaultChildren, ...props} = this.props
-    return defaultChildren({...props, options: this.state.options})
+    return defaultChildren({
+      ...props,
+      clearSearchValue: this.clearSearchValue,
+      options: this.state.options,
+    })
   }
 }
 
