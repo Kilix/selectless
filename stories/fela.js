@@ -5,7 +5,7 @@ import {Provider, createComponentWithProxy} from 'react-fela'
 
 import createRenderer from './felaProvider'
 import {Clear, Select, Item, Label, Search, List, TagList, Tag, controller} from '../src'
-import simpleOptions from './old/options'
+import simpleOptions from './options'
 
 const renderer = createRenderer()
 

@@ -8,7 +8,7 @@ import 'whatwg-fetch'
 import createRenderer from './felaProvider'
 import {Select, controller, withKeyboardEvent} from '../src'
 
-import simpleOptions from './old/options'
+import simpleOptions from './options'
 const fakeApi = query => {
   return fetch(
     query === '' ? 'https://swapi.co/api/people' : `https://swapi.co/api/people/?search=${query}`,
