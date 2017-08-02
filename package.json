@@ -1,5 +1,5 @@
 {
-  "name": "react-selectless",
+  "name": "selectless",
   "version": "0.0.1",
   "main": "dist/selectless.cjs.js",
   "jsnext:main": "dist/selectless.es.js",
