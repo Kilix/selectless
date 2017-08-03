@@ -11,7 +11,8 @@
     "start": "nps",
     "test": "nps test",
     "test:watch": "nps 'test --watch'",
-    "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\""
+    "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\"",
+    "preyalc": "nps build"
   },
   "peerDependencies": {
     "react": ">=0.14"
@@ -22,6 +23,7 @@
     "babel-cli": "6.24.1",
     "babel-jest": "20.0.3",
     "babel-plugin-external-helpers": "6.22.0",
+    "babel-plugin-transform-export-extensions": "6.22.0",
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
@@ -60,11 +62,10 @@
   },
   "dependencies": {
     "debounce": "1.0.2",
-    "prop-types": "15.5.10",
     "ramda": "0.24.1",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "recompose": "0.23.5"
+    "recompose": "0.24.0"
   },
   "eslintConfig": {
     "extends": ["kentcdodds", "kentcdodds/jest", "kentcdodds/react", "kentcdodds/prettier"],

@@ -1,7 +1,7 @@
-import * as selectlessStar from './'
+import selectlessStar from './'
 import * as selectlessComponent from './components/'
 
-const selectless = selectlessStar.default
+const selectless = selectlessStar
 
 Object.assign(
   selectless,
