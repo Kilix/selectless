@@ -76,6 +76,7 @@ class AsyncSelect extends Component {
 
 AsyncSelect.propTypes = {
   className: PropTypes.string,
+  clearOneValue: PropTypes.func,
   debounce: PropTypes.number,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
@@ -83,6 +84,7 @@ AsyncSelect.propTypes = {
   onChange: PropTypes.func,
   loadOptions: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  renderInputs: PropTypes.func,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
   transform: PropTypes.func,

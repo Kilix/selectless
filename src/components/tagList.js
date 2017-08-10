@@ -24,7 +24,6 @@ class TagList extends React.Component {
           toggleSelect,
           placeholder,
           tags,
-          props,
         })
   }
 }

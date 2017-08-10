@@ -15,6 +15,8 @@ const Select = SyncSelect
 Select.Async = AsyncSelect
 Select.default = Select
 
+export {Select, controller, Item, Label, List, Search, Clear, TagList, Tag, withKeyboardEvent}
+
 export default {
   Select,
   controller,

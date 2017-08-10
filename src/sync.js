@@ -84,17 +84,19 @@ class SyncSelect extends Component {
 
 SyncSelect.propTypes = {
   className: PropTypes.string,
+  clearOneValue: PropTypes.func,
   clearSearchOnSelect: PropTypes.bool,
+  defaultChildren: PropTypes.func.isRequired,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
   onChange: PropTypes.func,
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
+  renderInputs: PropTypes.func,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
   transform: PropTypes.func,
-  defaultChildren: PropTypes.func.isRequired,
 }
 
 SyncSelect.defaultProps = {

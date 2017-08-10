@@ -241,22 +241,20 @@ class ListC extends React.Component {
 }
 const List = compose(enhance, withKeyboardEvent)(ListC)
 
-storiesOf('Selectless - Full Custom', module)
-  .addDecorator(felaProvider)
-  .add('Basic', () =>
-    <Select name="context" onChange={(/*data*/) => {}} options={simpleOptions} style={{width: 300}}>
-      <SearchLabel />
-      <List />
-    </Select>,
-  )
-  .add('Async', () =>
-    <Select.Async
-      name="context"
-      onChange={(/*data*/) => {}}
-      loadOptions={fakeApi}
-      transform={data => ({label: data.name, value: data.name})}
-      style={{width: 300}}>
-      <SearchLabel />
-      <List />
-    </Select.Async>,
-  )
+storiesOf('Selectless - Full Custom', module).addDecorator(felaProvider).add('Basic', () =>
+  <Select name="context" onChange={(/*data*/) => {}} options={simpleOptions} style={{width: 300}}>
+    <SearchLabel />
+    <List />
+  </Select>,
+)
+// .add('Async', () =>
+//   <Select.Async
+//     name="context"
+//     onChange={(/*data*/) => {}}
+//     loadOptions={fakeApi}
+//     transform={data => ({label: data.name, value: data.name})}
+//     style={{width: 300}}>
+//     <SearchLabel />
+//     <List />
+//   </Select.Async>,
+// )

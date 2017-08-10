@@ -58,15 +58,20 @@ class SyncSelect extends Component {
 
   clearOneValue = t => {
     this.setState({
-      selectedValue: filter(v => v.value !== t.value, this.state.selectedValue),
+      selectedValue:
+        typeof this.props.clearOneValue !== 'undefined'
+          ? this.props.clearOneValue(t, this.state.selectedValue)
+          : filter(v => v.value !== t.value, this.state.selectedValue),
     })
   }
 
   renderInputs = (selectedValue, name) => {
-    return map(
-      v => <input key={v.label} name={`${name}[${v.label}]`} type="hidden" value={v.value} />,
-      selectedValue,
-    )
+    return typeof this.props.renderInputs !== 'undefined'
+      ? this.props.renderInputs(selectedValue, name)
+      : map(
+          v => <input key={v.label} name={`${name}[${v.label}]`} type="hidden" value={v.value} />,
+          selectedValue,
+        )
   }
   render() {
     const containerProps = pick(['className', 'style'], this.props)
@@ -82,11 +87,13 @@ class SyncSelect extends Component {
 
 SyncSelect.propTypes = {
   className: PropTypes.string,
+  clearOneValue: PropTypes.func,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  renderInputs: PropTypes.func,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
 }
