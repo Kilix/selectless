@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Select from '../'
+import {Select} from '../'
 import List from '../components/list'
 import Item from '../components/item'
 
