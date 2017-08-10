@@ -61,6 +61,7 @@ class AsyncSelect extends Component {
   }, this.props.debounce)
 
   onChangeSearchValue = query => {
+    if (typeof this.props.onChangeSearchValue !== 'undefined') this.props.onChangeSearchValue(query)
     this.setState({searchValue: query})
     this._onChangeSearchValue(query)
   }
@@ -92,7 +93,7 @@ AsyncSelect.propTypes = {
 
 AsyncSelect.defaultProps = {
   multi: false,
-  placeholder: 'Select an options',
+  placeholder: 'Select an option',
   stayOpenOnSelect: false,
   debounce: 300,
   defaultChildren: props => <CoreSelect {...props} />,

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import filter from 'ramda/src/filter'
 import map from 'ramda/src/map'
 import pick from 'ramda/src/pick'
+import symmetricDifference from 'ramda/src/symmetricDifference'
 
 class SyncSelect extends Component {
   state = {
@@ -42,6 +43,7 @@ class SyncSelect extends Component {
     this.setState({opened: opened !== null ? opened : !this.state.opened})
 
   onSelectValue = data => {
+    if (typeof this.props.onSelectValue !== 'undefined') this.props.onSelectValue(data)
     this.props.clearSearchOnSelect && this.props.clearSearchValue()
     this.setState({
       opened: this.props.stayOpenOnSelect,

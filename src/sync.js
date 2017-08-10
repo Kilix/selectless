@@ -66,11 +66,13 @@ class SyncSelect extends Component {
     this.setState({caseSensitiveSearch: active !== null ? active : !this.state.caseSensitiveSearch})
 
   clearSearchValue = () => this.setState({searchValue: '', options: this.computeOptions('')})
-  onChangeSearchValue = query =>
+  onChangeSearchValue = query => {
+    if (typeof this.props.onChangeSearchValue !== 'undefined') this.props.onChangeSearchValue(query)
     this.setState({
       searchValue: query,
       options: this.computeOptions(query),
     })
+  }
 
   render() {
     const {defaultChildren, ...props} = this.props

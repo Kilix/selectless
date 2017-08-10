@@ -2,12 +2,11 @@
   Selectless
   <br>
 </h1>
-<p align="center" style="font-size: 1.2rem;">Custom Select without UI from React using Context</p>
+<p align="center" style="font-size: 1.2rem;">Custom Select without predefined UI for React using Context</p>
 
 ## Documentation
 
 ### Introduction
-
 `selectless` has 3 layers where you can use it:
 
 - On a component level, `selectless` provide basic component that you can customize with css-in-js library or classname/style
@@ -17,7 +16,6 @@
 I hope in a near future that me and/or the community can provide pre-styled component in a lot of different css-in-js solutions.
 
 ## Inspiration
-
 This package was inspired by the great `react-select` and the talk from Ryan Florence ["Compound Components"](https://www.youtube.com/watch?v=hEGg-3pIHlE)
 
 ## Other Solutions
@@ -31,7 +29,6 @@ Anyway, right now his project as far more support so you should consider testing
 React-select is still really good
 
 ### Basic Usage
-
 ```javascript
 // src/components/customSelect.js
 
@@ -58,10 +55,6 @@ export default CustomSelect
 ### Components
 
 #### Select / Select.Async
-
-clearOneValue: PropTypes.func,
-renderInputs: PropTypes.func,
-
 Select is the Container Component, he's the one creating the context and handdleing all the logic. He's accepting a lot of props :
 
 | property              | type            | required | default             | description                                                     | parameters                    |
@@ -110,7 +103,6 @@ the loadOptions in the case of the `Select.Async`is also used for the Search. It
 ```
 
 #### Predefine Components
-
 Every Component bellow will receive the props you passed down. Plus it accept a few `selectless` specific props :
 
 | property  | type       | description                                     |
@@ -121,7 +113,6 @@ The parameters received by the render function depends of each components.
 To know the parameters and return value of each function/props passed by the context of `selectless` please refer to the `controller` in the HOC section.
 
 #### Clear
-
 The default component is a `<span>` with an `onClick` bind to `clearValue`.
 
 | property  | type                                                         | default | description                |
@@ -131,7 +122,6 @@ The default component is a `<span>` with an `onClick` bind to `clearValue`.
 
 
 #### Item
-
 The default component is a `<div>` with an `onClick` bind to `onSelectValue`.
 
 | property     | type/description                                                                                        |
@@ -140,7 +130,6 @@ The default component is a `<div>` with an `onClick` bind to `onSelectValue`.
 | `render`     | `({data: Option, isCurrent: boolean, isSelected: boolean, onSelectValue: function}) => ReactElement<*>` |
 
 #### Label
-
 The default component is a `<div>` with an `onClick` bind to `toggleSelect`.
 
 | property  | type/description                                                                                     |
@@ -148,7 +137,6 @@ The default component is a `<div>` with an `onClick` bind to `toggleSelect`.
 | `render`  | `({opened: boolean, placeholder: string, toggleSelect: function, value: Option}) => ReactElement<*>` |
 
 #### List
-
 The default component is a `<div>`.
 
 | property     | type/description                                                                           |
@@ -158,7 +146,6 @@ The default component is a `<div>`.
 | `render`     | `({opened: boolean, items: Array[<ReactElement<*>], setRef: function}) => ReactElement<*>` |
 
 #### Search
-
 The default component is a `<input type='text'>`.
 
 | property        | type/description                                            | default |
@@ -178,7 +165,6 @@ Search's render receive a lot of props :
 | `value`            | `boolean`  | -                                                   |
 
 #### Tag
-
 The default component is a `<span>` with an `onClick` bind to `clearTag`.
 
 | property  | type/description                                      |
@@ -186,7 +172,6 @@ The default component is a `<span>` with an `onClick` bind to `clearTag`.
 | `render`  | `({tag: Option, clear: function}) => ReactElement<*>` |
 
 #### TagList
-
 The default component is a `<div>`.
 
 | property     | type/description                                                                                    |
@@ -194,6 +179,162 @@ The default component is a `<div>`.
 | `renderTag`  | the React Component use to render the tags list                                                     |
 | `render`     | `({toggleSelect: function, tags: Array[<ReactElement<*>], placeholder: string}) => ReactElement<*>` |
 
+
+### HOC
+
+#### controller
+This HOC allows you to get the props and functions of context from `selectless`.
+
+```javascript
+
+const enhance = controller(['clearValue', 'options', 'hasSearch'])
+
+const MyCustomComponent = ({clearValue, options, hasSearch}) => <span>Super Component that doesn't use the props.</span>
+export default enhance(MyCustomComponent)
+
+```
+
+##### caseSensitiveSearch - boolean
+  Returns if the search is case sensitive in this context.
+  Don't forget that if you use the Async with loadOptions, the case senstive will depend of you and the api your using.
+  Default : false
+
+##### clearSearchValue - function
+  Clear the search value in the context
+  `clearSearchValue()`
+
+##### clearOneValue - function
+  Clear the selected value send as a parameter. it use the value of the option to determine which option needs to be unselected.
+  `clearOneValue: (data: Option) => {}`
+  `Option: { label: string, value: any }`
+
+##### clearValue - function
+  Clear the selected value. If it's a multiple select, it will clear all the value at once.
+
+##### defaultValue - Option
+  Allow to pass a default value to be selected. If you apply a transform, you need to do it yourself, the value needs to be formatted correctly.
+  `Option: { label: string, value: any }`
+
+##### hasSearch - boolean
+  Returns if the search is active in this context.
+  If you use a full customize seach input, then you need to set this yourself with `toggleSearch`.
+  Default : false
+
+##### multi - boolean
+  Returns if the select is a multi select in this context.
+  Default : false
+
+##### name - string
+  Name of the select in the input.
+
+##### placeholder - string
+  Placeholder for the label.
+  Default : 'Select an option'
+
+##### onChangeSearchValue - function
+  Let you hook and receive the value of the search input in this context everytime it changes.
+  `onChangeSearchValue: (query: string) => {}`
+
+##### onSelectValue - function
+  Let you hook and receive the value of the selected value in this context everytime it changes.
+  `onSelectValue: (data: Option) => {}`
+  `Option: { label: string, value: any }`
+
+##### opened - boolean
+  Returns if the select is currently open.
+  Default: false
+
+##### options - Array<Option>
+  List of options use by this context after the transform is applied.
+  `Array<Option>`
+  `Option: { label: string, value: any }`
+
+##### searchValue - string
+  Current value of the search input in this context.
+
+##### selectedValue - Option | Array<Option>
+  Returns the selected value of the select in this context.
+  If the multi option is true, it returns an Array.
+  `Option: { label: string, value: any }`
+
+##### sourceOptions - Array<any>
+  List of options received by this context before the transform is applied.
+  `Array<Option>`
+
+##### toggleCaseSensitive - function
+  Function to toggle the case sensitive option in this context.
+  Affects `caseSensitive`
+  If no value is passed, it will toggle `caseSensitive`.
+  `toggleCaseSensitive: (newCaseSensitive: boolean) => {}`
+
+##### toggleSearch - function
+  Function to toggle the search in this context.
+  Affects `hasSearch`
+  If no value is passed, it will toggle the `hasSearch` value.
+  `toggleSearch: (noSearch: boolean) => {}`
+
+##### toggleSelect - function
+  Function to toggle the select in this context.
+  Affects `opened`.
+  if no value is passed, it will toggle the `opened` value.
+  `toggleSelect: (isOpen: boolean) => {}`
+
+##### transform - function
+  Function applied to each options pass to the context.
+  Can be use for formatting your options to respect the default format.
+  `transform: (data: any) => Array<Option>`
+  `Option: { label: string, value: any }`
+
+
+#### withKeyboardEvent (Experimental)
+HOC to put keyboard event in the List.
+- Select the next/previous options in the list when the user hit the up/down arrow and scroll automatically the list if the option is not visible.
+- Select the option when you hit Enter or Tab.
+
+```javascript
+
+[...]
+
+class ListC extends React.Component {
+  render() {
+    const {currentValue, clearSearchValue, onSelectValue, opened, options, setRef} = this.props
+    return (
+      <SlideIn opened={opened}>
+        <Ul innerRef={ref => setRef(ref)}>
+          {options.map((o, idx) =>
+            <Li
+              key={o.label}
+              color={idx === currentValue ? 'orange' : '#333'}
+              onClick={e => {
+                clearSearchValue()
+                onSelectValue(o)
+                e.preventDefault()
+                e.stopPropagation()
+              }}>
+              {o.label}
+            </Li>,
+          )}
+        </Ul>
+      </SlideIn>
+    )
+  }
+}
+const enhance = compose(
+  controller(['clearSearchValue', 'onSelectValue', 'opened', 'options']),
+  withKeyboardEvent
+)
+const List = (ListC)
+
+const CustomSelect = (props) => (
+  <Select name="context" options={simpleOptions} style={{width: 300}}>
+    <SearchLabel />
+    <List />
+  </Select>
+)
+
+export default CustomSelect
+
+```
 
 ## LICENSE
 
