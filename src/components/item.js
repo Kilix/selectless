@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import controller from '../controller'
-import {renderOrCloneComponent} from '../utils'
+import { renderOrCloneComponent } from '../utils'
 
 class Item extends React.Component {
   render() {
@@ -18,10 +18,15 @@ class Item extends React.Component {
       ...props
     } = this.props
     return typeof render === 'undefined'
-      ? <div onClick={() => onSelectValue(data)} ref={currentRef} role="option" {...props}>
+      ? <div
+          onClick={() => onSelectValue(data)}
+          ref={currentRef}
+          role="option"
+          {...props}
+        >
           {data.label}
         </div>
-      : render({data, isCurrent, isSelected, onSelectValue})
+      : render({ data, isCurrent, isSelected, onSelectValue })
   }
 }
 const enhance = controller(['onSelectValue'])

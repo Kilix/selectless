@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import filter from 'ramda/src/filter'
@@ -9,22 +9,27 @@ import symmetricDifference from 'ramda/src/symmetricDifference'
 class SyncSelect extends Component {
   state = {
     opened: false,
-    selectedValue: [],
+    selectedValue: []
   }
-  componentWillMount() {
+  componentWillMount () {
     this.setState({
       selectedValue:
-        typeof this.props.defaultValue !== 'undefined' ? [this.props.defaultValue] : [],
+        typeof this.props.defaultValue !== 'undefined'
+          ? [this.props.defaultValue]
+          : []
     })
   }
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.selectedValue !== this.state.selectedValue)
-      this.props.onChange(nextProps.multi ? nextState.selectedValue : nextState.selectedValue[0])
+  componentWillUpdate (nextProps, nextState) {
+    if (nextState.selectedValue !== this.state.selectedValue) {
+      this.props.onChange(
+        nextProps.multi ? nextState.selectedValue : nextState.selectedValue[0]
+      )
+    }
   }
 
-  getChildContext() {
-    const {defaultValue, name, multi, placeholder, transform} = this.props
-    const {opened, selectedValue} = this.state
+  getChildContext () {
+    const { defaultValue, name, multi, placeholder, transform } = this.props
+    const { opened, selectedValue } = this.state
     return {
       defaultValue,
       name,
@@ -35,26 +40,28 @@ class SyncSelect extends Component {
       clearValue: this.clearValue,
       clearOneValue: this.clearOneValue,
       opened,
-      selectedValue,
+      selectedValue
     }
   }
 
   toggleSelect = (opened = null) =>
-    this.setState({opened: opened !== null ? opened : !this.state.opened})
+    this.setState({ opened: opened !== null ? opened : !this.state.opened })
 
   onSelectValue = data => {
-    if (typeof this.props.onSelectValue !== 'undefined') this.props.onSelectValue(data)
+    if (typeof this.props.onSelectValue !== 'undefined') {
+      this.props.onSelectValue(data)
+    }
     this.props.clearSearchOnSelect && this.props.clearSearchValue()
     this.setState({
       opened: this.props.stayOpenOnSelect,
       selectedValue: this.props.multi
         ? symmetricDifference(this.state.selectedValue, [data])
-        : [data],
+        : [data]
     })
   }
 
   clearValue = e => {
-    this.setState({selectedValue: []})
+    this.setState({ selectedValue: [] })
     e.stopPropagation()
   }
 
@@ -63,7 +70,7 @@ class SyncSelect extends Component {
       selectedValue:
         typeof this.props.clearOneValue !== 'undefined'
           ? this.props.clearOneValue(t, this.state.selectedValue)
-          : filter(v => v.value !== t.value, this.state.selectedValue),
+          : filter(v => v.value !== t.value, this.state.selectedValue)
     })
   }
 
@@ -71,11 +78,17 @@ class SyncSelect extends Component {
     return typeof this.props.renderInputs !== 'undefined'
       ? this.props.renderInputs(selectedValue, name)
       : map(
-          v => <input key={v.label} name={`${name}[${v.label}]`} type="hidden" value={v.value} />,
-          selectedValue,
+          v =>
+            <input
+              key={v.label}
+              name={`${name}[${v.label}]`}
+              type='hidden'
+              value={v.value}
+            />,
+          selectedValue
         )
   }
-  render() {
+  render () {
     const containerProps = pick(['className', 'style'], this.props)
 
     return (
@@ -97,7 +110,7 @@ SyncSelect.propTypes = {
   placeholder: PropTypes.string,
   renderInputs: PropTypes.func,
   stayOpenOnSelect: PropTypes.bool,
-  style: PropTypes.object,
+  style: PropTypes.object
 }
 
 SyncSelect.childContextTypes = {
@@ -110,7 +123,7 @@ SyncSelect.childContextTypes = {
   onSelectValue: PropTypes.func.isRequired,
   opened: PropTypes.bool.isRequired,
   selectedValue: PropTypes.array.isRequired,
-  toggleSelect: PropTypes.func.isRequired,
+  toggleSelect: PropTypes.func.isRequired
 }
 
 export default SyncSelect

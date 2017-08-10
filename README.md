@@ -4,6 +4,13 @@
 </h1>
 <p align="center" style="font-size: 1.2rem;">Custom Select without predefined UI for React using Context</p>
 
+## Install
+
+```
+  yarn add selectless
+  npm install selectless
+```
+
 ## Documentation
 
 ### Introduction

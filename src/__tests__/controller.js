@@ -1,7 +1,9 @@
+/* global test, expect */
+
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import {Select} from '../'
+import { Select } from '../'
 import controller from '../controller'
 
 test('should return all context', () => {
@@ -27,25 +29,28 @@ test('should return all context', () => {
       'onSelectValue',
       'opened',
       'selectedValue',
-      'toggleSelect',
+      'toggleSelect'
     ]),
     <div />
   )
   const STest = enhance(Test)
-  const component = renderer.create(
-    <Select name="test" options={[{value: 0, label: 'Test'}]}>
+  renderer.create(
+    <Select name='test' options={[{ value: 0, label: 'Test' }]}>
       <STest />
-    </Select>,
+    </Select>
   )
 })
 
 test('should pass only selected props', () => {
   const enhance = controller(['name', 'opened'])
-  const Test = props => (expect(Object.keys(props)).toEqual(['name', 'opened']), <div />)
+  const Test = props => (
+    expect(Object.keys(props)).toEqual(['name', 'opened']),
+    <div />
+  )
   const STest = enhance(Test)
-  const component = renderer.create(
-    <Select name="test" options={[{value: 0, label: 'Test'}]}>
+  renderer.create(
+    <Select name='test' options={[{ value: 0, label: 'Test' }]}>
       <STest />
-    </Select>,
+    </Select>
   )
 })

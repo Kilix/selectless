@@ -14,12 +14,16 @@ module.exports = {
     },
     build: {
       description: 'delete the dist directory and run all builds',
-      default: 'rollup -c',
+      default: series(rimraf('dist'), 'rollup -c'),
       watch: 'rollup -c -w',
     },
     lint: {
-      description: 'lint the entire project',
-      script: 'eslint .',
+      default: 'standard "src/**/*.js"',
+      fix: 'standard --fix "src/**/*.js"',
+    },
+    format: {
+      description: 'format the entire project',
+      script: "prettier-standard 'src/**/*.js'",
     },
     validate: {
       description:

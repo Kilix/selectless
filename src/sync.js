@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import filter from 'ramda/src/filter'
@@ -18,17 +18,23 @@ class SyncSelect extends Component {
     hasSearch: false,
     sourceOptions: [],
     options: [],
-    searchValue: '',
+    searchValue: ''
   }
-  componentWillMount() {
+  componentWillMount () {
     const opts = map(this.transform, this.props.options)
     this.setState({
       sourceOptions: opts,
-      options: this.computeOptions('', opts),
+      options: this.computeOptions('', opts)
     })
   }
-  getChildContext() {
-    const {caseSensitiveSearch, hasSearch, options, searchValue, sourceOptions} = this.state
+  getChildContext () {
+    const {
+      caseSensitiveSearch,
+      hasSearch,
+      options,
+      searchValue,
+      sourceOptions
+    } = this.state
     return {
       caseSensitiveSearch,
       hasSearch,
@@ -39,47 +45,59 @@ class SyncSelect extends Component {
       searchValue,
       sourceOptions,
       options,
-      transform: this.transform,
+      transform: this.transform
     }
   }
 
   computeOptions = (searchValue, opts = null) => {
-    const {hasSearch, caseSensitiveSearch, sourceOptions} = this.state
+    const { hasSearch, caseSensitiveSearch, sourceOptions } = this.state
     return when(
       () => hasSearch,
       ifElse(
         () => caseSensitiveSearch,
         filter(compose(startsWith(searchValue), prop('label'))),
-        filter(compose(startsWith(toUpper(searchValue)), toUpper, prop('label'))),
+        filter(
+          compose(startsWith(toUpper(searchValue)), toUpper, prop('label'))
+        )
       ),
-      opts === null ? sourceOptions : opts,
+      opts === null ? sourceOptions : opts
     )
   }
 
   transform = data =>
-    typeof this.props.transform !== 'undefined' ? this.props.transform(data) : data
+    typeof this.props.transform !== 'undefined'
+      ? this.props.transform(data)
+      : data
 
   toggleSearch = (active = null) =>
-    this.setState({hasSearch: active !== null ? active : !this.state.hasSearch})
+    this.setState({
+      hasSearch: active !== null ? active : !this.state.hasSearch
+    })
 
   toggleCaseSensitive = (active = null) =>
-    this.setState({caseSensitiveSearch: active !== null ? active : !this.state.caseSensitiveSearch})
+    this.setState({
+      caseSensitiveSearch:
+        active !== null ? active : !this.state.caseSensitiveSearch
+    })
 
-  clearSearchValue = () => this.setState({searchValue: '', options: this.computeOptions('')})
+  clearSearchValue = () =>
+    this.setState({ searchValue: '', options: this.computeOptions('') })
   onChangeSearchValue = query => {
-    if (typeof this.props.onChangeSearchValue !== 'undefined') this.props.onChangeSearchValue(query)
+    if (typeof this.props.onChangeSearchValue !== 'undefined') {
+      this.props.onChangeSearchValue(query)
+    }
     this.setState({
       searchValue: query,
-      options: this.computeOptions(query),
+      options: this.computeOptions(query)
     })
   }
 
-  render() {
-    const {defaultChildren, ...props} = this.props
+  render () {
+    const { defaultChildren, ...props } = this.props
     return defaultChildren({
       ...props,
       clearSearchValue: this.clearSearchValue,
-      options: this.state.options,
+      options: this.state.options
     })
   }
 }
@@ -98,7 +116,7 @@ SyncSelect.propTypes = {
   renderInputs: PropTypes.func,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
-  transform: PropTypes.func,
+  transform: PropTypes.func
 }
 
 SyncSelect.defaultProps = {
@@ -106,7 +124,7 @@ SyncSelect.defaultProps = {
   placeholder: 'Select an options',
   stayOpenOnSelect: false,
   clearSearchOnSelect: false,
-  defaultChildren: props => <CoreSelect {...props} />,
+  defaultChildren: props => <CoreSelect {...props} />
 }
 
 SyncSelect.childContextTypes = {
@@ -120,7 +138,7 @@ SyncSelect.childContextTypes = {
 
   toggleCaseSensitive: PropTypes.func.isRequired,
   toggleSearch: PropTypes.func.isRequired,
-  transform: PropTypes.func.isRequired,
+  transform: PropTypes.func.isRequired
 }
 
 export default SyncSelect

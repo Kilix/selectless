@@ -6,4 +6,4 @@ import Clear from './clear'
 import TagList from './tagList'
 import Tag from './tag'
 
-export {Item, Label, List, Search, Clear, TagList, Tag}
+export { Item, Label, List, Search, Clear, TagList, Tag }

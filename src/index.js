@@ -1,7 +1,7 @@
 import SyncSelect from './sync'
 import AsyncSelect from './async'
 import controller from './controller'
-import {withKeyboardEvent} from './utils'
+import { withKeyboardEvent } from './utils'
 
 import Item from './components/item'
 import Label from './components/label'
@@ -15,7 +15,18 @@ const Select = SyncSelect
 Select.Async = AsyncSelect
 Select.default = Select
 
-export {Select, controller, Item, Label, List, Search, Clear, TagList, Tag, withKeyboardEvent}
+export {
+  Select,
+  controller,
+  Item,
+  Label,
+  List,
+  Search,
+  Clear,
+  TagList,
+  Tag,
+  withKeyboardEvent
+}
 
 export default {
   Select,
@@ -27,5 +38,5 @@ export default {
   Clear,
   TagList,
   Tag,
-  withKeyboardEvent,
+  withKeyboardEvent
 }

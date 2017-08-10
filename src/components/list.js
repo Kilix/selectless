@@ -1,6 +1,4 @@
 import React from 'react'
-import {findDOMNode} from 'react-dom'
-import PropTypes from 'prop-types'
 
 import omit from 'ramda/src/omit'
 import map from 'ramda/src/map'
@@ -11,16 +9,12 @@ import contains from 'ramda/src/contains'
 import compose from 'ramda/src/compose'
 
 import controller from '../controller'
-import {renderOrCloneComponent, withKeyboardEvent} from '../utils'
+import { renderOrCloneComponent, withKeyboardEvent } from '../utils'
 
 const indexedMap = addIndex(map)
 
 class List extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
+  render () {
     const {
       currentValue,
       opened,
@@ -43,9 +37,9 @@ class List extends React.Component {
         'selectedValue',
         'setRef',
         'options',
-        'passThrough',
+        'passThrough'
       ],
-      props,
+      props
     )
 
     const items = indexedMap((o, idx) => {
@@ -55,17 +49,17 @@ class List extends React.Component {
         data: o,
         isCurrent,
         isSelected: contains(o, selectedValue),
-        passThrough: ['data', 'isCurrent', 'isSelected'],
+        passThrough: ['data', 'isCurrent', 'isSelected']
       })
     }, options)
 
     return typeof render === 'undefined'
       ? opened
-        ? <div {...myprops} role="listbox" ref={ref => setRef(ref)}>
+        ? <div {...myprops} role='listbox' ref={ref => setRef(ref)}>
             {items}
           </div>
         : null
-      : render({opened, items, setRef})
+      : render({ opened, items, setRef })
   }
 }
 
@@ -79,8 +73,8 @@ const enhance = compose(
     'toggleSelect',
     'toggleSearch',
     'selectedValue',
-    'onSelectValue',
+    'onSelectValue'
   ]),
-  withKeyboardEvent,
+  withKeyboardEvent
 )
 export default enhance(List)
