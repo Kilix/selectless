@@ -18,7 +18,7 @@ class SyncSelect extends Component {
   }
   componentWillUpdate(nextProps, nextState) {
     if (nextState.selectedValue !== this.state.selectedValue)
-      this.props.onChange(nextState.selectedValue)
+      this.props.onChange(nextProps.multi ? nextState.selectedValue : nextState.selectedValue[0])
   }
 
   getChildContext() {

@@ -5,12 +5,15 @@ import PropTypes from 'prop-types'
 import omit from 'ramda/src/omit'
 import map from 'ramda/src/map'
 import findIndex from 'ramda/src/findIndex'
+import addIndex from 'ramda/src/addIndex'
 import equals from 'ramda/src/equals'
 import contains from 'ramda/src/contains'
 import compose from 'ramda/src/compose'
 
 import controller from '../controller'
 import {renderOrCloneComponent, withKeyboardEvent} from '../utils'
+
+const indexedMap = addIndex(map)
 
 class List extends React.Component {
   constructor(props) {
@@ -39,14 +42,16 @@ class List extends React.Component {
         'searchValue',
         'selectedValue',
         'setRef',
+        'options',
+        'passThrough',
       ],
       props,
     )
 
-    const items = map(o => {
+    const items = indexedMap((o, idx) => {
       const isCurrent = currentValue === findIndex(equals(o), options)
       return renderOrCloneComponent(renderItem, {
-        key: o.value.toString(),
+        key: idx,
         data: o,
         isCurrent,
         isSelected: contains(o, selectedValue),

@@ -2,17 +2,17 @@
   "name": "selectless",
   "version": "0.0.1",
   "main": "dist/selectless.cjs.js",
-  "jsnext:main": "dist/selectless.es.js",
-  "module": "dist/selectless.es.js",
+  "module": "dist/selectless.esm.js",
+  "browser": "dist/selectless.umd.js",
   "author": "wcastand <wcastand@gmail.com> (https://github.com/wcastand)",
   "license": "MIT",
   "files": ["dist"],
   "scripts": {
     "start": "nps",
+    "dev": "nps build.watch",
     "test": "nps test",
-    "test:watch": "nps 'test --watch'",
-    "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\"",
-    "preyalc": "nps build"
+    "test:watch": "nps 'test.watch'",
+    "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\""
   },
   "peerDependencies": {
     "react": ">=0.14"

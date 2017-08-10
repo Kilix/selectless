@@ -7,7 +7,6 @@ import compose from 'ramda/src/compose'
 import ifElse from 'ramda/src/ifElse'
 import startsWith from 'ramda/src/startsWith'
 import toUpper from 'ramda/src/toUpper'
-import symmetricDifference from 'ramda/src/symmetricDifference'
 import prop from 'ramda/src/prop'
 import when from 'ramda/src/when'
 
