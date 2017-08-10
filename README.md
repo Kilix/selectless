@@ -7,13 +7,13 @@
 ## Documentation
 
 ### Introduction
-`selectless` has 3 layers where you can use it:
+There are three different ways to use `selectless`:
 
-- On a component level, `selectless` provide basic component that you can customize with css-in-js library or classname/style
-- On a custom component level, every component provide by `selectless` accept a custom `render` prop that allow you to override the default representation/binding of the component
-- On a low level controller, `selectless` provide a HOC that let you pass down the context props of `selectless` as props to your component. This allow a full control on how you want to use `selectless`.
+- On a component level, `selectless` provides a basic component that you can customize with any css-in-js library or classname/style
+- On a custom component level, each component provided by `selectless` accepts a custom `render` prop that allows you to override the default representation/binding of the component
+- On a low level controller, `selectless` provides an HOC that lets you pass down the context props of `selectless` as props to your component. This allow a full control on how you want to use `selectless`.
 
-I hope in a near future that me and/or the community can provide pre-styled component in a lot of different css-in-js solutions.
+I hope in a near future that me and/or the community can provide pre-styleds for the various css-in-js solutions existing out there.
 
 ## Inspiration
 This package was inspired by the great `react-select` and the talk from Ryan Florence ["Compound Components"](https://www.youtube.com/watch?v=hEGg-3pIHlE)
@@ -21,12 +21,12 @@ This package was inspired by the great `react-select` and the talk from Ryan Flo
 ## Other Solutions
 
 #### [Downshift](https://github.com/paypal/downshift)
-There was no real solution for this problem a few weeks ago, then Kent C. Dodds released react-autocompletly (now downshift) that use the same basic principle and try to resolve the same problem.
-I started working on this a bit earlier but i got lazy and put the project aside.
-Anyway, right now his project as far more support so you should consider testing it too. :)
+There was no real solution for this problem when I started this project, then [Kent C. Dodds](https://github.com/kentcdodds/) released react-autocompletly (now downshift) that uses the same basic principles and try to solve the same problem.
+I started working on this a bit earlier but I got lazy and put the project aside.
+Anyway, right now his project has far more support so you should consider testing it too. :)
 
 #### [React-select](http://jedwatson.github.io/react-select/)
-React-select is still really good
+React-select is still really good.
 
 ### Basic Usage
 ```javascript
@@ -55,7 +55,7 @@ export default CustomSelect
 ### Components
 
 #### Select / Select.Async
-Select is the Container Component, he's the one creating the context and handdleing all the logic. He's accepting a lot of props :
+Select is the Container Component, it's the one creating the context and handling all the logic. It's accepting a lot of props :
 
 | property              | type            | required | default             | description                                                     | parameters                    |
 |-----------------------|-----------------|----------|---------------------|-----------------------------------------------------------------|-------------------------------|
@@ -64,15 +64,15 @@ Select is the Container Component, he's the one creating the context and handdle
 | `clearSearchOnSelect` | `boolean`       |    no    |        false        | Allow to clear the search value when a value is selected        |                               |
 | `defaultValue`        | `Option`        |    no    |          -          | The value selected by default                                   |                               |
 | `name`                | `string`        |    yes   |          -          | name of the component for the input in the form                 |                               |
-| `multi`               | `boolean`       |    no    |        false        | Defined if it's a multi select or not                           |                               |
+| `multi`               | `boolean`       |    no    |        false        | Define if it's a multi select or not                           |                               |
 | `onChange`            | `function`      |    no    |          -          | Called when the value if changed, usefull for state management  | selected Option(s)            |
 | `placeholder`         | `string`        |    no    | "Select an options" | Placeholder for the select label                                |                               |
 | `renderInputs`        | `function`      |    no    |          -          | Override the function used to render the inputs in the DOM      | selectedOption, name          |
 | `stayOpenOnSelect`    | `boolean`       |    no    |        false        | Allow to let the list open after a value is selected            |                               |
 | `style`               | `Object`        |    no    |          -          | style the component (React prop)                                |                               |
-| `transform`           | `function`      |    no    |          -          | Function use to format/transform the options                    | Option                        |
+| `transform`           | `function`      |    no    |          -          | Function used to format/transform the options                    | Option                        |
 | `options`             | `Array[Option]` |    yes   |          -          | Array of the options (Sync Select only)                         |                               |
-| `loadOptions`         | `function`      |    yes   |          -          | function that return an array of options (Select.Async only)    | query, callback               |
+| `loadOptions`         | `function`      |    yes   |          -          | function that returns an array of options (Select.Async only)    | query, callback               |
 
 `Option` Type is an Object with 2 required props :
 
@@ -83,7 +83,7 @@ Select is the Container Component, he's the one creating the context and handdle
 
 The Option type above is the default used by `selectless`, if you need to change the format and the props, don't forget to change the functions `clearOneValue` and `renderInputs`.
 
-the loadOptions in the case of the `Select.Async`is also used for the Search. It receives the search value (query) and a callback to send the new set of options. You can return a promise instead of using the callback :
+The loadOptions in the case of the `Select.Async`is also used for the Search. It receives the search value (query) and a callback to send the new set of options. You can return a promise instead of using the callback:
 
 ```javascript
   const createQuery =
@@ -102,14 +102,14 @@ the loadOptions in the case of the `Select.Async`is also used for the Search. It
 
 ```
 
-#### Predefine Components
-Every Component bellow will receive the props you passed down. Plus it accept a few `selectless` specific props :
+#### Predefined Components
+Every Component below will receive the props you passed down. Plus it accepts a few `selectless` specific props :
 
 | property  | type       | description                                     |
 |-----------|------------|-------------------------------------------------|
 | `render`  | `function` | Allow to overwrite the render of the component  |
 
-The parameters received by the render function depends of each components.
+The parameters received by the render function depends for each components.
 To know the parameters and return value of each function/props passed by the context of `selectless` please refer to the `controller` in the HOC section.
 
 #### Clear
@@ -141,12 +141,12 @@ The default component is a `<div>`.
 
 | property     | type/description                                                                           |
 |--------------|--------------------------------------------------------------------------------------------|
-| `setRef`     | function use for React reference                                                           |
-| `renderItem` | the React Component use to render the items list                                           |
+| `setRef`     | function used for React reference                                                           |
+| `renderItem` | the React Component used to render the items list                                           |
 | `render`     | `({opened: boolean, items: Array[<ReactElement<*>], setRef: function}) => ReactElement<*>` |
 
 #### Search
-The default component is a `<input type='text'>`.
+The default component is an `<input type='text'>`.
 
 | property        | type/description                                            | default |
 |-----------------|-------------------------------------------------------------|---------|
@@ -184,7 +184,7 @@ The default component is a `<div>`.
 ### HOC
 
 #### controller
-This HOC allows you to get the props and functions of context from `selectless`.
+This HOC allows you to get the props and functions from `selectless`'s context.
 
 ```javascript
 
@@ -197,16 +197,16 @@ export default enhance(MyCustomComponent)
 ```
 
 ##### caseSensitiveSearch - boolean
-  Returns if the search is case sensitive in this context.
+  Returns if the search is case sensitive.
   Don't forget that if you use the Async with loadOptions, the case senstive will depend of you and the api your using.
   Default : false
 
 ##### clearSearchValue - function
-  Clear the search value in the context
+  Clears the search value
   `clearSearchValue()`
 
 ##### clearOneValue - function
-  Clear the selected value send as a parameter. it use the value of the option to determine which option needs to be unselected.
+  Clear the selected value sent as a parameter. It uses the value of the option to determine which option needs to be unselected.
   `clearOneValue: (data: Option) => {}`
   `Option: { label: string, value: any }`
 
@@ -218,12 +218,12 @@ export default enhance(MyCustomComponent)
   `Option: { label: string, value: any }`
 
 ##### hasSearch - boolean
-  Returns if the search is active in this context.
+  Returns if the search is active.
   If you use a full customize seach input, then you need to set this yourself with `toggleSearch`.
   Default : false
 
 ##### multi - boolean
-  Returns if the select is a multi select in this context.
+  Returns if the select is a multi select.
   Default : false
 
 ##### name - string
@@ -234,11 +234,11 @@ export default enhance(MyCustomComponent)
   Default : 'Select an option'
 
 ##### onChangeSearchValue - function
-  Let you hook and receive the value of the search input in this context everytime it changes.
+  Let you hook and receive the value of the search input everytime it changes.
   `onChangeSearchValue: (query: string) => {}`
 
 ##### onSelectValue - function
-  Let you hook and receive the value of the selected value in this context everytime it changes.
+  Let you hook and receive the value of the selected value everytime it changes.
   `onSelectValue: (data: Option) => {}`
   `Option: { label: string, value: any }`
 
@@ -247,15 +247,15 @@ export default enhance(MyCustomComponent)
   Default: false
 
 ##### options - Array<Option>
-  List of options use by this context after the transform is applied.
+  List of options used by this context after the transform is applied.
   `Array<Option>`
   `Option: { label: string, value: any }`
 
 ##### searchValue - string
-  Current value of the search input in this context.
+  Current value of the search input.
 
 ##### selectedValue - Option | Array<Option>
-  Returns the selected value of the select in this context.
+  Returns the selected value of the select.
   If the multi option is true, it returns an Array.
   `Option: { label: string, value: any }`
 
@@ -264,19 +264,19 @@ export default enhance(MyCustomComponent)
   `Array<Option>`
 
 ##### toggleCaseSensitive - function
-  Function to toggle the case sensitive option in this context.
+  Function to toggle the case sensitive option.
   Affects `caseSensitive`
   If no value is passed, it will toggle `caseSensitive`.
   `toggleCaseSensitive: (newCaseSensitive: boolean) => {}`
 
 ##### toggleSearch - function
-  Function to toggle the search in this context.
+  Function to toggle the search.
   Affects `hasSearch`
   If no value is passed, it will toggle the `hasSearch` value.
   `toggleSearch: (noSearch: boolean) => {}`
 
 ##### toggleSelect - function
-  Function to toggle the select in this context.
+  Function to toggle the select.
   Affects `opened`.
   if no value is passed, it will toggle the `opened` value.
   `toggleSelect: (isOpen: boolean) => {}`
@@ -290,7 +290,7 @@ export default enhance(MyCustomComponent)
 
 #### withKeyboardEvent (Experimental)
 HOC to put keyboard event in the List.
-- Select the next/previous options in the list when the user hit the up/down arrow and scroll automatically the list if the option is not visible.
+- Select the next/previous options in the list when the user hits the up/down arrow and scroll automatically in the list if the option is not visible.
 - Select the option when you hit Enter or Tab.
 
 ```javascript
