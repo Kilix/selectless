@@ -7,12 +7,15 @@
   "author": "wcastand <wcastand@gmail.com> (https://github.com/wcastand)",
   "license": "MIT",
   "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wcastand/selectless.git"
+  },
   "scripts": {
     "start": "nps",
     "dev": "nps build.watch",
     "test": "nps test",
-    "test:watch": "nps 'test.watch'",
-    "precommit": "lint-staged && opt --in pre-commit --exec \"npm start validate\""
+    "test:watch": "nps 'test.watch'"
   },
   "peerDependencies": {
     "react": ">=0.14"
