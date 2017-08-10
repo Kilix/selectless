@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import controller from '../controller'
 import { renderOrCloneComponent } from '../utils'
@@ -27,6 +26,6 @@ const enhance = controller([
   'opened',
   'placeholder',
   'selectedValue',
-  'toggleSelect'
+  'toggleSelect',
 ])
 export default enhance(Label)

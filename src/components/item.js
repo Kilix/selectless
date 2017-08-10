@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import controller from '../controller'
 import { renderOrCloneComponent } from '../utils'
@@ -22,8 +21,7 @@ class Item extends React.Component {
           onClick={() => onSelectValue(data)}
           ref={currentRef}
           role="option"
-          {...props}
-        >
+          {...props}>
           {data.label}
         </div>
       : render({ data, isCurrent, isSelected, onSelectValue })

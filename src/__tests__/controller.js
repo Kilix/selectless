@@ -8,8 +8,8 @@ import controller from '../controller'
 
 test('should return all context', () => {
   const enhance = controller()
-  const Test = props => (
-    expect(Object.keys(props)).toEqual([
+  const Test = props =>
+    (expect(Object.keys(props)).toEqual([
       'caseSensitiveSearch',
       'clearSearchValue',
       'hasSearch',
@@ -30,9 +30,7 @@ test('should return all context', () => {
       'opened',
       'selectedValue',
       'toggleSelect'
-    ]),
-    <div />
-  )
+    ]), <div />) // eslint-disable-line
   const STest = enhance(Test)
   renderer.create(
     <Select name='test' options={[{ value: 0, label: 'Test' }]}>
@@ -43,10 +41,8 @@ test('should return all context', () => {
 
 test('should pass only selected props', () => {
   const enhance = controller(['name', 'opened'])
-  const Test = props => (
-    expect(Object.keys(props)).toEqual(['name', 'opened']),
-    <div />
-  )
+  const Test = props =>
+    (expect(Object.keys(props)).toEqual(['name', 'opened']), <div />) // eslint-disable-line
   const STest = enhance(Test)
   renderer.create(
     <Select name='test' options={[{ value: 0, label: 'Test' }]}>

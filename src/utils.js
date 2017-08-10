@@ -64,10 +64,9 @@ export function withKeyboardEvent (BaseComponent) {
       ) {
         const wrapper = findDOMNode(this.list)
         if (wrapper !== null) {
-          const item =
-            typeof item === 'undefined'
-              ? wrapper.firstChild
-              : findDOMNode(this.item)
+          const item = typeof this.item === 'undefined'
+            ? wrapper.firstChild
+            : findDOMNode(this.item)
           if (item !== null) {
             const wrapperHeight = wrapper.getBoundingClientRect().height
             const itemHeight = item.getBoundingClientRect().height

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import debounce from 'debounce'
 
-import filter from 'ramda/src/filter'
 import map from 'ramda/src/map'
 
 import CoreSelect from './core'
@@ -47,9 +47,9 @@ class AsyncSelect extends Component {
   }
 
   transform = data =>
-    typeof this.props.transform !== 'undefined'
+    (typeof this.props.transform !== 'undefined'
       ? this.props.transform(data)
-      : data
+      : data)
 
   toggleSearch = (active = null) =>
     this.setState({
@@ -58,8 +58,9 @@ class AsyncSelect extends Component {
 
   toggleCaseSensitive = (active = null) =>
     this.setState({
-      caseSensitiveSearch:
-        active !== null ? active : !this.state.caseSensitiveSearch
+      caseSensitiveSearch: active !== null
+        ? active
+        : !this.state.caseSensitiveSearch
     })
 
   clearSearchValue = () => this.setState({ searchValue: '' })

@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from 'react'
-import PropTypes from 'prop-types'
 import map from 'ramda/src/map'
 
 import controller from '../controller'
@@ -10,8 +9,8 @@ class TagList extends React.Component {
   renderTags = map(tag =>
     renderOrCloneComponent(this.props.renderTag, {
       key: `tag_${tag.value}`,
-      tag
-    })
+      tag,
+    }),
   )
 
   render() {
@@ -33,7 +32,7 @@ class TagList extends React.Component {
       : render({
           toggleSelect,
           placeholder,
-          tags
+          tags,
         })
   }
 }

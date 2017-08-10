@@ -56,8 +56,8 @@ class List extends React.Component {
     return typeof render === 'undefined'
       ? opened
         ? <div {...myprops} role='listbox' ref={ref => setRef(ref)}>
-            {items}
-          </div>
+          {items}
+        </div>
         : null
       : render({ opened, items, setRef })
   }

@@ -13,10 +13,9 @@ class SyncSelect extends Component {
   }
   componentWillMount () {
     this.setState({
-      selectedValue:
-        typeof this.props.defaultValue !== 'undefined'
-          ? [this.props.defaultValue]
-          : []
+      selectedValue: typeof this.props.defaultValue !== 'undefined'
+        ? [this.props.defaultValue]
+        : []
     })
   }
   componentWillUpdate (nextProps, nextState) {
@@ -28,7 +27,7 @@ class SyncSelect extends Component {
   }
 
   getChildContext () {
-    const { defaultValue, name, multi, placeholder, transform } = this.props
+    const { defaultValue, name, multi, placeholder } = this.props
     const { opened, selectedValue } = this.state
     return {
       defaultValue,
@@ -67,10 +66,9 @@ class SyncSelect extends Component {
 
   clearOneValue = t => {
     this.setState({
-      selectedValue:
-        typeof this.props.clearOneValue !== 'undefined'
-          ? this.props.clearOneValue(t, this.state.selectedValue)
-          : filter(v => v.value !== t.value, this.state.selectedValue)
+      selectedValue: typeof this.props.clearOneValue !== 'undefined'
+        ? this.props.clearOneValue(t, this.state.selectedValue)
+        : filter(v => v.value !== t.value, this.state.selectedValue)
     })
   }
 
@@ -78,13 +76,14 @@ class SyncSelect extends Component {
     return typeof this.props.renderInputs !== 'undefined'
       ? this.props.renderInputs(selectedValue, name)
       : map(
-          v =>
+          v => (
             <input
               key={v.label}
               name={`${name}[${v.label}]`}
               type='hidden'
               value={v.value}
-            />,
+            />
+          ),
           selectedValue
         )
   }

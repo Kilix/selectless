@@ -1,9 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import omit from 'ramda/src/omit'
 
 import controller from '../controller'
-import { renderOrCloneComponent } from '../utils'
 
 class Search extends React.Component {
   state = { value: '' }
