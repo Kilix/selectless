@@ -153,6 +153,7 @@ The default component is a `<input type='text'>`.
 | `caseSensitive` | `boolean` - determine if the search is caseSensitive or not   |  false  |
 
 Search's render receive a lot of props :
+
 | property           | type       | description                                         |
 |--------------------|------------|-----------------------------------------------------|
 | `caseSensitive`    | `boolean`  | -                                                   |
@@ -189,7 +190,8 @@ This HOC allows you to get the props and functions of context from `selectless`.
 
 const enhance = controller(['clearValue', 'options', 'hasSearch'])
 
-const MyCustomComponent = ({clearValue, options, hasSearch}) => <span>Super Component that doesn't use the props.</span>
+const MyCustomComponent = ({clearValue, options, hasSearch}) =>
+  <span>Super Component that does not use the props.</span>
 export default enhance(MyCustomComponent)
 
 ```
