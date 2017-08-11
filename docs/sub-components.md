@@ -15,4 +15,4 @@ To know the parameters and return value of each function/props passed by the con
 - [Label](components/Label.md)
 - [List / Item](components/List.md)
 - [Search](components/Search.md)
-- [Tag List / Tag](components/Tag List.md)
+- [Tag List / Tag](components/Tag-list.md)
