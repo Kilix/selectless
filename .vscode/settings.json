@@ -4,7 +4,7 @@
     "prettier.semi": false,
     "prettier.jsxBracketSameLine": true,
     "prettier.singleQuote": true,
-    "prettier.trailingComma": "all",
+    "prettier.trailingComma": "es5",
     "prettier.tabWidth": 2,
     "editor.formatOnSave": true,
     "editor.tabSize": 2,

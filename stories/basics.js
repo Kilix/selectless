@@ -14,7 +14,7 @@ const fakeApi = query => {
   return fetch(
     query === ''
       ? 'https://swapi.co/api/people'
-      : `https://swapi.co/api/people/?search=${query}`,
+      : `https://swapi.co/api/people/?search=${query}`
   )
     .then(response => response.json())
     .then(r => r.results)
@@ -50,7 +50,7 @@ const felaProvider = story =>
   </Provider>
 
 const I = createComponentWithProxy(
-  ({focused}) => ({
+  () => ({
     position: 'absolute',
     top: 0,
     left: 0,
@@ -63,9 +63,8 @@ const I = createComponentWithProxy(
     fontFamily: 'sans-serif',
     fontSize: 14,
     fontWeight: 'normal',
-    zIndex: focused ? 10 : 0,
   }),
-  'input',
+  'input'
 )
 const L = createComponentWithProxy(
   ({color}) => ({
@@ -82,7 +81,7 @@ const L = createComponentWithProxy(
     fontWeight: 'normal',
     color,
   }),
-  'label',
+  'label'
 )
 const Toggle = createComponentWithProxy(
   ({opened}) => ({
@@ -101,7 +100,7 @@ const Toggle = createComponentWithProxy(
     transition: 'transform .1s ease',
     transform: opened ? 'rotate(180deg)' : 'rotate(0deg)',
   }),
-  'button',
+  'button'
 )
 const Clear = createComponentWithProxy(
   () => ({
@@ -123,7 +122,7 @@ const Clear = createComponentWithProxy(
     border: 'none',
     cursor: 'pointer',
   }),
-  'button',
+  'button'
 )
 
 const Ul = createComponentWithProxy(() => ({
@@ -150,7 +149,7 @@ const Li = createComponentWithProxy(
     transition: 'all .3s ease-out',
     ':hover': {paddingLeft: 14, color},
   }),
-  'div',
+  'div'
 )
 
 const SlideIn = createComponentWithProxy(({opened}) => ({
@@ -183,13 +182,16 @@ const SearchLabel = enhance(
       }}>
       <I
         type="text"
-        focused={hasSearch}
         onClick={() => !opened && toggleSelect(true)}
-        onKeyUp={e => {
+        onKeyDown={e => {
           if (e.keyCode === 8 && searchValue === '') {
             onChangeSearchValue('')
             clearValue(e)
-          } else if (searchValue !== '') toggleSearch(true)
+          }
+          if (searchValue !== '') {
+            toggleSearch(true)
+            toggleSelect(true)
+          }
         }}
         onChange={e => onChangeSearchValue(e.target.value)}
         value={searchValue}
@@ -197,7 +199,7 @@ const SearchLabel = enhance(
       <L
         onClick={() => toggleSelect()}
         color={!selectedValue[0] && searchValue === '' ? '#B1B1B1' : '#333'}>
-        {selectedValue[0]
+        {selectedValue[0] && searchValue === ''
           ? selectedValue[0].label
           : searchValue === '' ? placeholder : ''}
       </L>
@@ -218,7 +220,7 @@ const SearchLabel = enhance(
         opened={opened}
         children={String.fromCharCode(9660)}
       />
-    </div>,
+    </div>
 )
 class ListC extends React.Component {
   render() {
@@ -244,7 +246,7 @@ class ListC extends React.Component {
                 e.stopPropagation()
               }}>
               {o.label}
-            </Li>,
+            </Li>
           )}
         </Ul>
       </SlideIn>
@@ -253,26 +255,9 @@ class ListC extends React.Component {
 }
 const List = compose(enhance, withKeyboardEvent)(ListC)
 
-storiesOf('Selectless - Full Custom', module)
-  .addDecorator(felaProvider)
-  .add('Basic', () =>
-    <Select
-      name="context"
-      onChange={(/*data*/) => {}}
-      options={simpleOptions}
-      style={{width: 300}}>
-      <SearchLabel />
-      <List />
-    </Select>,
-  )
-// .add('Async', () =>
-//   <Select.Async
-//     name="context"
-//     onChange={(/*data*/) => {}}
-//     loadOptions={fakeApi}
-//     transform={data => ({label: data.name, value: data.name})}
-//     style={{width: 300}}>
-//     <SearchLabel />
-//     <List />
-//   </Select.Async>,
-// )
+storiesOf('Full Custom', module).addDecorator(felaProvider).add('Basic', () =>
+  <Select name="context" options={simpleOptions} style={{width: 300}}>
+    <SearchLabel />
+    <List />
+  </Select>
+)

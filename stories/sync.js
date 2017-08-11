@@ -20,7 +20,7 @@ const simpleOptions = [
 
 const Container = props => <Select {...props} />
 
-storiesOf('Selectless - Sync', module)
+storiesOf('Sync', module)
   .add('Basic', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
       <Label />

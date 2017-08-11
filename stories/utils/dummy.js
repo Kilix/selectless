@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const rendering = ({ placeholder, value }) =>
-  <strong>
+export const rendering = ({ placeholder, value, toggleSelect }) =>
+  <strong onClick={() => toggleSelect()}>
     {value ? value.label : placeholder}
   </strong>;
 export const renderingList = ({ opened, items }) =>

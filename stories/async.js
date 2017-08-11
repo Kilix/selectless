@@ -25,8 +25,8 @@ const fakeApi = query =>
 
 const Container = props => <Select.Async {...props} />
 
-storiesOf('Selectless - Async', module)
-  .add('Basic callback', () =>
+storiesOf('Async', module)
+  .add('With callback', () =>
     <Container
       name="context"
       onChange={onChange}
@@ -36,74 +36,25 @@ storiesOf('Selectless - Async', module)
       <List renderItem={Item} />
     </Container>,
   )
-  .add('With Search', () =>
-    <Container
-      name="context"
-      onChange={onChange}
-      loadOptions={fakeApiCb}
-      style={{display: 'flex'}}
-      transform={data => ({label: data.name, value: data.name})}>
-      <div style={{flex: 1}}>
-        <div>
-          <label>not caseSensitive - default render</label>
-          <div>
-            <Search />
-          </div>
-        </div>
-        <div>
-          <label>caseSensitive - custom render</label>
-          <Search caseSensitive render={renderingSearch} />
-        </div>
-      </div>
-      <div style={{flex: 1}}>
-        <Label />
-        <List renderItem={<Item render={renderingItem} />} />
-      </div>
-    </Container>,
-  )
-  .add('Simple - fake api', () =>
+  .add('With promise', () =>
     <Container
       name="context"
       onChange={onChange}
       loadOptions={fakeApi}
       style={{display: 'flex'}}
       transform={data => ({label: data.name, value: data.name})}>
-      <div style={{flex: 1}}>
-        <Search />
-      </div>
-      <div style={{flex: 1}}>
-        <Label />
-        <List renderItem={<Item render={renderingItem} />} />
+      <div style={{width: 250}}>
+        <div style={{flex: 1}}>
+          <Search />
+        </div>
+        <div style={{flex: 1}}>
+          <Label />
+          <List renderItem={<Item render={renderingItem} />} />
+        </div>
       </div>
     </Container>,
   )
-  .add('Multi', () =>
-    <Container
-      multi
-      name="context"
-      onChange={onChange}
-      loadOptions={fakeApi}
-      transform={data => ({label: data.name, value: data.name})}>
-      <TagList renderTag={Tag} />
-      <List renderItem={Item} />
-    </Container>,
-  )
-  .add('Multi - Search', () =>
-    <Container
-      loadOptions={fakeApi}
-      multi
-      name="context"
-      onChange={onChange}
-      stayOpenOnSelect
-      transform={data => ({label: data.name, value: data.name})}>
-      <div style={{flex: 1}}>
-        <Search />
-      </div>
-      <TagList renderTag={Tag} />
-      <List renderItem={<Item render={renderingItem} />} />
-    </Container>,
-  )
-  .add('Multi - Search - Debounce', () =>
+  .add('With custom debounce', () =>
     <Container
       debounce={1000}
       loadOptions={fakeApi}
@@ -111,10 +62,12 @@ storiesOf('Selectless - Async', module)
       name="context"
       onChange={onChange}
       transform={data => ({label: data.name, value: data.name})}>
-      <div style={{flex: 1}}>
-        <Search />
+      <div style={{width: 250}}>
+        <div style={{flex: 1}}>
+          <Search />
+        </div>
+        <TagList renderTag={Tag} />
+        <List renderItem={<Item render={renderingItem} />} />
       </div>
-      <TagList renderTag={Tag} />
-      <List renderItem={<Item render={renderingItem} />} />
     </Container>,
   )

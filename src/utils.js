@@ -46,7 +46,7 @@ export function withKeyboardEvent(BaseComponent) {
           this.setState({
             currentValue: findIndex(
               equals(nextProps.selectedValue[0]),
-              this.props.options,
+              this.props.options
             ),
           })
         }
@@ -90,7 +90,7 @@ export function withKeyboardEvent(BaseComponent) {
       const {
         onSelectValue,
         toggleSelect,
-        toggleSearch,
+        clearSearchValue,
         opened,
         options,
       } = this.props
@@ -102,7 +102,7 @@ export function withKeyboardEvent(BaseComponent) {
             if (currentValue !== null) {
               onSelectValue(this.props.options[currentValue])
               toggleSelect(false)
-              toggleSearch(false)
+              clearSearchValue(false)
               this.setState({currentValue: null})
               e.stopPropagation()
               e.preventDefault()
@@ -113,7 +113,7 @@ export function withKeyboardEvent(BaseComponent) {
               currentValue: closestAvailable(
                 currentValue,
                 options.length,
-                add(__, 1),
+                add(__, 1)
               ),
             })
             e.stopPropagation()
@@ -123,7 +123,7 @@ export function withKeyboardEvent(BaseComponent) {
               currentValue: closestAvailable(
                 currentValue,
                 options.length,
-                subtract(__, 1),
+                subtract(__, 1)
               ),
             })
             e.stopPropagation()

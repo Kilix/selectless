@@ -157,22 +157,19 @@ const Ftem = createComponentWithProxy(
   Item,
 )
 
-storiesOf('Selectless - Fela', module)
-  .addDecorator(felaProvider)
-  .add('Basic callback', () =>
-    <div style={{width: 300, margin: '0 auto'}}>
-      <Select
-        name="context"
-        onChange={() => {}}
-        options={simpleOptions}
-        placeholder=""
-        clearSearchOnSelect>
-        <SelectContainer>
-          <Fabel />
-          <Flear />
-          <Search render={Fearch} />
-        </SelectContainer>
-        <Fist renderItem={Ftem} />
-      </Select>
-    </div>,
-  )
+storiesOf('Fela', module).addDecorator(felaProvider).add('Basic callback', () =>
+  <div style={{width: 300, margin: '0 auto'}}>
+    <Select
+      name="context"
+      options={simpleOptions}
+      placeholder=""
+      clearSearchOnSelect>
+      <SelectContainer>
+        <Fabel />
+        <Flear />
+        <Search render={Fearch} />
+      </SelectContainer>
+      <Fist renderItem={Ftem} />
+    </Select>
+  </div>,
+)
