@@ -24,16 +24,6 @@ I hope in a near future that me and/or the community can provide pre-styleds for
 ## Inspiration
 This package was inspired by the great `react-select` and the talk from Ryan Florence ["Compound Components"](https://www.youtube.com/watch?v=hEGg-3pIHlE)
 
-## Other Solutions
-
-### [Downshift](https://github.com/paypal/downshift)
-There was no real solution for this problem when I started this project, then [Kent C. Dodds](https://github.com/kentcdodds/) released react-autocompletly (now downshift) that uses the same basic principles and try to solve the same problem.
-I started working on this a bit earlier but I got lazy and put the project aside.
-Anyway, right now his project has far more support so you should consider testing it too. :)
-
-### [React-select](http://jedwatson.github.io/react-select/)
-React-select is still really good.
-
 ## Basic Usage
 ```javascript
 // src/components/customSelect.js
@@ -62,6 +52,16 @@ export default CustomSelect
 - [Select / Select.Async](docs/select.md)
 - [Predefined Components](docs/sub-components.md)
 - [HOC](docs/HOC.md)
+
+## Other Solutions
+
+### [Downshift](https://github.com/paypal/downshift)
+There was no real solution for this problem when I started this project, then [Kent C. Dodds](https://github.com/kentcdodds/) released react-autocompletly (now downshift) that uses the same basic principles and try to solve the same problem.
+I started working on this a bit earlier but I got lazy and put the project aside.
+Anyway, right now his project has far more support so you should consider testing it too. :)
+
+### [React-select](http://jedwatson.github.io/react-select/)
+React-select is still really good.
 
 ## LICENSE
 
