@@ -3,9 +3,19 @@ import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 import {Provider, createComponentWithProxy} from 'react-fela'
 
-import createRenderer from './felaProvider'
-import {Clear, Select, Item, Label, Search, List, TagList, Tag, controller} from '../src'
-import simpleOptions from './options'
+import createRenderer from './utils/felaProvider'
+import simpleOptions from './utils/options'
+import {
+  Clear,
+  Select,
+  Item,
+  Label,
+  Search,
+  List,
+  TagList,
+  Tag,
+  controller,
+} from '../src'
 
 const renderer = createRenderer()
 
@@ -147,20 +157,22 @@ const Ftem = createComponentWithProxy(
   Item,
 )
 
-storiesOf('Selectless - Fela', module).addDecorator(felaProvider).add('Basic callback', () =>
-  <div style={{width: 300, margin: '0 auto'}}>
-    <Select
-      name="context"
-      onChange={() => {}}
-      options={simpleOptions}
-      placeholder=""
-      clearSearchOnSelect>
-      <SelectContainer>
-        <Fabel />
-        <Flear />
-        <Search render={Fearch} />
-      </SelectContainer>
-      <Fist renderItem={Ftem} />
-    </Select>
-  </div>,
-)
+storiesOf('Selectless - Fela', module)
+  .addDecorator(felaProvider)
+  .add('Basic callback', () =>
+    <div style={{width: 300, margin: '0 auto'}}>
+      <Select
+        name="context"
+        onChange={() => {}}
+        options={simpleOptions}
+        placeholder=""
+        clearSearchOnSelect>
+        <SelectContainer>
+          <Fabel />
+          <Flear />
+          <Search render={Fearch} />
+        </SelectContainer>
+        <Fist renderItem={Ftem} />
+      </Select>
+    </div>,
+  )

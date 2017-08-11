@@ -10,7 +10,7 @@ import {
   renderingSearch,
   renderingTag,
   onChange,
-} from './dummy'
+} from './utils/dummy'
 
 const simpleOptions = [
   {value: 'paris', label: 'Paris'},
@@ -28,7 +28,11 @@ storiesOf('Selectless - Sync', module)
     </Container>,
   )
   .add('Stay open', () =>
-    <Container name="context" onChange={onChange} options={simpleOptions} stayOpenOnSelect>
+    <Container
+      name="context"
+      onChange={onChange}
+      options={simpleOptions}
+      stayOpenOnSelect>
       <Label />
       <List renderItem={Item} />
     </Container>,
@@ -78,7 +82,10 @@ storiesOf('Selectless - Sync', module)
         <br />
         <Clear
           label="Custom clear"
-          render={({label, clearValue}) => <i onClick={clearValue}>{label}</i>}
+          render={({label, clearValue}) =>
+            <i onClick={clearValue}>
+              {label}
+            </i>}
         />
       </div>
       <Label />
@@ -86,7 +93,11 @@ storiesOf('Selectless - Sync', module)
     </Container>,
   )
   .add('With Search', () =>
-    <Container name="context" onChange={onChange} options={simpleOptions} style={{display: 'flex'}}>
+    <Container
+      name="context"
+      onChange={onChange}
+      options={simpleOptions}
+      style={{display: 'flex'}}>
       <div style={{flex: 1}}>
         <div>
           <label>not caseSensitive - default render</label>

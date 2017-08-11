@@ -1,13 +1,13 @@
 /* global test, expect */
 
-import React from 'react'
-import renderer from 'react-test-renderer'
+import React from 'react';
+import renderer from 'react-test-renderer';
 
-import {Select} from '../'
-import controller from '../controller'
+import { Select } from '../';
+import controller from '../controller';
 
 test('should return all context', () => {
-  const enhance = controller()
+  const enhance = controller();
   const Test = props => {
     expect(Object.keys(props)).toEqual([
       'caseSensitiveSearch',
@@ -30,27 +30,27 @@ test('should return all context', () => {
       'opened',
       'selectedValue',
       'toggleSelect',
-    ])
-    return <div />
-  }
-  const STest = enhance(Test)
+    ]);
+    return <div />;
+  };
+  const STest = enhance(Test);
   renderer.create(
-    <Select name="test" options={[{value: 0, label: 'Test'}]}>
+    <Select name="test" options={[{ value: 0, label: 'Test' }]}>
       <STest />
-    </Select>,
-  )
-})
+    </Select>
+  );
+});
 
 test('should pass only selected props', () => {
-  const enhance = controller(['name', 'opened'])
+  const enhance = controller(['name', 'opened']);
   const Test = props => {
-    expect(Object.keys(props)).toEqual(['name', 'opened'])
-    return <div />
-  }
-  const STest = enhance(Test)
+    expect(Object.keys(props)).toEqual(['name', 'opened']);
+    return <div />;
+  };
+  const STest = enhance(Test);
   renderer.create(
-    <Select name="test" options={[{value: 0, label: 'Test'}]}>
+    <Select name="test" options={[{ value: 0, label: 'Test' }]}>
       <STest />
-    </Select>,
-  )
-})
+    </Select>
+  );
+});

@@ -11,13 +11,17 @@ import {
   renderingSearch,
   renderingTag,
   onChange,
-} from './dummy'
+} from './utils/dummy'
 
 const createQuery = query =>
-  query === '' ? 'https://swapi.co/api/people' : `https://swapi.co/api/people/?search=${query}`
+  query === ''
+    ? 'https://swapi.co/api/people'
+    : `https://swapi.co/api/people/?search=${query}`
 const fakeApiCb = (query, cb) => fakeApi(query).then(r => cb(null, r.results))
 const fakeApi = query =>
-  fetch(createQuery(query)).then(response => response.json()).then(r => r.results)
+  fetch(createQuery(query))
+    .then(response => response.json())
+    .then(r => r.results)
 
 const Container = props => <Select.Async {...props} />
 

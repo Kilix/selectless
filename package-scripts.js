@@ -24,7 +24,7 @@ module.exports = {
     format: {
       description: 'format the entire project',
       script:
-        "prettier --trailing-comma es5 --single-quote --write 'src/*/*.js'",
+        "prettier --trailing-comma es5 --single-quote --write 'src/*/*.js' 'stories/*/*.js'",
     },
     validate: {
       description:

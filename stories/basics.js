@@ -1,14 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {storiesOf} from '@storybook/react';
-import {Provider, createComponentWithProxy} from 'react-fela';
-import {compose} from 'recompose';
-import 'whatwg-fetch';
+import React from 'react'
+import PropTypes from 'prop-types'
+import {storiesOf} from '@storybook/react'
+import {Provider, createComponentWithProxy} from 'react-fela'
+import {compose} from 'recompose'
+import 'whatwg-fetch'
 
-import createRenderer from './felaProvider';
-import {Select, controller, withKeyboardEvent} from '../src';
+import {Select, controller, withKeyboardEvent} from '../src'
 
-import simpleOptions from './options';
+import createRenderer from './utils/felaProvider'
+import simpleOptions from './utils/options'
+
 const fakeApi = query => {
   return fetch(
     query === ''
@@ -16,10 +17,10 @@ const fakeApi = query => {
       : `https://swapi.co/api/people/?search=${query}`,
   )
     .then(response => response.json())
-    .then(r => r.results);
-};
+    .then(r => r.results)
+}
 
-const renderer = createRenderer();
+const renderer = createRenderer()
 const enhance = controller([
   'caseSensitiveSearch',
   'clearValue',
@@ -41,12 +42,12 @@ const enhance = controller([
   'toggleSearch',
   'toggleSelect',
   'transform',
-]);
+])
 
 const felaProvider = story =>
   <Provider renderer={renderer}>
     {story()}
-  </Provider>;
+  </Provider>
 
 const I = createComponentWithProxy(
   ({focused}) => ({
@@ -65,7 +66,7 @@ const I = createComponentWithProxy(
     zIndex: focused ? 10 : 0,
   }),
   'input',
-);
+)
 const L = createComponentWithProxy(
   ({color}) => ({
     position: 'absolute',
@@ -82,7 +83,7 @@ const L = createComponentWithProxy(
     color,
   }),
   'label',
-);
+)
 const Toggle = createComponentWithProxy(
   ({opened}) => ({
     zIndex: 11,
@@ -101,7 +102,7 @@ const Toggle = createComponentWithProxy(
     transform: opened ? 'rotate(180deg)' : 'rotate(0deg)',
   }),
   'button',
-);
+)
 const Clear = createComponentWithProxy(
   () => ({
     zIndex: 11,
@@ -123,7 +124,7 @@ const Clear = createComponentWithProxy(
     cursor: 'pointer',
   }),
   'button',
-);
+)
 
 const Ul = createComponentWithProxy(() => ({
   fontFamily: 'sans-serif',
@@ -135,7 +136,7 @@ const Ul = createComponentWithProxy(() => ({
   borderBottomRightRadius: 3,
   overflow: 'auto',
   maxHeight: 200,
-}));
+}))
 const Li = createComponentWithProxy(
   ({color}) => ({
     display: 'flex',
@@ -150,13 +151,13 @@ const Li = createComponentWithProxy(
     ':hover': {paddingLeft: 14, color},
   }),
   'div',
-);
+)
 
 const SlideIn = createComponentWithProxy(({opened}) => ({
   overflow: 'hidden',
   height: opened ? 300 : 0,
   transition: 'height .2s ease',
-}));
+}))
 const SearchLabel = enhance(
   ({
     clearSearchValue,
@@ -186,9 +187,9 @@ const SearchLabel = enhance(
         onClick={() => !opened && toggleSelect(true)}
         onKeyUp={e => {
           if (e.keyCode === 8 && searchValue === '') {
-            onChangeSearchValue('');
-            clearValue(e);
-          } else if (searchValue !== '') toggleSearch(true);
+            onChangeSearchValue('')
+            clearValue(e)
+          } else if (searchValue !== '') toggleSearch(true)
         }}
         onChange={e => onChangeSearchValue(e.target.value)}
         value={searchValue}
@@ -203,22 +204,22 @@ const SearchLabel = enhance(
       {selectedValue[0] &&
         <Clear
           onClick={e => {
-            onChangeSearchValue('');
-            clearValue(e);
+            onChangeSearchValue('')
+            clearValue(e)
           }}
           children={String.fromCharCode(10799)}
         />}
       <Toggle
         onClick={e => {
-          toggleSelect();
-          e.preventDefault();
-          e.stopPropagation();
+          toggleSelect()
+          e.preventDefault()
+          e.stopPropagation()
         }}
         opened={opened}
         children={String.fromCharCode(9660)}
       />
     </div>,
-);
+)
 class ListC extends React.Component {
   render() {
     const {
@@ -228,7 +229,7 @@ class ListC extends React.Component {
       opened,
       options,
       setRef,
-    } = this.props;
+    } = this.props
     return (
       <SlideIn opened={opened}>
         <Ul innerRef={ref => setRef(ref)}>
@@ -237,20 +238,20 @@ class ListC extends React.Component {
               key={o.label}
               color={idx === currentValue ? 'orange' : '#333'}
               onClick={e => {
-                clearSearchValue();
-                onSelectValue(o);
-                e.preventDefault();
-                e.stopPropagation();
+                clearSearchValue()
+                onSelectValue(o)
+                e.preventDefault()
+                e.stopPropagation()
               }}>
               {o.label}
             </Li>,
           )}
         </Ul>
       </SlideIn>
-    );
+    )
   }
 }
-const List = compose(enhance, withKeyboardEvent)(ListC);
+const List = compose(enhance, withKeyboardEvent)(ListC)
 
 storiesOf('Selectless - Full Custom', module)
   .addDecorator(felaProvider)
@@ -263,7 +264,7 @@ storiesOf('Selectless - Full Custom', module)
       <SearchLabel />
       <List />
     </Select>,
-  );
+  )
 // .add('Async', () =>
 //   <Select.Async
 //     name="context"

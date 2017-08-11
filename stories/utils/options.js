@@ -103,4 +103,4 @@ export default [
     label: 'Lowell',
     value: 'Westerville',
   },
-]
+];
