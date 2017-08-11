@@ -1,6 +1,7 @@
 // Placez vos paramètres dans ce fichier pour remplacer les paramètres par défaut et les paramètres utilisateur.
 {
-    "prettier.bracketSpacing": true,
+    "prettier.bracketSpacing": false,
+    "prettier.semi": false,
     "prettier.jsxBracketSameLine": true,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "all",

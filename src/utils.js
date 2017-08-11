@@ -1,12 +1,12 @@
 import React from 'react'
-import { findDOMNode } from 'react-dom'
+import {findDOMNode} from 'react-dom'
 import add from 'ramda/src/add'
 import subtract from 'ramda/src/subtract'
 import findIndex from 'ramda/src/findIndex'
 import equals from 'ramda/src/equals'
 import __ from 'ramda/src/__'
 
-export function renderOrCloneComponent (BaseComponent, props, children) {
+export function renderOrCloneComponent(BaseComponent, props, children) {
   if (React.isValidElement(BaseComponent)) {
     return React.cloneElement(BaseComponent, props, children)
   }
@@ -23,17 +23,17 @@ export const closestAvailable = (currentValue, optionsLength, fn) => {
   }
 }
 
-export function withKeyboardEvent (BaseComponent) {
+export function withKeyboardEvent(BaseComponent) {
   return class WithKeyboardEvent extends React.Component {
-    state = { currentValue: null }
-    componentDidMount () {
+    state = {currentValue: null}
+    componentDidMount() {
       document.addEventListener('keydown', this.handleKeyEvent)
     }
-    componentWillUnmount () {
+    componentWillUnmount() {
       this.setRef(null)
       document.removeEventListener('keydown', this.handleKeyEvent)
     }
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps(nextProps) {
       if (
         (nextProps.opened &&
           nextProps.opened !== this.props.opened &&
@@ -41,22 +41,22 @@ export function withKeyboardEvent (BaseComponent) {
         nextProps.searchValue !== this.props.searchValue
       ) {
         if (nextProps.selectedValue.length === 0) {
-          this.setState({ currentValue: 0 })
+          this.setState({currentValue: 0})
         } else {
           this.setState({
             currentValue: findIndex(
               equals(nextProps.selectedValue[0]),
-              this.props.options
-            )
+              this.props.options,
+            ),
           })
         }
       }
       if (!nextProps.opened && nextProps.opened !== this.props.opened) {
-        this.setState({ currentValue: null })
+        this.setState({currentValue: null})
       }
     }
-    componentDidUpdate (nextProps, nextState) {
-      const { currentValue } = this.state
+    componentDidUpdate(nextProps, nextState) {
+      const {currentValue} = this.state
       if (
         nextProps.opened &&
         nextState.currentValue !== currentValue &&
@@ -64,9 +64,10 @@ export function withKeyboardEvent (BaseComponent) {
       ) {
         const wrapper = findDOMNode(this.list)
         if (wrapper !== null) {
-          const item = typeof this.item === 'undefined'
-            ? wrapper.firstChild
-            : findDOMNode(this.item)
+          const item =
+            typeof this.item === 'undefined'
+              ? wrapper.firstChild
+              : findDOMNode(this.item)
           if (item !== null) {
             const wrapperHeight = wrapper.getBoundingClientRect().height
             const itemHeight = item.getBoundingClientRect().height
@@ -91,9 +92,9 @@ export function withKeyboardEvent (BaseComponent) {
         toggleSelect,
         toggleSearch,
         opened,
-        options
+        options,
       } = this.props
-      const { currentValue } = this.state
+      const {currentValue} = this.state
       if (opened) {
         switch (e.keyCode) {
           case 13: // ENTER
@@ -102,7 +103,7 @@ export function withKeyboardEvent (BaseComponent) {
               onSelectValue(this.props.options[currentValue])
               toggleSelect(false)
               toggleSearch(false)
-              this.setState({ currentValue: null })
+              this.setState({currentValue: null})
               e.stopPropagation()
               e.preventDefault()
             }
@@ -112,8 +113,8 @@ export function withKeyboardEvent (BaseComponent) {
               currentValue: closestAvailable(
                 currentValue,
                 options.length,
-                add(__, 1)
-              )
+                add(__, 1),
+              ),
             })
             e.stopPropagation()
             break
@@ -122,19 +123,21 @@ export function withKeyboardEvent (BaseComponent) {
               currentValue: closestAvailable(
                 currentValue,
                 options.length,
-                subtract(__, 1)
-              )
+                subtract(__, 1),
+              ),
             })
             e.stopPropagation()
+            break
+          default:
             break
         }
       }
     }
-    render () {
+    render() {
       return renderOrCloneComponent(BaseComponent, {
         currentValue: this.state.currentValue,
         setRef: this.setRef,
-        ...this.props
+        ...this.props,
       })
     }
   }

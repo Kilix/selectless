@@ -4,13 +4,13 @@ import omit from 'ramda/src/omit'
 import controller from '../controller'
 
 class Search extends React.Component {
-  state = { value: '' }
-  componentWillMount () {
+  state = {value: ''}
+  componentWillMount() {
     this.props.toggleSearch(true)
   }
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.searchValue !== this.state.value) {
-      this.setState({ value: nextProps.searchValue })
+      this.setState({value: nextProps.searchValue})
     }
   }
   onChange = e => {
@@ -19,14 +19,14 @@ class Search extends React.Component {
       caseSensitive = false,
       onChangeSearchValue,
       toggleCaseSensitive,
-      toggleSelect
+      toggleSelect,
     } = this.props
-    this.setState({ value: v })
+    this.setState({value: v})
     toggleSelect(true)
     toggleCaseSensitive(caseSensitive)
     onChangeSearchValue(v)
   }
-  render () {
+  render() {
     const props = omit(
       [
         'caseSensitive',
@@ -37,9 +37,9 @@ class Search extends React.Component {
         'toggleSearch',
         'toggleSelect',
         'render',
-        'searchValue'
+        'searchValue',
       ],
-      this.props
+      this.props,
     )
     const {
       caseSensitive,
@@ -48,27 +48,27 @@ class Search extends React.Component {
       render,
       searchValue,
       toggleSearch,
-      toggleSelect
+      toggleSelect,
     } = this.props
-    const { value } = this.state
+    const {value} = this.state
     const ElProps = {
       value,
       onChange: this.onChange,
-      onFocus: () => toggleSelect(true)
+      onFocus: () => toggleSelect(true),
     }
 
     return typeof render !== 'undefined'
       ? render({
-        caseSensitive,
-        clearSearchValue,
-        clearValue,
-        onChange: this.onChange,
-        searchValue,
-        toggleSearch,
-        toggleSelect,
-        value
-      })
-      : <input type='text' role='combobox' {...props} {...ElProps} />
+          caseSensitive,
+          clearSearchValue,
+          clearValue,
+          onChange: this.onChange,
+          searchValue,
+          toggleSearch,
+          toggleSelect,
+          value,
+        })
+      : <input type="text" {...props} {...ElProps} />
   }
 }
 
@@ -79,7 +79,7 @@ const enhance = controller([
   'searchValue',
   'toggleCaseSensitive',
   'toggleSearch',
-  'toggleSelect'
+  'toggleSelect',
 ])
 
 export default enhance(Search)

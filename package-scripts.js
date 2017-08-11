@@ -18,12 +18,13 @@ module.exports = {
       watch: 'rollup -c -w',
     },
     lint: {
-      default: 'standard "src/**/*.js"',
-      fix: 'standard --fix "src/**/*.js"',
+      default: 'eslint .',
+      fix: 'eslint . --fix',
     },
     format: {
       description: 'format the entire project',
-      script: "prettier-standard 'src/**/*.js'",
+      script:
+        "prettier --trailing-comma es5 --single-quote --write 'src/*/*.js'",
     },
     validate: {
       description:

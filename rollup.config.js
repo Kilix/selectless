@@ -6,8 +6,8 @@ import pkg from './package.json'
 const babelConfig = {
   exclude: ['node_modules/**'],
   babelrc: false,
-  presets: [['env', {modules: false}], 'stage-2', 'react'],
-  plugins: ['external-helpers'],
+  presets: [['env', { modules: false }], 'stage-2', 'react'],
+  plugins: ['external-helpers']
 }
 
 export default [
@@ -22,16 +22,19 @@ export default [
       commonjs({
         namedExports: {
           'node_modules/react/react.js': ['Component'],
-          'node_modules/react-dom/index.js': ['findDOMNode'],
-        },
+          'node_modules/react-dom/index.js': ['findDOMNode']
+        }
       }),
-      babel(babelConfig),
-    ],
+      babel(babelConfig)
+    ]
   },
   {
     entry: 'src/index.js',
-    targets: [{dest: pkg.main, format: 'cjs'}, {dest: pkg.module, format: 'es'}],
+    targets: [
+      { dest: pkg.main, format: 'cjs' },
+      { dest: pkg.module, format: 'es' }
+    ],
     external: ['react', 'react-dom', 'recompose', 'ramda', 'prop-types'],
-    plugins: [babel(babelConfig)],
-  },
+    plugins: [babel(babelConfig)]
+  }
 ]

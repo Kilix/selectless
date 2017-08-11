@@ -5,7 +5,6 @@ exports[`Search 1`] = `
   <input
     onChange={[Function]}
     onFocus={[Function]}
-    role="combobox"
     type="text"
     value=""
   />

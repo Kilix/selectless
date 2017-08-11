@@ -1,17 +1,17 @@
 /* eslint-disable */
-import React from 'react'
-import map from 'ramda/src/map'
+import React from 'react';
+import map from 'ramda/src/map';
 
-import controller from '../controller'
-import { renderOrCloneComponent } from '../utils'
+import controller from '../controller';
+import { renderOrCloneComponent } from '../utils';
 
 class TagList extends React.Component {
   renderTags = map(tag =>
     renderOrCloneComponent(this.props.renderTag, {
       key: `tag_${tag.value}`,
       tag,
-    }),
-  )
+    })
+  );
 
   render() {
     const {
@@ -21,10 +21,10 @@ class TagList extends React.Component {
       render,
       renderTag,
       ...props
-    } = this.props
+    } = this.props;
 
-    const ElProps = { ...props, onClick: () => toggleSelect() }
-    const tags = this.renderTags(selectedValue)
+    const ElProps = { ...props, onClick: () => toggleSelect() };
+    const tags = this.renderTags(selectedValue);
     return typeof render === 'undefined'
       ? <div {...ElProps}>
           {selectedValue.length === 0 ? placeholder : tags}
@@ -33,8 +33,8 @@ class TagList extends React.Component {
           toggleSelect,
           placeholder,
           tags,
-        })
+        });
   }
 }
-const enhance = controller(['toggleSelect', 'placeholder', 'selectedValue'])
-export default enhance(TagList)
+const enhance = controller(['toggleSelect', 'placeholder', 'selectedValue']);
+export default enhance(TagList);

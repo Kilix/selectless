@@ -1,8 +1,8 @@
 /* eslint-disable */
-import React from 'react'
+import React from 'react';
 
-import controller from '../controller'
-import { renderOrCloneComponent } from '../utils'
+import controller from '../controller';
+import { renderOrCloneComponent } from '../utils';
 
 class Label extends React.Component {
   render() {
@@ -13,13 +13,13 @@ class Label extends React.Component {
       selectedValue,
       toggleSelect,
       ...props
-    } = this.props
-    const value = selectedValue && selectedValue[0]
+    } = this.props;
+    const value = selectedValue && selectedValue[0];
     return typeof render === 'undefined'
       ? <div onClick={() => toggleSelect()} {...props}>
           {value ? value.label : placeholder}
         </div>
-      : render({ opened, placeholder, toggleSelect, value })
+      : render({ opened, placeholder, toggleSelect, value });
   }
 }
 const enhance = controller([
@@ -27,5 +27,5 @@ const enhance = controller([
   'placeholder',
   'selectedValue',
   'toggleSelect',
-])
-export default enhance(Label)
+]);
+export default enhance(Label);
