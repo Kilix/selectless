@@ -15,8 +15,7 @@
     "start": "nps",
     "dev": "nps build.watch",
     "test": "nps test",
-    "test:watch": "nps 'test.watch'",
-    "deploy-storybook": "storybook-to-ghpages"
+    "test:watch": "nps 'test.watch'"
   },
   "peerDependencies": {
     "react": ">=0.14"
