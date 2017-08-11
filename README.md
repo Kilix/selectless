@@ -24,6 +24,12 @@ I hope in a near future that me and/or the community can provide pre-styleds for
 ## Inspiration
 This package was inspired by the great `react-select` and the talk from Ryan Florence ["Compound Components"](https://www.youtube.com/watch?v=hEGg-3pIHlE)
 
+## Why we created this package ?
+
+So the purpose of this package is not to replace `react-select` in a first place but to provide an alternative compatible with css-in-js libraries that let you have full control over the UI of your select without dealing with the logic behind a select.
+
+In a near futur we hope we(our the community) can provide custom made select UI with `selectless` as module packages for each css-in-js solutions and even SASS, LESS, etc. You can already find some examples in the storybook.
+
 ## Basic Usage
 ```javascript
 // src/components/customSelect.js
