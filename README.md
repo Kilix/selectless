@@ -24,6 +24,18 @@ I hope in a near future that me and/or the community can provide pre-styleds for
 ## Inspiration
 This package was inspired by the great `react-select` and the talk from Ryan Florence ["Compound Components"](https://www.youtube.com/watch?v=hEGg-3pIHlE)
 
+## Why we created this package ?
+
+At Kilix, we are working on an app that use a lot of select and right now we use `react-select` for this. But due to old mistake and bad choices in out part,  we now have an old version of `react-select`. So we don't even have the SASS files and therefore have a LESS Loader in our webpack config just for that :/ (we are not proud of it).
+
+Recently we decided to pass to a CSS-IN-JS solution and our choice was [fela](https://github.com/rofrischmann/fela). But integrating third party library isn't the most trivial thing to do with css-in-js and even more with our custom made react-select package. Plus, we really wanted to remove this LESS Loader and that's why we decided to create a select with only the logic and no UI provided, so you can make your own.
+
+Obviously that implies some work on your part (integration at least), but it also allow you a great liberty and once you made your custom select for your app, your good to go and have total control over it ! Big plus, you can use any CSS-IN-JS or CSS you want with React and `selectless`.
+
+So the purpose of this package is not to replace `react-select` in a first place but to provide an alternative compatible with css-in-js libraries that let you have full control over the UI of your select without dealing with the logic behind a select.
+
+In a near futur we hope we(our the community) can provide custom made select UI with `selectless` as module packages for each css-in-js solutions and even SASS, LESS, etc. You can already find some examples in the storybook.
+
 ## Basic Usage
 ```javascript
 // src/components/customSelect.js
