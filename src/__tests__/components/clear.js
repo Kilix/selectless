@@ -1,15 +1,10 @@
 /* global it, expect, jest */
 
 import React from 'react'
-import {mount, shallow} from 'enzyme'
+import {mount} from 'enzyme'
 import toJson from 'enzyme-to-json'
 
 import {Clear} from '../../components/'
-
-const options = [
-  {label: 'Paris', value: 'paris'},
-  {label: 'Tokyo', value: 'tokyo'},
-]
 
 it('Clear', () => {
   const fn = jest.fn()

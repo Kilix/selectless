@@ -6,11 +6,6 @@ import toJson from 'enzyme-to-json'
 
 import {Label} from '../../components'
 
-const options = [
-  {label: 'Paris', value: 'paris'},
-  {label: 'Tokyo', value: 'tokyo'},
-]
-
 it('Label', () => {
   const fn = jest.fn()
   const ctx = {

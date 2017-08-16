@@ -7,10 +7,6 @@ import toJson from 'enzyme-to-json'
 import {Search} from '../../components/'
 import {Search as RawSearch} from '../../components/search'
 
-const options = [
-  {label: 'Paris', value: 'paris'},
-  {label: 'Tokyo', value: 'tokyo'},
-]
 it('Search', () => {
   const ctx = {
     clearSearchValue: () => {},

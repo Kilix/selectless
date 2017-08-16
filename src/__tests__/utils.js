@@ -54,6 +54,7 @@ it('should return a element', () => {
   const Test = props => <span {...props} />
   const KTest = withKeyboardEvent(Test)
   const tree = shallow(<KTest />, {context: ctx})
+  expect(toJson(tree)).toMatchSnapshot()
 })
 it('test event keyboard', () => {
   const map = {}
@@ -85,7 +86,7 @@ it('test event keyboard', () => {
     ...props
   }) => <input {...props} ref={el => setRef(el)} />
   const KTest = withKeyboardEvent(Test)
-  const tree = mount(<KTest />, {context: ctx})
+  mount(<KTest />, {context: ctx})
 
   map.keydown(evt(40))
   map.keydown(evt(13))

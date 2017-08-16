@@ -1,15 +1,10 @@
 /* global it, expect */
 
 import React from 'react'
-import {mount, shallow} from 'enzyme'
+import {mount} from 'enzyme'
 import toJson from 'enzyme-to-json'
 
-import {TagList, Tag} from '../../components/'
-
-const options = [
-  {label: 'Paris', value: 'paris'},
-  {label: 'Tokyo', value: 'tokyo'},
-]
+import {TagList} from '../../components/'
 
 it('TagList', () => {
   const fn = jest.fn()

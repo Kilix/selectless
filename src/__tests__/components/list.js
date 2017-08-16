@@ -4,14 +4,9 @@ import React from 'react'
 import {mount} from 'enzyme'
 import toJson from 'enzyme-to-json'
 
-import {List, Item} from '../../components/'
+import {List} from '../../components/'
 
-const options = [
-  {label: 'Paris', value: 'paris'},
-  {label: 'Tokyo', value: 'tokyo'},
-]
 it('close List', () => {
-  const fn = jest.fn()
   const ctx = {
     caseSensitiveSearch: false,
     hasSearch: false,
@@ -23,12 +18,11 @@ it('close List', () => {
     selectedValue: [],
     onSelectValue: () => {},
   }
-  const tree = mount(<List renderItem={Item} />, {context: ctx})
+  const tree = mount(<List renderItem={() => <div />} />, {context: ctx})
   expect(toJson(tree)).toMatchSnapshot()
 })
 
 it('open List', () => {
-  const fn = jest.fn()
   const ctx = {
     caseSensitiveSearch: false,
     hasSearch: false,
@@ -40,12 +34,11 @@ it('open List', () => {
     selectedValue: [],
     onSelectValue: () => {},
   }
-  const tree = mount(<List renderItem={Item} />, {context: ctx})
+  const tree = mount(<List renderItem={() => <div />} />, {context: ctx})
   expect(toJson(tree)).toMatchSnapshot()
 })
 
 it('custom List', () => {
-  const fn = jest.fn()
   const ctx = {
     caseSensitiveSearch: false,
     hasSearch: false,
@@ -63,7 +56,7 @@ it('custom List', () => {
         <div>
           {props.children}
         </div>}
-      renderItem={Item}
+      renderItem={() => <div />}
     />,
     {
       context: ctx,

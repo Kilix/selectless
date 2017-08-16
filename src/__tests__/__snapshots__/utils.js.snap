@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return a element 1`] = `
+<WithKeyboardEvent
+  clearSearchValue={[Function]}
+  onSelectValue={[Function]}
+  opened={true}
+  options={
+    Array [
+      Object {
+        "label": "Paris",
+        "value": "paris",
+      },
+    ]
+  }
+  toggleSelect={[Function]}
+/>
+`;

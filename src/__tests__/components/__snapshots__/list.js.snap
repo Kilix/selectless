@@ -208,7 +208,7 @@ exports[`open List 1`] = `
         <div
           role="listbox"
         >
-          <getContext(Item)
+          <renderItem
             data={
               Object {
                 "label": "PAris",
@@ -225,31 +225,8 @@ exports[`open List 1`] = `
               ]
             }
           >
-            <Item
-              data={
-                Object {
-                  "label": "PAris",
-                  "value": "paris",
-                }
-              }
-              isCurrent={false}
-              isSelected={false}
-              onSelectValue={[Function]}
-              passThrough={
-                Array [
-                  "data",
-                  "isCurrent",
-                  "isSelected",
-                ]
-              }
-            >
-              <div
-                onClick={[Function]}
-              >
-                PAris
-              </div>
-            </Item>
-          </getContext(Item)>
+            <div />
+          </renderItem>
         </div>
       </List>
     </WithKeyboardEvent>
