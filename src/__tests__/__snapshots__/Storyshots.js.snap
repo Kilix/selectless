@@ -1,0 +1,554 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Async With callback 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    Select an option
+  </div>
+</div>
+`;
+
+exports[`Storyshots Async With custom debounce 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "width": 250,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <input
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      onClick={[Function]}
+    >
+      Select an option
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Async With promise 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "width": 250,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <input
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <div
+        onClick={[Function]}
+      >
+        Select an option
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Fela Basic callback 1`] = `
+<div
+  style={
+    Object {
+      "margin": "0 auto",
+      "width": 300,
+    }
+  }
+>
+  <div>
+    <div
+      className="a b c d e f g h i j k l m n o p"
+    >
+      <div
+        className="q r s t u p j v w e"
+        onClick={[Function]}
+      >
+        
+      </div>
+      <span
+        className="x s t y j z ab ac ad ae"
+        onClick={[Function]}
+      >
+        Clear
+      </span>
+      <input
+        className="af s t u p j w k ag v e"
+        onChange={[Function]}
+        onClick={[Function]}
+        onKeyUp={[Function]}
+        role="combobox"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Full Custom Basic 1`] = `
+<div
+  style={
+    Object {
+      "width": 300,
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "borderTopLeftRadius": 3,
+        "borderTopRightRadius": 3,
+        "height": 36,
+        "overflow": "hidden",
+        "position": "relative",
+        "width": "100%",
+      }
+    }
+  >
+    <input
+      className="a b c d e f g h i j k l"
+      onChange={[Function]}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value=""
+    />
+    <label
+      className="a b c d e m h n j k l o"
+      onClick={[Function]}
+    >
+      Select an options
+    </label>
+    <button
+      className="p a b q r s t u v g f w x"
+      onClick={[Function]}
+    >
+      ▼
+    </button>
+  </div>
+  <div
+    className="y z ab"
+  >
+    <div
+      className="j k l i ac ad ae af ag"
+    >
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Warren
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Urie
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Homeland
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Fairforest
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Tonopah
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Stewart
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Osmond
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Toftrees
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Avalon
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Spokane
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Juarez
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Indio
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Boonville
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Lavalette
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Clay
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Nadine
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Maplewood
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Zeba
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Why
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Coloma
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Aguila
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Bonanza
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Springdale
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Cashtown
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Leroy
+      </div>
+      <div
+        className="ah ai aj ak al am an ao ap aq ar"
+        onClick={[Function]}
+      >
+        Lowell
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Glamorous Basic 1`] = `
+<div
+  className="css-x2y1h0"
+>
+  <div
+    className="css-1oliuza"
+    onClick={[Function]}
+  >
+    Select an options
+  </div>
+</div>
+`;
+
+exports[`Storyshots Glamorous Multi 1`] = `
+<div
+  className="css-x2y1h0"
+>
+  <div
+    className="css-1pknocm"
+    onClick={[Function]}
+  >
+    <div
+      className="css-1v47ier"
+    >
+      Selectless Powerness
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Basic 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    Select an options
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Custom Item 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    Select an options
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Custom Label 1`] = `
+<div>
+  <strong
+    onClick={[Function]}
+  >
+    Select an options
+  </strong>
+</div>
+`;
+
+exports[`Storyshots Sync Custom List 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    Select an options
+  </div>
+  <div>
+    <h2>
+      My Custom List
+    </h2>
+    Empty list
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Custom placeholder 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    Select a city
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Default value 1`] = `
+<div>
+  <input
+    name="context[Paris]"
+    type="hidden"
+    value="paris"
+  />
+  <div
+    onClick={[Function]}
+  >
+    Paris
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Multi 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    Select an options
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Multi Custom Tag 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    Select an options
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Stay open 1`] = `
+<div>
+  <div
+    onClick={[Function]}
+  >
+    Select an options
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync With Clear 1`] = `
+<div>
+  <div>
+    <span
+      onClick={[Function]}
+    >
+      Clear
+    </span>
+    <br />
+    <i
+      onClick={[Function]}
+    >
+      Custom clear
+    </i>
+  </div>
+  <div
+    onClick={[Function]}
+  >
+    Select an options
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync With Search 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <div>
+      <label>
+        not caseSensitive - default render
+      </label>
+      <div>
+        <input
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div>
+      <label>
+        caseSensitive - custom render
+      </label>
+      <div
+        onClick={undefined}
+      >
+        <input
+          onChange={[Function]}
+          style={
+            Object {
+              "backgroundColor": "red",
+            }
+          }
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <div
+      onClick={[Function]}
+    >
+      Select an options
+    </div>
+  </div>
+</div>
+`;

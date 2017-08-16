@@ -94,7 +94,7 @@ AsyncSelect.propTypes = {
   multi: PropTypes.bool,
   onChange: PropTypes.func,
   loadOptions: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.any,
   renderInputs: PropTypes.func,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,

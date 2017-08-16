@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
 import filter from 'ramda/src/filter'
@@ -18,22 +18,22 @@ class SyncSelect extends Component {
     hasSearch: false,
     sourceOptions: [],
     options: [],
-    searchValue: ''
+    searchValue: '',
   }
-  componentWillMount () {
+  componentWillMount() {
     const opts = map(this.transform, this.props.options)
     this.setState({
       sourceOptions: opts,
-      options: this.computeOptions('', opts)
+      options: this.computeOptions('', opts),
     })
   }
-  getChildContext () {
+  getChildContext() {
     const {
       caseSensitiveSearch,
       hasSearch,
       options,
       searchValue,
-      sourceOptions
+      sourceOptions,
     } = this.state
     return {
       caseSensitiveSearch,
@@ -45,12 +45,12 @@ class SyncSelect extends Component {
       searchValue,
       sourceOptions,
       options,
-      transform: this.transform
+      transform: this.transform,
     }
   }
 
   computeOptions = (searchValue, opts = null) => {
-    const { hasSearch, caseSensitiveSearch, sourceOptions } = this.state
+    const {hasSearch, caseSensitiveSearch, sourceOptions} = this.state
     return when(
       () => hasSearch,
       ifElse(
@@ -71,33 +71,33 @@ class SyncSelect extends Component {
 
   toggleSearch = (active = null) =>
     this.setState({
-      hasSearch: active !== null ? active : !this.state.hasSearch
+      hasSearch: active !== null ? active : !this.state.hasSearch,
     })
 
   toggleCaseSensitive = (active = null) =>
     this.setState({
       caseSensitiveSearch:
-        active !== null ? active : !this.state.caseSensitiveSearch
+        active !== null ? active : !this.state.caseSensitiveSearch,
     })
 
   clearSearchValue = () =>
-    this.setState({ searchValue: '', options: this.computeOptions('') })
+    this.setState({searchValue: '', options: this.computeOptions('')})
   onChangeSearchValue = query => {
     if (typeof this.props.onChangeSearchValue !== 'undefined') {
       this.props.onChangeSearchValue(query)
     }
     this.setState({
       searchValue: query,
-      options: this.computeOptions(query)
+      options: this.computeOptions(query),
     })
   }
 
-  render () {
-    const { defaultChildren, ...props } = this.props
+  render() {
+    const {defaultChildren, ...props} = this.props
     return defaultChildren({
       ...props,
       clearSearchValue: this.clearSearchValue,
-      options: this.state.options
+      options: this.state.options,
     })
   }
 }
@@ -112,11 +112,11 @@ SyncSelect.propTypes = {
   multi: PropTypes.bool,
   onChange: PropTypes.func,
   options: PropTypes.array.isRequired,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.any,
   renderInputs: PropTypes.func,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
-  transform: PropTypes.func
+  transform: PropTypes.func,
 }
 
 SyncSelect.defaultProps = {
@@ -124,7 +124,7 @@ SyncSelect.defaultProps = {
   placeholder: 'Select an options',
   stayOpenOnSelect: false,
   clearSearchOnSelect: false,
-  defaultChildren: props => <CoreSelect {...props} />
+  defaultChildren: props => <CoreSelect {...props} />,
 }
 
 SyncSelect.childContextTypes = {
@@ -138,7 +138,7 @@ SyncSelect.childContextTypes = {
 
   toggleCaseSensitive: PropTypes.func.isRequired,
   toggleSearch: PropTypes.func.isRequired,
-  transform: PropTypes.func.isRequired
+  transform: PropTypes.func.isRequired,
 }
 
 export default SyncSelect
