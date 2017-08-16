@@ -4,6 +4,11 @@
 </h1>
 <p align="center" style="font-size: 1.2rem;">Custom Select without predefined UI for React using Context</p>
 
+[![Build Status][build-badge]][build]
+[![Code Coverage][coverage-badge]][coverage]
+[![version][version-badge]][package]
+[![MIT License][license-badge]][LICENSE]
+
 ## Install
 
 ```
@@ -79,3 +84,13 @@ React-select is still really good.
 ## LICENSE
 
 MIT
+
+
+[build-badge]: https://img.shields.io/travis/Kilix/selectless.svg?style=flat-square
+[build]: https://travis-ci.org/Kilix/selectless
+[coverage-badge]: https://img.shields.io/codecov/c/github/Kilix/selectless.svg?style=flat-square
+[coverage]: https://codecov.io/github/Kilix/selectless
+[version-badge]: https://img.shields.io/npm/v/selectless.svg?style=flat-square
+[package]: https://www.npmjs.com/package/selectless
+[license-badge]: https://img.shields.io/npm/l/glamorous.svg?style=flat-square
+[license]: https://github.com/paypal/glamorous/blob/master/LICENSE
