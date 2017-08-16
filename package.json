@@ -6,7 +6,9 @@
   "browser": "dist/selectless.umd.js",
   "author": "wcastand <wcastand@gmail.com> (https://github.com/wcastand)",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/wcastand/selectless.git"
@@ -44,6 +46,8 @@
     "fela": "5.1.0",
     "fela-dom": "5.0.6",
     "fela-preset-web": "5.0.6",
+    "glamor": "2.20.40",
+    "glamorous": "4.1.2",
     "html-tag-names": "1.1.2",
     "husky": "0.14.3",
     "jest-cli": "20.0.4",
@@ -77,14 +81,23 @@
     "recompose": "0.24.0"
   },
   "lint-staged": {
-    "*.js": ["prettier --trailing-comma es5 --single-quote --write", "git add"],
-    "yarn.lock": ["git rm --cached"]
+    "*.js": [
+      "prettier --trailing-comma es5 --single-quote --write",
+      "git add"
+    ],
+    "yarn.lock": [
+      "git rm --cached"
+    ]
   },
   "jest": {
     "testEnvironment": "jsdom",
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "roots": ["src"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "roots": [
+      "src"
+    ]
   }
 }

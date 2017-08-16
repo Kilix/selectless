@@ -59,6 +59,13 @@ export default CustomSelect
 - [Predefined Components](docs/sub-components.md)
 - [HOC](docs/HOC.md)
 
+## Examples
+
+- [Sync](stories/sync.js)
+- [ASync](stories/async.js)
+- [Fela](stories/fela.js)
+- [Glamorous](stories/glamorous.js)
+
 ## Other Solutions
 
 ### [Downshift](https://github.com/paypal/downshift)
