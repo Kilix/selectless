@@ -1,0 +1,258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`close List 1`] = `
+<getContext(getContext(WithKeyboardEvent))
+  renderItem={[Function]}
+>
+  <getContext(WithKeyboardEvent)
+    caseSensitiveSearch={false}
+    hasSearch={false}
+    onSelectValue={[Function]}
+    opened={false}
+    options={
+      Array [
+        Object {
+          "label": "PAris",
+          "value": "paris",
+        },
+      ]
+    }
+    renderItem={[Function]}
+    searchValue=""
+    selectedValue={Array []}
+    toggleSearch={[Function]}
+    toggleSelect={[Function]}
+  >
+    <WithKeyboardEvent
+      caseSensitiveSearch={false}
+      hasSearch={false}
+      onSelectValue={[Function]}
+      opened={false}
+      options={
+        Array [
+          Object {
+            "label": "PAris",
+            "value": "paris",
+          },
+        ]
+      }
+      renderItem={[Function]}
+      searchValue=""
+      selectedValue={Array []}
+      toggleSearch={[Function]}
+      toggleSelect={[Function]}
+    >
+      <List
+        caseSensitiveSearch={false}
+        currentValue={null}
+        hasSearch={false}
+        onSelectValue={[Function]}
+        opened={false}
+        options={
+          Array [
+            Object {
+              "label": "PAris",
+              "value": "paris",
+            },
+          ]
+        }
+        renderItem={[Function]}
+        searchValue=""
+        selectedValue={Array []}
+        setRef={[Function]}
+        toggleSearch={[Function]}
+        toggleSelect={[Function]}
+      />
+    </WithKeyboardEvent>
+  </getContext(WithKeyboardEvent)>
+</getContext(getContext(WithKeyboardEvent))>
+`;
+
+exports[`custom List 1`] = `
+<getContext(getContext(WithKeyboardEvent))
+  render={[Function]}
+  renderItem={[Function]}
+>
+  <getContext(WithKeyboardEvent)
+    caseSensitiveSearch={false}
+    hasSearch={false}
+    onSelectValue={[Function]}
+    opened={true}
+    options={
+      Array [
+        Object {
+          "label": "PAris",
+          "value": "paris",
+        },
+      ]
+    }
+    render={[Function]}
+    renderItem={[Function]}
+    searchValue=""
+    selectedValue={Array []}
+    toggleSearch={[Function]}
+    toggleSelect={[Function]}
+  >
+    <WithKeyboardEvent
+      caseSensitiveSearch={false}
+      hasSearch={false}
+      onSelectValue={[Function]}
+      opened={true}
+      options={
+        Array [
+          Object {
+            "label": "PAris",
+            "value": "paris",
+          },
+        ]
+      }
+      render={[Function]}
+      renderItem={[Function]}
+      searchValue=""
+      selectedValue={Array []}
+      toggleSearch={[Function]}
+      toggleSelect={[Function]}
+    >
+      <List
+        caseSensitiveSearch={false}
+        currentValue={null}
+        hasSearch={false}
+        onSelectValue={[Function]}
+        opened={true}
+        options={
+          Array [
+            Object {
+              "label": "PAris",
+              "value": "paris",
+            },
+          ]
+        }
+        render={[Function]}
+        renderItem={[Function]}
+        searchValue=""
+        selectedValue={Array []}
+        setRef={[Function]}
+        toggleSearch={[Function]}
+        toggleSelect={[Function]}
+      >
+        <div />
+      </List>
+    </WithKeyboardEvent>
+  </getContext(WithKeyboardEvent)>
+</getContext(getContext(WithKeyboardEvent))>
+`;
+
+exports[`open List 1`] = `
+<getContext(getContext(WithKeyboardEvent))
+  renderItem={[Function]}
+>
+  <getContext(WithKeyboardEvent)
+    caseSensitiveSearch={false}
+    hasSearch={false}
+    onSelectValue={[Function]}
+    opened={true}
+    options={
+      Array [
+        Object {
+          "label": "PAris",
+          "value": "paris",
+        },
+      ]
+    }
+    renderItem={[Function]}
+    searchValue=""
+    selectedValue={Array []}
+    toggleSearch={[Function]}
+    toggleSelect={[Function]}
+  >
+    <WithKeyboardEvent
+      caseSensitiveSearch={false}
+      hasSearch={false}
+      onSelectValue={[Function]}
+      opened={true}
+      options={
+        Array [
+          Object {
+            "label": "PAris",
+            "value": "paris",
+          },
+        ]
+      }
+      renderItem={[Function]}
+      searchValue=""
+      selectedValue={Array []}
+      toggleSearch={[Function]}
+      toggleSelect={[Function]}
+    >
+      <List
+        caseSensitiveSearch={false}
+        currentValue={null}
+        hasSearch={false}
+        onSelectValue={[Function]}
+        opened={true}
+        options={
+          Array [
+            Object {
+              "label": "PAris",
+              "value": "paris",
+            },
+          ]
+        }
+        renderItem={[Function]}
+        searchValue=""
+        selectedValue={Array []}
+        setRef={[Function]}
+        toggleSearch={[Function]}
+        toggleSelect={[Function]}
+      >
+        <div
+          role="listbox"
+        >
+          <getContext(Item)
+            data={
+              Object {
+                "label": "PAris",
+                "value": "paris",
+              }
+            }
+            isCurrent={false}
+            isSelected={false}
+            passThrough={
+              Array [
+                "data",
+                "isCurrent",
+                "isSelected",
+              ]
+            }
+          >
+            <Item
+              data={
+                Object {
+                  "label": "PAris",
+                  "value": "paris",
+                }
+              }
+              isCurrent={false}
+              isSelected={false}
+              onSelectValue={[Function]}
+              passThrough={
+                Array [
+                  "data",
+                  "isCurrent",
+                  "isSelected",
+                ]
+              }
+            >
+              <div
+                onClick={[Function]}
+              >
+                PAris
+              </div>
+            </Item>
+          </getContext(Item)>
+        </div>
+      </List>
+    </WithKeyboardEvent>
+  </getContext(WithKeyboardEvent)>
+</getContext(getContext(WithKeyboardEvent))>
+`;

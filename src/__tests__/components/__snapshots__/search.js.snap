@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search 1`] = `
+<getContext(Search)>
+  <Search
+    clearSearchValue={[Function]}
+    clearValue={[Function]}
+    onChangeSearchValue={[Function]}
+    searchValue=""
+    toggleCaseSensitive={[Function]}
+    toggleSearch={[Function]}
+    toggleSelect={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      onFocus={[Function]}
+      type="text"
+      value=""
+    />
+  </Search>
+</getContext(Search)>
+`;
+
+exports[`Search 2`] = `
+<getContext(Search)
+  render={[Function]}
+>
+  <Search
+    clearSearchValue={[Function]}
+    clearValue={[Function]}
+    onChangeSearchValue={[Function]}
+    render={[Function]}
+    searchValue=""
+    toggleCaseSensitive={[Function]}
+    toggleSearch={[Function]}
+    toggleSelect={[Function]}
+  >
+    <div />
+  </Search>
+</getContext(Search)>
+`;

@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item 1`] = `
+<getContext(Item)
+  data={
+    Object {
+      "label": "Paris",
+      "value": "paris",
+    }
+  }
+>
+  <Item
+    data={
+      Object {
+        "label": "Paris",
+        "value": "paris",
+      }
+    }
+    onSelectValue={[Function]}
+  >
+    <div
+      onClick={[Function]}
+    >
+      Paris
+    </div>
+  </Item>
+</getContext(Item)>
+`;
+
+exports[`Item Custom 1`] = `
+<getContext(Item)
+  data={
+    Object {
+      "label": "Paris",
+      "value": "paris",
+    }
+  }
+  render={[Function]}
+>
+  <Item
+    data={
+      Object {
+        "label": "Paris",
+        "value": "paris",
+      }
+    }
+    onSelectValue={[Function]}
+    render={[Function]}
+  >
+    <div />
+  </Item>
+</getContext(Item)>
+`;

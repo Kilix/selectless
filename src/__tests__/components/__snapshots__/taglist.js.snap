@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagList - Custom 1`] = `
+<getContext(TagList)
+  render={[Function]}
+  renderTag={[Function]}
+>
+  <TagList
+    placeholder="Placeholder"
+    render={[Function]}
+    renderTag={[Function]}
+    selectedValue={
+      Array [
+        Object {
+          "label": "Paris",
+          "value": "paris",
+        },
+      ]
+    }
+    toggleSelect={[Function]}
+  >
+    <div>
+      <renderTag
+        tag={
+          Object {
+            "label": "Paris",
+            "value": "paris",
+          }
+        }
+      >
+        <div />
+      </renderTag>
+    </div>
+  </TagList>
+</getContext(TagList)>
+`;
+
+exports[`TagList 1`] = `
+<getContext(TagList)
+  renderTag={[Function]}
+>
+  <TagList
+    placeholder="Placeholder"
+    renderTag={[Function]}
+    selectedValue={
+      Array [
+        Object {
+          "label": "Paris",
+          "value": "paris",
+        },
+      ]
+    }
+    toggleSelect={[Function]}
+  >
+    <div
+      onClick={[Function]}
+    >
+      <renderTag
+        tag={
+          Object {
+            "label": "Paris",
+            "value": "paris",
+          }
+        }
+      >
+        <div />
+      </renderTag>
+    </div>
+  </TagList>
+</getContext(TagList)>
+`;

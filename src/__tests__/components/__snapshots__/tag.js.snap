@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag 1`] = `
+<getContext(Tag)
+  tag={
+    Object {
+      "label": "Paris",
+      "value": "paris",
+    }
+  }
+>
+  <Tag
+    clearOneValue={[Function]}
+    tag={
+      Object {
+        "label": "Paris",
+        "value": "paris",
+      }
+    }
+  >
+    <span
+      onClick={[Function]}
+    >
+      Paris
+    </span>
+  </Tag>
+</getContext(Tag)>
+`;
+
+exports[`Tag Custom 1`] = `
+<getContext(Tag)
+  render={[Function]}
+  tag={
+    Object {
+      "label": "Paris",
+      "value": "paris",
+    }
+  }
+>
+  <Tag
+    clearOneValue={[Function]}
+    render={[Function]}
+    tag={
+      Object {
+        "label": "Paris",
+        "value": "paris",
+      }
+    }
+  >
+    <div />
+  </Tag>
+</getContext(Tag)>
+`;

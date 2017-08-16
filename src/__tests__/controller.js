@@ -1,56 +1,45 @@
 /* global test, expect */
 
-import React from 'react';
-import renderer from 'react-test-renderer';
+import React from 'react'
+import {shallow} from 'enzyme'
 
-import { Select } from '../';
-import controller from '../controller';
+import controller from '../controller'
+
+const defaultContext = {
+  caseSensitiveSearch: true,
+  clearSearchValue: true,
+  hasSearch: true,
+  onChangeSearchValue: true,
+  searchValue: true,
+  options: true,
+  sourceOptions: true,
+  toggleCaseSensitive: true,
+  toggleSearch: true,
+  transform: true,
+  clearValue: true,
+  clearOneValue: true,
+  defaultValue: true,
+  name: true,
+  multi: true,
+  placeholder: true,
+  onSelectValue: true,
+  opened: true,
+  selectedValue: true,
+  toggleSelect: true,
+}
 
 test('should return all context', () => {
-  const enhance = controller();
-  const Test = props => {
-    expect(Object.keys(props)).toEqual([
-      'caseSensitiveSearch',
-      'clearSearchValue',
-      'hasSearch',
-      'onChangeSearchValue',
-      'searchValue',
-      'options',
-      'sourceOptions',
-      'toggleCaseSensitive',
-      'toggleSearch',
-      'transform',
-      'clearValue',
-      'clearOneValue',
-      'defaultValue',
-      'name',
-      'multi',
-      'placeholder',
-      'onSelectValue',
-      'opened',
-      'selectedValue',
-      'toggleSelect',
-    ]);
-    return <div />;
-  };
-  const STest = enhance(Test);
-  renderer.create(
-    <Select name="test" options={[{ value: 0, label: 'Test' }]}>
-      <STest />
-    </Select>
-  );
-});
+  const enhance = controller()
+  const Test = props => <div {...props} />
+  const STest = enhance(Test)
+  const tree = shallow(<STest />, {context: defaultContext})
+  expect(tree.props()).toEqual(defaultContext)
+})
 
 test('should pass only selected props', () => {
-  const enhance = controller(['name', 'opened']);
-  const Test = props => {
-    expect(Object.keys(props)).toEqual(['name', 'opened']);
-    return <div />;
-  };
-  const STest = enhance(Test);
-  renderer.create(
-    <Select name="test" options={[{ value: 0, label: 'Test' }]}>
-      <STest />
-    </Select>
-  );
-});
+  const enhance = controller(['name', 'opened'])
+  const Test = props => <div {...props} />
+  const STest = enhance(Test)
+  const tree = shallow(<STest />, {context: defaultContext})
+  expect(tree.props()).toEqual({name: true, opened: true})
+})

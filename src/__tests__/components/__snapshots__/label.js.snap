@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<div>Lavel</div> 1`] = `"<div>Lavel</div>"`;
+
+exports[`<div>Paris</div> 1`] = `"<div>Paris</div>"`;
+
+exports[`Label 1`] = `
+<getContext(Label)>
+  <Label
+    opened={false}
+    placeholder="Lavel"
+    selectedValue={Array []}
+    toggleSelect={[Function]}
+  >
+    <div
+      onClick={[Function]}
+    >
+      Lavel
+    </div>
+  </Label>
+</getContext(Label)>
+`;
+
+exports[`hcustom render 1`] = `"<div></div>"`;

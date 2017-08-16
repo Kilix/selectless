@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<span>Clear</span> 1`] = `"<span>Clear</span>"`;
+
+exports[`Clear 1`] = `
+<getContext(Clear)>
+  <Clear
+    clearValue={[Function]}
+  >
+    <span
+      onClick={[Function]}
+    >
+      Clear
+    </span>
+  </Clear>
+</getContext(Clear)>
+`;
+
+exports[`Custom Clear 1`] = `
+<getContext(Clear)
+  render={[Function]}
+>
+  <Clear
+    clearValue={[Function]}
+    render={[Function]}
+  >
+    <div />
+  </Clear>
+</getContext(Clear)>
+`;

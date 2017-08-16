@@ -1,31 +1,31 @@
-import React from 'react';
-import omit from 'ramda/src/omit';
+import React from 'react'
+import omit from 'ramda/src/omit'
 
-import controller from '../controller';
+import controller from '../controller'
 
-class Search extends React.Component {
-  state = { value: '' };
+export class Search extends React.Component {
+  state = {value: ''}
   componentWillMount() {
-    this.props.toggleSearch(true);
+    this.props.toggleSearch(true)
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.searchValue !== this.state.value) {
-      this.setState({ value: nextProps.searchValue });
+      this.setState({value: nextProps.searchValue})
     }
   }
   onChange = e => {
-    const v = e.target.value;
+    const v = e.target.value
     const {
       caseSensitive = false,
       onChangeSearchValue,
       toggleCaseSensitive,
       toggleSelect,
-    } = this.props;
-    this.setState({ value: v });
-    toggleSelect(true);
-    toggleCaseSensitive(caseSensitive);
-    onChangeSearchValue(v);
-  };
+    } = this.props
+    this.setState({value: v})
+    toggleSelect(true)
+    toggleCaseSensitive(caseSensitive)
+    onChangeSearchValue(v)
+  }
   render() {
     const props = omit(
       [
@@ -40,7 +40,7 @@ class Search extends React.Component {
         'searchValue',
       ],
       this.props
-    );
+    )
     const {
       caseSensitive,
       clearSearchValue,
@@ -49,14 +49,13 @@ class Search extends React.Component {
       searchValue,
       toggleSearch,
       toggleSelect,
-    } = this.props;
-    const { value } = this.state;
+    } = this.props
+    const {value} = this.state
     const ElProps = {
       value,
       onChange: this.onChange,
       onFocus: () => toggleSelect(true),
-    };
-
+    }
     return typeof render !== 'undefined'
       ? render({
           caseSensitive,
@@ -68,7 +67,7 @@ class Search extends React.Component {
           toggleSelect,
           value,
         })
-      : <input type="text" {...props} {...ElProps} />;
+      : <input type="text" {...props} {...ElProps} />
   }
 }
 
@@ -80,6 +79,6 @@ const enhance = controller([
   'toggleCaseSensitive',
   'toggleSearch',
   'toggleSelect',
-]);
+])
 
-export default enhance(Search);
+export default enhance(Search)
