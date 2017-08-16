@@ -1,8 +1,6 @@
-/* eslint-disable */
-import React from 'react';
+import React from 'react'
 
-import controller from '../controller';
-import { renderOrCloneComponent } from '../utils';
+import controller from '../controller'
 
 class Item extends React.Component {
   render() {
@@ -15,18 +13,13 @@ class Item extends React.Component {
       render,
       passThrough,
       ...props
-    } = this.props;
+    } = this.props
     return typeof render === 'undefined'
-      ? <div
-          onClick={() => onSelectValue(data)}
-          ref={currentRef}
-          role="option"
-          {...props}
-        >
+      ? <div onClick={() => onSelectValue(data)} ref={currentRef} {...props}>
           {data.label}
         </div>
-      : render({ data, isCurrent, isSelected, onSelectValue });
+      : render({data, isCurrent, isSelected, onSelectValue})
   }
 }
-const enhance = controller(['onSelectValue']);
-export default enhance(Item);
+const enhance = controller(['onSelectValue'])
+export default enhance(Item)

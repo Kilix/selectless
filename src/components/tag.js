@@ -1,9 +1,7 @@
-/* eslint-disable */
 import React from 'react'
 import omit from 'ramda/src/omit'
 
 import controller from '../controller'
-import {renderOrCloneComponent} from '../utils'
 
 class Tag extends React.Component {
   clearTag = e => {
