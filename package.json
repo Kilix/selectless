@@ -6,9 +6,7 @@
   "browser": "dist/selectless.umd.js",
   "author": "wcastand <wcastand@gmail.com> (https://github.com/wcastand)",
   "license": "MIT",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "https://github.com/wcastand/selectless.git"
@@ -17,7 +15,8 @@
     "start": "nps",
     "dev": "nps build.watch",
     "test": "nps test",
-    "test:watch": "nps 'test.watch'"
+    "test:watch": "nps 'test.watch'",
+    "prepublish": "nps build"
   },
   "peerDependencies": {
     "react": ">=0.14",
@@ -82,26 +81,15 @@
     "recompose": "0.25.0"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --trailing-comma es5 --single-quote --write",
-      "git add"
-    ],
-    "yarn.lock": [
-      "git rm --cached"
-    ]
+    "*.js": ["prettier --trailing-comma es5 --single-quote --write", "git add"],
+    "yarn.lock": ["git rm --cached"]
   },
   "jest": {
     "testEnvironment": "jsdom",
     "coverageDirectory": "./coverage/",
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.js"],
     "collectCoverage": true,
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "roots": [
-      "src"
-    ]
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "roots": ["src"]
   }
 }
