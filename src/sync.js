@@ -110,7 +110,7 @@ SyncSelect.propTypes = {
 
 SyncSelect.defaultProps = {
   multi: false,
-  placeholder: 'Select an options',
+  placeholder: 'Select an option',
   stayOpenOnSelect: false,
   clearSearchOnSelect: false,
   defaultChildren: props => <CoreSelect {...props} />,
