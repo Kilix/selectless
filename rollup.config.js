@@ -24,7 +24,6 @@ export default [
       commonjs({
         namedExports: {
           'node_modules/react/react.js': ['Component'],
-          'node_modules/react-dom/index.js': ['findDOMNode'],
         },
       }),
       babel(babelConfig),
@@ -38,7 +37,7 @@ export default [
       {dest: pkg.main, format: 'cjs'},
       {dest: pkg.module, format: 'es'},
     ],
-    external: ['react', 'react-dom', 'recompose', 'prop-types'],
+    external: ['react', 'recompose', 'debounce', 'prop-types'],
     globals: {
       react: 'React',
       'prop-types': 'PropTypes',
