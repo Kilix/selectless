@@ -18,6 +18,7 @@ function loadStories() {
   require('../stories/fela.js')
   require('../stories/basics.js')
   require('../stories/glamorous.js')
+  require('../stories/styled.js')
 }
 
 configure(loadStories, module)
