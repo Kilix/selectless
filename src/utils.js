@@ -1,10 +1,5 @@
 import React from 'react'
-import {findDOMNode} from 'react-dom'
-import add from 'ramda/src/add'
-import subtract from 'ramda/src/subtract'
-import findIndex from 'ramda/src/findIndex'
-import equals from 'ramda/src/equals'
-import __ from 'ramda/src/__'
+import findDOMNode from 'react-dom/lib/findDOMNode'
 
 import controller from './controller'
 
@@ -53,9 +48,8 @@ export function withKeyboardEvent(BaseComponent) {
             this.setState({currentValue: 0})
           } else {
             this.setState({
-              currentValue: findIndex(
-                equals(nextProps.selectedValue[0]),
-                this.props.options
+              currentValue: this.props.options.indexOf(
+                nextProps.selectedValue[0]
               ),
             })
           }
@@ -122,7 +116,7 @@ export function withKeyboardEvent(BaseComponent) {
                 currentValue: closestAvailable(
                   currentValue,
                   options.length,
-                  add(__, 1)
+                  x => x + 1
                 ),
               })
               e.stopPropagation()
@@ -132,7 +126,7 @@ export function withKeyboardEvent(BaseComponent) {
                 currentValue: closestAvailable(
                   currentValue,
                   options.length,
-                  subtract(__, 1)
+                  x => x - 1
                 ),
               })
               e.stopPropagation()

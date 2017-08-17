@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Async With callback 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     onClick={[Function]}
   >
@@ -11,7 +14,10 @@ exports[`Storyshots Async With callback 1`] = `
 `;
 
 exports[`Storyshots Async With custom debounce 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     style={
       Object {
@@ -44,6 +50,7 @@ exports[`Storyshots Async With custom debounce 1`] = `
 
 exports[`Storyshots Async With promise 1`] = `
 <div
+  className={undefined}
   style={
     Object {
       "display": "flex",
@@ -97,7 +104,10 @@ exports[`Storyshots Fela Basic callback 1`] = `
     }
   }
 >
-  <div>
+  <div
+    className={undefined}
+    style={undefined}
+  >
     <div
       className="a b c d e f g h i j k l m n o p"
     >
@@ -129,6 +139,7 @@ exports[`Storyshots Fela Basic callback 1`] = `
 
 exports[`Storyshots Full Custom Basic 1`] = `
 <div
+  className={undefined}
   style={
     Object {
       "width": 300,
@@ -338,6 +349,7 @@ exports[`Storyshots Full Custom Basic 1`] = `
 exports[`Storyshots Glamorous Basic 1`] = `
 <div
   className="css-x2y1h0"
+  style={undefined}
 >
   <div
     className="css-1oliuza"
@@ -351,6 +363,7 @@ exports[`Storyshots Glamorous Basic 1`] = `
 exports[`Storyshots Glamorous Multi 1`] = `
 <div
   className="css-x2y1h0"
+  style={undefined}
 >
   <div
     className="css-1pknocm"
@@ -366,7 +379,10 @@ exports[`Storyshots Glamorous Multi 1`] = `
 `;
 
 exports[`Storyshots Sync Basic 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     onClick={[Function]}
   >
@@ -376,7 +392,10 @@ exports[`Storyshots Sync Basic 1`] = `
 `;
 
 exports[`Storyshots Sync Custom Item 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     onClick={[Function]}
   >
@@ -386,7 +405,10 @@ exports[`Storyshots Sync Custom Item 1`] = `
 `;
 
 exports[`Storyshots Sync Custom Label 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <strong
     onClick={[Function]}
   >
@@ -396,7 +418,10 @@ exports[`Storyshots Sync Custom Label 1`] = `
 `;
 
 exports[`Storyshots Sync Custom List 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     onClick={[Function]}
   >
@@ -412,7 +437,10 @@ exports[`Storyshots Sync Custom List 1`] = `
 `;
 
 exports[`Storyshots Sync Custom placeholder 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     onClick={[Function]}
   >
@@ -422,7 +450,10 @@ exports[`Storyshots Sync Custom placeholder 1`] = `
 `;
 
 exports[`Storyshots Sync Default value 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <input
     name="context[Paris]"
     type="hidden"
@@ -437,7 +468,10 @@ exports[`Storyshots Sync Default value 1`] = `
 `;
 
 exports[`Storyshots Sync Multi 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     onClick={[Function]}
   >
@@ -447,7 +481,10 @@ exports[`Storyshots Sync Multi 1`] = `
 `;
 
 exports[`Storyshots Sync Multi Custom Tag 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     onClick={[Function]}
   >
@@ -457,7 +494,10 @@ exports[`Storyshots Sync Multi Custom Tag 1`] = `
 `;
 
 exports[`Storyshots Sync Stay open 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div
     onClick={[Function]}
   >
@@ -467,7 +507,10 @@ exports[`Storyshots Sync Stay open 1`] = `
 `;
 
 exports[`Storyshots Sync With Clear 1`] = `
-<div>
+<div
+  className={undefined}
+  style={undefined}
+>
   <div>
     <span
       onClick={[Function]}
@@ -491,6 +534,7 @@ exports[`Storyshots Sync With Clear 1`] = `
 
 exports[`Storyshots Sync With Search 1`] = `
 <div
+  className={undefined}
   style={
     Object {
       "display": "flex",

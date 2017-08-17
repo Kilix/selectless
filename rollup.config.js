@@ -1,3 +1,5 @@
+import bundleSize from 'rollup-plugin-bundle-size'
+import sizes from 'rollup-plugin-sizes'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
@@ -6,8 +8,8 @@ import pkg from './package.json'
 const babelConfig = {
   exclude: ['node_modules/**'],
   babelrc: false,
-  presets: [['env', { modules: false }], 'stage-2', 'react'],
-  plugins: ['external-helpers']
+  presets: [['env', {modules: false}], 'stage-2', 'react'],
+  plugins: ['external-helpers'],
 }
 
 export default [
@@ -22,19 +24,25 @@ export default [
       commonjs({
         namedExports: {
           'node_modules/react/react.js': ['Component'],
-          'node_modules/react-dom/index.js': ['findDOMNode']
-        }
+          'node_modules/react-dom/index.js': ['findDOMNode'],
+        },
       }),
-      babel(babelConfig)
-    ]
+      babel(babelConfig),
+      sizes(),
+      bundleSize(),
+    ],
   },
   {
     entry: 'src/index.js',
     targets: [
-      { dest: pkg.main, format: 'cjs' },
-      { dest: pkg.module, format: 'es' }
+      {dest: pkg.main, format: 'cjs'},
+      {dest: pkg.module, format: 'es'},
     ],
-    external: ['react', 'react-dom', 'recompose', 'ramda', 'prop-types'],
-    plugins: [babel(babelConfig)]
-  }
+    external: ['react', 'react-dom', 'recompose', 'prop-types'],
+    globals: {
+      react: 'React',
+      'prop-types': 'PropTypes',
+    },
+    plugins: [babel(babelConfig)],
+  },
 ]

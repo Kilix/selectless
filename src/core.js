@@ -1,11 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
-import filter from 'ramda/src/filter'
-import map from 'ramda/src/map'
-import pick from 'ramda/src/pick'
-import symmetricDifference from 'ramda/src/symmetricDifference'
-
 class SyncSelect extends Component {
   state = {
     opened: false,
@@ -58,7 +53,9 @@ class SyncSelect extends Component {
     this.setState({
       opened: this.props.stayOpenOnSelect,
       selectedValue: this.props.multi
-        ? symmetricDifference(this.state.selectedValue, [data])
+        ? this.state.selectedValue.indexOf(data) !== -1
+          ? this.state.selectedValue.filter(x => x !== data)
+          : [...this.state.selectedValue, data]
         : [data],
     })
   }
@@ -73,29 +70,26 @@ class SyncSelect extends Component {
       selectedValue:
         typeof this.props.clearOneValue !== 'undefined'
           ? this.props.clearOneValue(t, this.state.selectedValue)
-          : filter(v => v.value !== t.value, this.state.selectedValue),
+          : this.state.selectedValue.filter(v => v.value !== t.value),
     })
   }
 
   renderInputs = (selectedValue, name) => {
     return typeof this.props.renderInputs !== 'undefined'
       ? this.props.renderInputs(selectedValue, name)
-      : map(
-          v =>
-            <input
-              key={v.label}
-              name={`${name}[${v.label}]`}
-              type="hidden"
-              value={v.value}
-            />,
-          selectedValue
+      : selectedValue.map(v =>
+          <input
+            key={v.label}
+            name={`${name}[${v.label}]`}
+            type="hidden"
+            value={v.value}
+          />
         )
   }
   render() {
-    const containerProps = pick(['className', 'style'], this.props)
-
+    const {className, style} = this.props
     return (
-      <div {...containerProps}>
+      <div {...{className, style}}>
         {this.renderInputs(this.state.selectedValue, this.props.name)}
         {this.props.children}
       </div>

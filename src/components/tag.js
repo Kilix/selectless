@@ -1,5 +1,4 @@
 import React from 'react'
-import omit from 'ramda/src/omit'
 
 import controller from '../controller'
 
@@ -10,11 +9,10 @@ class Tag extends React.Component {
     e.stopPropagation()
   }
   render() {
-    const {render, tag} = this.props
-    const prop = omit(['clearOneValue', 'render', 'tag'], this.props)
+    const {clearOneValue, render, tag, ...props} = this.props
 
     return typeof render === 'undefined'
-      ? <span onClick={this.clearTag} {...prop}>
+      ? <span onClick={this.clearTag} {...props}>
           {tag.label}
         </span>
       : render({tag, clear: this.clearTag})

@@ -1,16 +1,16 @@
 import React from 'react'
-import map from 'ramda/src/map'
 
 import controller from '../controller'
 import {renderOrCloneComponent} from '../utils'
 
 class TagList extends React.Component {
-  renderTags = map(tag =>
-    renderOrCloneComponent(this.props.renderTag, {
-      key: `tag_${tag.value}`,
-      tag,
-    })
-  )
+  renderTags = values =>
+    values.map(tag =>
+      renderOrCloneComponent(this.props.renderTag, {
+        key: `tag_${tag.value}`,
+        tag,
+      })
+    )
 
   render() {
     const {

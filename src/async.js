@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'debounce'
 
-import map from 'ramda/src/map'
-
 import CoreSelect from './core'
 
 class AsyncSelect extends Component {
@@ -19,7 +17,7 @@ class AsyncSelect extends Component {
 
   callback = (error, options) => {
     if (error !== null) return
-    const opts = map(this.transform, options)
+    const opts = options.map(this.transform)
     this.setState({options: opts})
   }
   loadOptions = query => {

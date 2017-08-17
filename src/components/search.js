@@ -1,5 +1,4 @@
 import React from 'react'
-import omit from 'ramda/src/omit'
 
 import controller from '../controller'
 
@@ -27,28 +26,17 @@ export class Search extends React.Component {
     onChangeSearchValue(v)
   }
   render() {
-    const props = omit(
-      [
-        'caseSensitive',
-        'clearSearchValue',
-        'clearValue',
-        'onChangeSearchValue',
-        'toggleCaseSensitive',
-        'toggleSearch',
-        'toggleSelect',
-        'render',
-        'searchValue',
-      ],
-      this.props
-    )
     const {
       caseSensitive,
       clearSearchValue,
       clearValue,
-      render,
-      searchValue,
+      onChangeSearchValue,
+      toggleCaseSensitive,
       toggleSearch,
       toggleSelect,
+      render,
+      searchValue,
+      ...props
     } = this.props
     const {value} = this.state
     const ElProps = {

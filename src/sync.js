@@ -1,15 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
-import filter from 'ramda/src/filter'
-import map from 'ramda/src/map'
-import compose from 'ramda/src/compose'
-import ifElse from 'ramda/src/ifElse'
-import startsWith from 'ramda/src/startsWith'
-import toUpper from 'ramda/src/toUpper'
-import prop from 'ramda/src/prop'
-import when from 'ramda/src/when'
-
 import CoreSelect from './core'
 
 class SyncSelect extends Component {
@@ -21,7 +12,7 @@ class SyncSelect extends Component {
     searchValue: '',
   }
   componentWillMount() {
-    const opts = map(this.transform, this.props.options)
+    const opts = this.props.options.map(this.transform)
     this.setState({
       sourceOptions: opts,
       options: this.computeOptions('', opts),
@@ -51,17 +42,15 @@ class SyncSelect extends Component {
 
   computeOptions = (searchValue, opts = null) => {
     const {hasSearch, caseSensitiveSearch, sourceOptions} = this.state
-    return when(
-      () => hasSearch,
-      ifElse(
-        () => caseSensitiveSearch,
-        filter(compose(startsWith(searchValue), prop('label'))),
-        filter(
-          compose(startsWith(toUpper(searchValue)), toUpper, prop('label'))
-        )
-      ),
-      opts === null ? sourceOptions : opts
-    )
+    const options = opts === null ? sourceOptions : opts
+    if (hasSearch) {
+      return caseSensitiveSearch
+        ? options.filter(o => o.label.startsWith(searchValue))
+        : options.filter(o =>
+            o.label.toUpperCase().startsWith(searchValue.toUpperCase())
+          )
+    }
+    return options
   }
 
   transform = data =>
