@@ -88,6 +88,7 @@ it('test event keyboard', () => {
   const KTest = withKeyboardEvent(Test)
   mount(<KTest />, {context: ctx})
 
+  map.keydown(evt(20))
   map.keydown(evt(40))
   map.keydown(evt(13))
   expect(onSelectValue.mock.calls[0][0]).toEqual({
