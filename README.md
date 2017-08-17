@@ -70,6 +70,7 @@ export default CustomSelect
 - [ASync](stories/async.js)
 - [Fela](stories/fela.js)
 - [Glamorous](stories/glamorous.js)
+- [Styled-components](stories/styled.js)
 
 ## Other Solutions
 
