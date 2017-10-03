@@ -2,7 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 
-import {Clear, Select, Item, Label, Search, List, TagList, Tag} from '../src'
+import {
+  Clear,
+  Select,
+  Item,
+  Label,
+  Search,
+  List,
+  TagList,
+  Tag,
+  withOverlay,
+} from '../src'
 import {
   rendering,
   renderingList,
@@ -20,12 +30,34 @@ const simpleOptions = [
 
 const Container = props => <Select {...props} />
 
+const Overlay = withOverlay(
+  <div
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: -1,
+    }}
+  />
+)
+
 storiesOf('Sync', module)
   .add('Basic', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
       <Label />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
+  )
+  .add('Basic with overlay', () =>
+    <div>
+      <Container name="context" onChange={onChange} options={simpleOptions}>
+        <Label />
+        <List renderItem={Item} />
+        <Overlay />
+      </Container>
+    </div>
   )
   .add('Stay open', () =>
     <Container
@@ -35,7 +67,7 @@ storiesOf('Sync', module)
       stayOpenOnSelect>
       <Label />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
   )
   .add('Default value', () =>
     <Container
@@ -45,7 +77,7 @@ storiesOf('Sync', module)
       defaultValue={{label: 'Paris', value: 'paris'}}>
       <Label />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
   )
   .add('Custom placeholder', () =>
     <Container
@@ -55,25 +87,25 @@ storiesOf('Sync', module)
       placeholder="Select a city">
       <Label />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
   )
   .add('Custom Label', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
       <Label render={rendering} />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
   )
   .add('Custom List', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
       <Label />
       <List render={renderingList} renderItem={Item} />
-    </Container>,
+    </Container>
   )
   .add('Custom Item', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
       <Label />
       <List renderItem={<Item render={renderingItem} />} />
-    </Container>,
+    </Container>
   )
   .add('With Clear', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
@@ -90,7 +122,7 @@ storiesOf('Sync', module)
       </div>
       <Label />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
   )
   .add('With Search', () =>
     <Container
@@ -114,17 +146,17 @@ storiesOf('Sync', module)
         <Label />
         <List renderItem={<Item render={renderingItem} />} />
       </div>
-    </Container>,
+    </Container>
   )
   .add('Multi', () =>
     <Container multi name="context" onChange={onChange} options={simpleOptions}>
       <TagList renderTag={Tag} />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
   )
   .add('Multi Custom Tag', () =>
     <Container multi name="context" onChange={onChange} options={simpleOptions}>
       <TagList renderTag={<Tag render={renderingTag} />} />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
   )

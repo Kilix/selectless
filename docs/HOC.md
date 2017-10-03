@@ -106,6 +106,30 @@ export default enhance(MyCustomComponent)
   `Option: { label: string, value: any }`
 
 
+### withOverlay
+
+HOC to close the Select when you click outside. It will bind the event `onClick` to close the Select.
+Only render your component if the Select is open (`opened === true`).
+
+```javascript
+
+[...]
+
+const Overlay = withOverlay(<div style={{}} />)
+
+const CustomSelect = (props) => (
+  <Select name="context" options={simpleOptions} style={{width: 300}}>
+    <SearchLabel />
+    <List />
+    <Overlay />
+  </Select>
+)
+
+export default CustomSelect
+
+```
+
+
 ### withKeyboardEvent (Experimental)
 
 HOC to put keyboard event in the List.

@@ -170,7 +170,7 @@ exports[`Storyshots Full Custom Basic 1`] = `
       className="a b c d e m h n j k l o"
       onClick={[Function]}
     >
-      Select an options
+      Select an option
     </label>
     <button
       className="p a b q r s t u v g f w x"
@@ -355,7 +355,7 @@ exports[`Storyshots Glamorous Basic 1`] = `
     className="css-1oliuza"
     onClick={[Function]}
   >
-    Select an options
+    Select an option
   </div>
 </div>
 `;
@@ -378,6 +378,38 @@ exports[`Storyshots Glamorous Multi 1`] = `
 </div>
 `;
 
+exports[`Storyshots Styled-components Basic 1`] = `
+<div
+  className="sc-bdVaJa ewgRJO"
+  style={undefined}
+>
+  <div
+    className="sc-htpNat jKZpKj"
+    onClick={[Function]}
+  >
+    Select an option
+  </div>
+</div>
+`;
+
+exports[`Storyshots Styled-components Multi 1`] = `
+<div
+  className="sc-bdVaJa ewgRJO"
+  style={undefined}
+>
+  <div
+    className="sc-EHOje hzsncV"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-gzVnrw dXFoUn"
+    >
+      Selectless Powerness
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Sync Basic 1`] = `
 <div
   className={undefined}
@@ -386,7 +418,22 @@ exports[`Storyshots Sync Basic 1`] = `
   <div
     onClick={[Function]}
   >
-    Select an options
+    Select an option
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Basic with overlay 1`] = `
+<div>
+  <div
+    className={undefined}
+    style={undefined}
+  >
+    <div
+      onClick={[Function]}
+    >
+      Select an option
+    </div>
   </div>
 </div>
 `;
@@ -399,7 +446,7 @@ exports[`Storyshots Sync Custom Item 1`] = `
   <div
     onClick={[Function]}
   >
-    Select an options
+    Select an option
   </div>
 </div>
 `;
@@ -412,7 +459,7 @@ exports[`Storyshots Sync Custom Label 1`] = `
   <strong
     onClick={[Function]}
   >
-    Select an options
+    Select an option
   </strong>
 </div>
 `;
@@ -425,7 +472,7 @@ exports[`Storyshots Sync Custom List 1`] = `
   <div
     onClick={[Function]}
   >
-    Select an options
+    Select an option
   </div>
   <div>
     <h2>
@@ -475,7 +522,7 @@ exports[`Storyshots Sync Multi 1`] = `
   <div
     onClick={[Function]}
   >
-    Select an options
+    Select an option
   </div>
 </div>
 `;
@@ -488,7 +535,7 @@ exports[`Storyshots Sync Multi Custom Tag 1`] = `
   <div
     onClick={[Function]}
   >
-    Select an options
+    Select an option
   </div>
 </div>
 `;
@@ -501,7 +548,7 @@ exports[`Storyshots Sync Stay open 1`] = `
   <div
     onClick={[Function]}
   >
-    Select an options
+    Select an option
   </div>
 </div>
 `;
@@ -527,7 +574,7 @@ exports[`Storyshots Sync With Clear 1`] = `
   <div
     onClick={[Function]}
   >
-    Select an options
+    Select an option
   </div>
 </div>
 `;
@@ -591,7 +638,7 @@ exports[`Storyshots Sync With Search 1`] = `
     <div
       onClick={[Function]}
     >
-      Select an options
+      Select an option
     </div>
   </div>
 </div>

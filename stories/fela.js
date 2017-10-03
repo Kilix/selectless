@@ -15,6 +15,7 @@ import {
   TagList,
   Tag,
   controller,
+  withOverlay,
 } from '../src'
 
 const renderer = createRenderer()
@@ -56,7 +57,7 @@ const Fabel = createComponentWithProxy(
     fontSize: '16px',
     color: '#333',
   }),
-  Label,
+  Label
 )
 
 const Flear = createComponentWithProxy(
@@ -74,7 +75,7 @@ const Flear = createComponentWithProxy(
       opacity: 1,
     },
   }),
-  Clear,
+  Clear
 )
 
 const Fearch = ({
@@ -120,7 +121,7 @@ const FFF = createComponentWithProxy(
     padding: 8,
     color: '#333',
   }),
-  'input',
+  'input'
 )
 
 const Fist = createComponentWithProxy(
@@ -139,7 +140,7 @@ const Fist = createComponentWithProxy(
     border: '1px solid #ccc',
     borderColor: '#d9d9d9 #ccc #b3b3b3',
   }),
-  List,
+  List
 )
 
 const Ftem = createComponentWithProxy(
@@ -154,7 +155,18 @@ const Ftem = createComponentWithProxy(
       backgroundColor: '#D9D9D9',
     },
   }),
-  Item,
+  Item
+)
+
+const Overlay = withOverlay(
+  createComponentWithProxy(() => ({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 0,
+  }))
 )
 
 storiesOf('Fela', module).addDecorator(felaProvider).add('Basic callback', () =>
@@ -170,6 +182,7 @@ storiesOf('Fela', module).addDecorator(felaProvider).add('Basic callback', () =>
         <Search render={Fearch} />
       </SelectContainer>
       <Fist renderItem={Ftem} />
+      <Overlay />
     </Select>
-  </div>,
+  </div>
 )
