@@ -5,21 +5,22 @@
 Select is the Container Component, it's the one creating the context and handling all the logic.
 It's accepting a lot of props :
 
-| property              | type            | required | default             | description                                                     | parameters                    |
-|-----------------------|-----------------|----------|---------------------|-----------------------------------------------------------------|-------------------------------|
-| `className`           | `string`        |    no    |          -          | className for styling (React prop)                              |                               |
-| `clearOneValue`       | `function`      |    no    |          -          | Override the function use to clear one value in a multi select  | clearedOption, selectedValue  |
-| `clearSearchOnSelect` | `boolean`       |    no    |        false        | Allow to clear the search value when a value is selected        |                               |
-| `defaultValue`        | `Option`        |    no    |          -          | The value selected by default                                   |                               |
-| `name`                | `string`        |    yes   |          -          | name of the component for the input in the form                 |                               |
-| `multi`               | `boolean`       |    no    |        false        | Define if it's a multi select or not                            |                               |
-| `onChange`            | `function`      |    no    |          -          | Called when the value if changed, usefull for state management  | selected Option(s)            |
-| `placeholder`         | `string`        |    no    | "Select an options" | Placeholder for the select label                                |                               |
-| `renderInputs`        | `function`      |    no    |          -          | Override the function used to render the inputs in the DOM      | selectedOption, name          |
-| `stayOpenOnSelect`    | `boolean`       |    no    |        false        | Allow to let the list open after a value is selected            |                               |
-| `style`               | `Object`        |    no    |          -          | style the component (React prop)                                |                               |
-| `transform`           | `function`      |    no    |          -          | Function used to format/transform the options                   | Option                        |
-| `options`             | `Array[Option]` |    yes   |          -          | Array of the options (Sync Select only)                         |                               |
+| property              | type            | required | default             | description                                                                       | parameters                    |
+|-----------------------|-----------------|----------|---------------------|-----------------------------------------------------------------                  |-------------------------------|
+| `className`           | `string`        |    no    |          -          | className for styling (React prop)                                                |                               |
+| `clearOneValue`       | `function`      |    no    |          -          | Override the function use to clear one value in a multi select                    | clearedOption, selectedValue  |
+| `clearSearchOnSelect` | `boolean`       |    no    |        false        | Allow to clear the search value when a value is selected                          |                               |
+| `closeOnBlur`         | `boolean`       |    no    |        true         | Determine if we close the select when the user click outside of the select or not |                               |
+| `defaultValue`        | `Option`        |    no    |          -          | The value selected by default                                                     |                               |
+| `name`                | `string`        |    yes   |          -          | name of the component for the input in the form                                   |                               |
+| `multi`               | `boolean`       |    no    |        false        | Define if it's a multi select or not                                              |                               |
+| `onChange`            | `function`      |    no    |          -          | Called when the value if changed, usefull for state management                    | selected Option(s)            |
+| `placeholder`         | `string`        |    no    | "Select an options" | Placeholder for the select label                                                  |                               |
+| `renderInputs`        | `function`      |    no    |          -          | Override the function used to render the inputs in the DOM                        | selectedOption, name          |
+| `stayOpenOnSelect`    | `boolean`       |    no    |        false        | Allow to let the list open after a value is selected                              |                               |
+| `style`               | `Object`        |    no    |          -          | style the component (React prop)                                                  |                               |
+| `transform`           | `function`      |    no    |          -          | Function used to format/transform the options                                     | Option                        |
+| `options`             | `Array[Option]` |    yes   |          -          | Array of the options (Sync Select only)                                           |                               |
 
 ## Select.Async
 

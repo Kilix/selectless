@@ -15,7 +15,6 @@ import {
   TagList,
   Tag,
   controller,
-  withOverlay,
 } from '../src'
 
 const renderer = createRenderer()
@@ -158,17 +157,6 @@ const Ftem = createComponentWithProxy(
   Item
 )
 
-const Overlay = withOverlay(
-  createComponentWithProxy(() => ({
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 0,
-  }))
-)
-
 storiesOf('Fela', module).addDecorator(felaProvider).add('Basic callback', () =>
   <div style={{width: 300, margin: '0 auto'}}>
     <Select
@@ -182,7 +170,6 @@ storiesOf('Fela', module).addDecorator(felaProvider).add('Basic callback', () =>
         <Search render={Fearch} />
       </SelectContainer>
       <Fist renderItem={Ftem} />
-      <Overlay />
     </Select>
   </div>
 )

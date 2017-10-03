@@ -2,17 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 
-import {
-  Clear,
-  Select,
-  Item,
-  Label,
-  Search,
-  List,
-  TagList,
-  Tag,
-  withOverlay,
-} from '../src'
+import {Clear, Select, Item, Label, Search, List, TagList, Tag} from '../src'
 import {
   rendering,
   renderingList,
@@ -30,19 +20,6 @@ const simpleOptions = [
 
 const Container = props => <Select {...props} />
 
-const Overlay = withOverlay(
-  <div
-    style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      zIndex: -1,
-    }}
-  />
-)
-
 storiesOf('Sync', module)
   .add('Basic', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
@@ -50,12 +27,21 @@ storiesOf('Sync', module)
       <List renderItem={Item} />
     </Container>
   )
-  .add('Basic with overlay', () =>
+  .add('Basic without close on blur', () =>
     <div>
-      <Container name="context" onChange={onChange} options={simpleOptions}>
+      <button
+        onClick={() => {
+          alert('test event bubble')
+        }}>
+        Grekg
+      </button>
+      <Container
+        name="context"
+        onChange={onChange}
+        options={simpleOptions}
+        closeOnBlur={false}>
         <Label />
         <List renderItem={Item} />
-        <Overlay />
       </Container>
     </div>
   )

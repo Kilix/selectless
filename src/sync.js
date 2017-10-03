@@ -95,6 +95,7 @@ SyncSelect.propTypes = {
   className: PropTypes.string,
   clearOneValue: PropTypes.func,
   clearSearchOnSelect: PropTypes.bool,
+  closeOnBlur: PropTypes.bool,
   defaultChildren: PropTypes.func.isRequired,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
@@ -113,6 +114,7 @@ SyncSelect.defaultProps = {
   placeholder: 'Select an option',
   stayOpenOnSelect: false,
   clearSearchOnSelect: false,
+  closeOnBlur: true,
   defaultChildren: props => <CoreSelect {...props} />,
 }
 

@@ -1,7 +1,7 @@
 import SyncSelect from './sync'
 import AsyncSelect from './async'
 import controller from './controller'
-import {withKeyboardEvent, withOverlay} from './utils'
+import {withKeyboardEvent} from './utils'
 
 import Item from './components/item'
 import Label from './components/label'
@@ -26,7 +26,6 @@ export {
   TagList,
   Tag,
   withKeyboardEvent,
-  withOverlay,
 }
 
 export default {
@@ -40,5 +39,4 @@ export default {
   TagList,
   Tag,
   withKeyboardEvent,
-  withOverlay,
 }

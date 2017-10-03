@@ -86,6 +86,7 @@ class AsyncSelect extends Component {
 AsyncSelect.propTypes = {
   className: PropTypes.string,
   clearOneValue: PropTypes.func,
+  closeOnBlur: PropTypes.bool,
   debounce: PropTypes.number,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
@@ -104,6 +105,7 @@ AsyncSelect.defaultProps = {
   placeholder: 'Select an option',
   stayOpenOnSelect: false,
   debounce: 300,
+  closeOnBlur: true,
   defaultChildren: props => <CoreSelect {...props} />,
 }
 

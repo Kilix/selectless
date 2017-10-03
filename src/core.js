@@ -24,6 +24,12 @@ class SyncSelect extends Component {
       )
     }
   }
+  componentDidMount() {
+    document.addEventListener('click', this.handleTouchOutside)
+  }
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleTouchOutside)
+  }
 
   getChildContext() {
     const {defaultValue, name, multi, placeholder} = this.props
@@ -86,10 +92,25 @@ class SyncSelect extends Component {
           />
         )
   }
+
+  handleTouchOutside = e => {
+    if (
+      this._wrapper &&
+      !this._wrapper.contains(e.target) &&
+      this.props.closeOnBlur
+    ) {
+      this.toggleSelect(false)
+    }
+  }
+
   render() {
     const {className, style} = this.props
     return (
-      <div {...{className, style}}>
+      <div
+        {...{className, style}}
+        ref={ref => {
+          this._wrapper = ref
+        }}>
         {this.renderInputs(this.state.selectedValue, this.props.name)}
         {this.props.children}
       </div>
@@ -100,6 +121,7 @@ class SyncSelect extends Component {
 SyncSelect.propTypes = {
   className: PropTypes.string,
   clearOneValue: PropTypes.func,
+  closeOnBlur: PropTypes.bool,
   defaultValue: PropTypes.any,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,

@@ -438,6 +438,26 @@ exports[`Storyshots Sync Basic with overlay 1`] = `
 </div>
 `;
 
+exports[`Storyshots Sync Basic without close on blur 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+  >
+    Grekg
+  </button>
+  <div
+    className={undefined}
+    style={undefined}
+  >
+    <div
+      onClick={[Function]}
+    >
+      Select an option
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Sync Custom Item 1`] = `
 <div
   className={undefined}

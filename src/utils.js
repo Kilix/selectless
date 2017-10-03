@@ -146,25 +146,3 @@ export function withKeyboardEvent(BaseComponent) {
     }
   )
 }
-
-export function withOverlay(BaseComponent) {
-  return controller(['toggleSelect', 'opened'])(
-    class WithOverlay extends React.Component {
-      _onClick = e => {
-        this.props.toggleSelect()
-        e.stopPropagation()
-        e.preventDefault()
-      }
-
-      render() {
-        const {toggleSelect, opened, ...props} = this.props
-        return opened
-          ? renderOrCloneComponent(BaseComponent, {
-              onClick: this._onClick,
-              ...props,
-            })
-          : null
-      }
-    }
-  )
-}
