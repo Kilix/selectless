@@ -1,6 +1,6 @@
 {
   "name": "selectless",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "dist/selectless.cjs.js",
   "module": "dist/selectless.esm.js",
   "browser": "dist/selectless.umd.js",
