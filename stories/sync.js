@@ -62,7 +62,20 @@ storiesOf('Sync', module)
       options={simpleOptions}
       defaultValue={{label: 'Paris', value: 'paris'}}>
       <Label />
-      <List renderItem={Item} />
+      <List
+        renderItem={
+          <Item
+            render={props =>
+              <div
+                style={{
+                  backgroundColor: props.isSelected ? 'red' : 'transparent',
+                }}
+                onClick={() => props.onSelectValue(props.data)}
+                children={props.data.value}
+              />}
+          />
+        }
+      />
     </Container>
   )
   .add('Custom placeholder', () =>

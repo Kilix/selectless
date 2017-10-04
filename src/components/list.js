@@ -31,7 +31,10 @@ class List extends React.Component {
         key: idx,
         data: o,
         isCurrent,
-        isSelected: selectedValue.indexOf(o) !== -1,
+        isSelected: selectedValue.reduce(
+          (acc, v) => acc || v.value === o.value,
+          false
+        ),
         passThrough: ['data', 'isCurrent', 'isSelected'],
       })
     })
