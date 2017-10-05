@@ -24,6 +24,9 @@ class SyncSelect extends Component {
         nextProps.multi ? nextState.selectedValue : nextState.selectedValue[0]
       )
     }
+    if (nextProps.disabled && !this.props.disabled) {
+      this.setState(() => ({opened: false}))
+    }
   }
   componentDidMount() {
     document.addEventListener('click', this.handleTouchOutside)
