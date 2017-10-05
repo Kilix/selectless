@@ -59,18 +59,25 @@ class SyncSelect extends Component {
       : data
 
   toggleSearch = (active = null) =>
-    this.setState({
-      hasSearch: active !== null ? active : !this.state.hasSearch,
-    })
+    !this.props.disabled
+      ? this.setState({
+          hasSearch: active !== null ? active : !this.state.hasSearch,
+        })
+      : null
 
   toggleCaseSensitive = (active = null) =>
-    this.setState({
-      caseSensitiveSearch:
-        active !== null ? active : !this.state.caseSensitiveSearch,
-    })
+    !this.props.disabled
+      ? this.setState({
+          caseSensitiveSearch:
+            active !== null ? active : !this.state.caseSensitiveSearch,
+        })
+      : null
 
   clearSearchValue = () =>
-    this.setState({searchValue: '', options: this.computeOptions('')})
+    !this.props.disabled
+      ? this.setState({searchValue: '', options: this.computeOptions('')})
+      : null
+
   onChangeSearchValue = query => {
     if (typeof this.props.onChangeSearchValue !== 'undefined') {
       this.props.onChangeSearchValue(query)
@@ -98,6 +105,7 @@ SyncSelect.propTypes = {
   closeOnBlur: PropTypes.bool,
   defaultChildren: PropTypes.func.isRequired,
   defaultValue: PropTypes.any,
+  disabled: PropTypes.bool,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
   onChange: PropTypes.func,
@@ -110,6 +118,7 @@ SyncSelect.propTypes = {
 }
 
 SyncSelect.defaultProps = {
+  disabled: false,
   multi: false,
   placeholder: 'Select an option',
   stayOpenOnSelect: false,

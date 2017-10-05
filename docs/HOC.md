@@ -35,6 +35,9 @@ export default enhance(MyCustomComponent)
   Allow to pass a default value to be selected. If you apply a transform, you need to do it yourself, the value needs to be formatted correctly.
   `Option: { label: string, value: any }`
 
+#### disabled - boolean
+  Return if the select is disabled or not
+
 ##### hasSearch - boolean
   Returns if the search is active.
   If you use a full customize seach input, then you need to set this yourself with `toggleSearch`.

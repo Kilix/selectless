@@ -1,9 +1,10 @@
 # Search
 The default component is an `<input type='text'>`.
 
-| property        | type/description                                            | default |
-|-----------------|-------------------------------------------------------------|---------|
+| property        | type/description                                              | default |
+|-----------------|---------------------------------------------------------------|---------|
 | `caseSensitive` | `boolean` - determine if the search is caseSensitive or not   |  false  |
+| `disabled`      | `boolean` - return if the select is disabled                  |    -    |
 
 Search's render receive a lot of props :
 

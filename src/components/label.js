@@ -5,6 +5,7 @@ import controller from '../controller'
 class Label extends React.Component {
   render() {
     const {
+      disabled,
       opened,
       placeholder,
       render,
@@ -17,7 +18,7 @@ class Label extends React.Component {
       ? <div onClick={() => toggleSelect()} {...props}>
           {value ? value.label : placeholder}
         </div>
-      : render({opened, placeholder, toggleSelect, value})
+      : render({disabled, opened, placeholder, toggleSelect, value})
   }
 }
 const enhance = controller([
@@ -25,5 +26,6 @@ const enhance = controller([
   'placeholder',
   'selectedValue',
   'toggleSelect',
+  'disabled',
 ])
 export default enhance(Label)

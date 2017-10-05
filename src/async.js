@@ -89,6 +89,7 @@ AsyncSelect.propTypes = {
   closeOnBlur: PropTypes.bool,
   debounce: PropTypes.number,
   defaultValue: PropTypes.any,
+  disabled: PropTypes.bool,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
   onChange: PropTypes.func,
@@ -101,6 +102,7 @@ AsyncSelect.propTypes = {
 }
 
 AsyncSelect.defaultProps = {
+  disabled: false,
   multi: false,
   placeholder: 'Select an option',
   stayOpenOnSelect: false,

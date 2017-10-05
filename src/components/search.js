@@ -13,23 +13,26 @@ export class Search extends React.Component {
     }
   }
   onChange = e => {
-    const v = e.target.value
-    const {
-      caseSensitive = false,
-      onChangeSearchValue,
-      toggleCaseSensitive,
-      toggleSelect,
-    } = this.props
-    this.setState({value: v})
-    toggleSelect(true)
-    toggleCaseSensitive(caseSensitive)
-    onChangeSearchValue(v)
+    if (!this.props.disabled) {
+      const v = e.target.value
+      const {
+        caseSensitive = false,
+        onChangeSearchValue,
+        toggleCaseSensitive,
+        toggleSelect,
+      } = this.props
+      this.setState({value: v})
+      toggleSelect(true)
+      toggleCaseSensitive(caseSensitive)
+      onChangeSearchValue(v)
+    }
   }
   render() {
     const {
       caseSensitive,
       clearSearchValue,
       clearValue,
+      disabled,
       onChangeSearchValue,
       toggleCaseSensitive,
       toggleSearch,
@@ -40,6 +43,7 @@ export class Search extends React.Component {
     } = this.props
     const {value} = this.state
     const ElProps = {
+      disabled,
       value,
       onChange: this.onChange,
       onFocus: () => toggleSelect(true),
@@ -49,6 +53,7 @@ export class Search extends React.Component {
           caseSensitive,
           clearSearchValue,
           clearValue,
+          disabled,
           onChange: this.onChange,
           searchValue,
           toggleSearch,
@@ -62,6 +67,7 @@ export class Search extends React.Component {
 const enhance = controller([
   'clearSearchValue',
   'clearValue',
+  'disabled',
   'onChangeSearchValue',
   'searchValue',
   'toggleCaseSensitive',

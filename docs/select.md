@@ -12,6 +12,7 @@ It's accepting a lot of props :
 | `clearSearchOnSelect` | `boolean`       |    no    |        false        | Allow to clear the search value when a value is selected                          |                               |
 | `closeOnBlur`         | `boolean`       |    no    |        true         | Determine if we close the select when the user click outside of the select or not |                               |
 | `defaultValue`        | `Option`        |    no    |          -          | The value selected by default                                                     |                               |
+| `disabled`            | `boolean`       |    no    |        false        | Allow to disable the select                                                       |                               |
 | `name`                | `string`        |    yes   |          -          | name of the component for the input in the form                                   |                               |
 | `multi`               | `boolean`       |    no    |        false        | Define if it's a multi select or not                                              |                               |
 | `onChange`            | `function`      |    no    |          -          | Called when the value if changed, usefull for state management                    | selected Option(s)            |

@@ -11,6 +11,6 @@ The default component is a `<div>`.
 
 The default component is a `<span>` with an `onClick` bind to `clearTag`.
 
-| property  | type/description                                      |
-|-----------|-------------------------------------------------------|
-| `render`  | `({tag: Option, clear: function}) => ReactElement<*>` |
+| property  | type/description                                                         |
+|-----------|--------------------------------------------------------------------------|
+| `render`  | `({disabled: boolean, tag: Option, clear: function}) => ReactElement<*>` |

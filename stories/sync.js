@@ -2,7 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {storiesOf} from '@storybook/react'
 
-import {Clear, Select, Item, Label, Search, List, TagList, Tag} from '../src'
+import {
+  controller,
+  Clear,
+  Select,
+  Item,
+  Label,
+  Search,
+  List,
+  TagList,
+  Tag,
+} from '../src'
+import {renderOrCloneComponent} from '../src/utils'
 import {
   rendering,
   renderingList,
@@ -19,6 +30,28 @@ const simpleOptions = [
 ]
 
 const Container = props => <Select {...props} />
+const StatefulDisabled = BaseComponent => {
+  class Stateful extends React.Component {
+    state = {disabled: false}
+    _setDisabled = e => this.setState({disabled: e.target.checked})
+    render() {
+      return (
+        <div>
+          <label htmlFor="disabled">Disabled: </label>
+          <input
+            id="disabled"
+            name="disabled"
+            type="checkbox"
+            value={this.state.disabled}
+            onChange={this._setDisabled}
+          />
+          <BaseComponent disabled={this.state.disabled} />
+        </div>
+      )
+    }
+  }
+  return <Stateful />
+}
 
 storiesOf('Sync', module)
   .add('Basic', () =>
@@ -44,6 +77,45 @@ storiesOf('Sync', module)
         <List renderItem={Item} />
       </Container>
     </div>
+  )
+  .add('Basic disabled', () =>
+    <Container
+      disabled
+      name="context"
+      onChange={onChange}
+      options={simpleOptions}>
+      <Label />
+      <List renderItem={Item} />
+    </Container>
+  )
+  .add('Search disabled', () =>
+    StatefulDisabled(props =>
+      <Container
+        name="context"
+        onChange={onChange}
+        options={simpleOptions}
+        style={{display: 'flex'}}
+        {...props}>
+        <div style={{flex: 1}}>
+          <Clear
+            label="Clear"
+            render={({clearValue, label, disabled}) =>
+              <button disabled={disabled} onClick={clearValue}>
+                {label}
+              </button>}
+          />
+          <br />
+          <Search />
+          <Label
+            render={props =>
+              <div style={{color: props.disabled ? '#A7A7A7' : 'black'}}>
+                {props.value ? props.value.label : props.placeholder}
+              </div>}
+          />
+          <List renderItem={<Item render={renderingItem} />} />
+        </div>
+      </Container>
+    )
   )
   .add('Stay open', () =>
     <Container

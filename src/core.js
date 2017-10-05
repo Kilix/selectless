@@ -17,7 +17,8 @@ class SyncSelect extends Component {
   componentWillUpdate(nextProps, nextState) {
     if (
       nextState.selectedValue !== this.state.selectedValue &&
-      typeof this.props.onChange !== 'undefined'
+      typeof this.props.onChange !== 'undefined' &&
+      !nextProps.disabled
     ) {
       this.props.onChange(
         nextProps.multi ? nextState.selectedValue : nextState.selectedValue[0]
@@ -32,10 +33,11 @@ class SyncSelect extends Component {
   }
 
   getChildContext() {
-    const {defaultValue, name, multi, placeholder} = this.props
+    const {defaultValue, name, multi, placeholder, disabled} = this.props
     const {opened, selectedValue} = this.state
     return {
       defaultValue,
+      disabled,
       name,
       multi,
       placeholder,
@@ -49,7 +51,9 @@ class SyncSelect extends Component {
   }
 
   toggleSelect = (opened = null) =>
-    this.setState({opened: opened !== null ? opened : !this.state.opened})
+    !this.props.disabled
+      ? this.setState({opened: opened !== null ? opened : !this.state.opened})
+      : null
 
   onSelectValue = data => {
     if (typeof this.props.onSelectValue !== 'undefined') {
@@ -67,17 +71,21 @@ class SyncSelect extends Component {
   }
 
   clearValue = e => {
-    this.setState({selectedValue: []})
-    e.stopPropagation()
+    if (!this.props.disabled) {
+      this.setState({selectedValue: []})
+      e.stopPropagation()
+    }
   }
 
   clearOneValue = t => {
-    this.setState({
-      selectedValue:
-        typeof this.props.clearOneValue !== 'undefined'
-          ? this.props.clearOneValue(t, this.state.selectedValue)
-          : this.state.selectedValue.filter(v => v.value !== t.value),
-    })
+    if (!this.props.disabled) {
+      this.setState({
+        selectedValue:
+          typeof this.props.clearOneValue !== 'undefined'
+            ? this.props.clearOneValue(t, this.state.selectedValue)
+            : this.state.selectedValue.filter(v => v.value !== t.value),
+      })
+    }
   }
 
   renderInputs = (selectedValue, name) => {
@@ -123,6 +131,7 @@ SyncSelect.propTypes = {
   clearOneValue: PropTypes.func,
   closeOnBlur: PropTypes.bool,
   defaultValue: PropTypes.any,
+  disabled: PropTypes.bool,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool,
   onChange: PropTypes.func,
@@ -136,6 +145,7 @@ SyncSelect.childContextTypes = {
   clearValue: PropTypes.func.isRequired,
   clearOneValue: PropTypes.func.isRequired,
   defaultValue: PropTypes.any,
+  disabled: PropTypes.bool,
   name: PropTypes.string.isRequired,
   multi: PropTypes.bool.isRequired,
   placeholder: PropTypes.any.isRequired,
