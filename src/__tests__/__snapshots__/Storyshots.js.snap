@@ -412,6 +412,19 @@ exports[`Storyshots Styled-components Multi 1`] = `
 </div>
 `;
 
+exports[`Storyshots Sync Basic - Wraning on undefined options 1`] = `
+<div
+  className={undefined}
+  style={undefined}
+>
+  <div
+    onClick={[Function]}
+  >
+    Select an option
+  </div>
+</div>
+`;
+
 exports[`Storyshots Sync Basic 1`] = `
 <div
   className={undefined}
