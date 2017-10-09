@@ -88,6 +88,12 @@ storiesOf('Sync', module)
       <List renderItem={Item} />
     </Container>
   )
+  .add('Basic - Wraning on undefined options', () =>
+    <Container name="context" onChange={onChange}>
+      <Label />
+      <List renderItem={Item} />
+    </Container>
+  )
   .add('Basic withCustom Key', () =>
     <Container
       name="context"

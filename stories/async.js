@@ -17,7 +17,7 @@ const createQuery = query =>
   query === ''
     ? 'https://swapi.co/api/people'
     : `https://swapi.co/api/people/?search=${query}`
-const fakeApiCb = (query, cb) => fakeApi(query).then(r => cb(null, r.results))
+const fakeApiCb = (query, cb) => fakeApi(query).then(r => cb(null, r))
 const fakeApi = query =>
   fetch(createQuery(query))
     .then(response => response.json())
@@ -34,7 +34,7 @@ storiesOf('Async', module)
       transform={data => ({label: data.name, value: data.name})}>
       <Label />
       <List renderItem={Item} />
-    </Container>,
+    </Container>
   )
   .add('With promise', () =>
     <Container
@@ -52,7 +52,7 @@ storiesOf('Async', module)
           <List renderItem={<Item render={renderingItem} />} />
         </div>
       </div>
-    </Container>,
+    </Container>
   )
   .add('With custom debounce', () =>
     <Container
@@ -69,5 +69,5 @@ storiesOf('Async', module)
         <TagList renderTag={Tag} />
         <List renderItem={<Item render={renderingItem} />} />
       </div>
-    </Container>,
+    </Container>
   )

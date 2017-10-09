@@ -11,15 +11,22 @@ class SyncSelect extends Component {
     options: [],
     searchValue: '',
   }
+
+  testOptions = options =>
+    typeof options === 'undefined' || options === null
+      ? []
+      : options.map(this.transform)
+
   componentWillMount() {
-    const opts = this.props.options.map(this.transform)
+    const opts = this.testOptions(this.props.options)
+
     this.setState({
       sourceOptions: opts,
       options: this.computeOptions('', opts),
     })
   }
   componentWillReceiveProps(nextProps) {
-    const newOpts = nextProps.options.map(this.transform)
+    const newOpts = this.testOptions(nextProps.options)
     if (this.props.sourceOptions !== newOpts) {
       this.setState({
         sourceOptions: newOpts,
