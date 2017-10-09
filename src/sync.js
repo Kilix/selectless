@@ -18,6 +18,15 @@ class SyncSelect extends Component {
       options: this.computeOptions('', opts),
     })
   }
+  componentWillReceiveProps(nextProps) {
+    const newOpts = nextProps.options.map(this.transform)
+    if (this.props.sourceOptions !== newOpts) {
+      this.setState({
+        sourceOptions: newOpts,
+        options: this.computeOptions('', newOpts),
+      })
+    }
+  }
   getChildContext() {
     const {
       caseSensitiveSearch,

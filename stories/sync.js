@@ -52,6 +52,28 @@ const StatefulDisabled = BaseComponent => {
   }
   return <Stateful />
 }
+const StatefulChangeOptions = BaseComponent => {
+  class Stateful extends React.Component {
+    state = {fill: true}
+    _setFill = e => this.setState({fill: e.target.checked})
+    render() {
+      return (
+        <div>
+          <label htmlFor="fill">Fill: </label>
+          <input
+            id="fill"
+            name="fill"
+            type="checkbox"
+            value={this.state.fill}
+            onChange={this._setFill}
+          />
+          <BaseComponent options={this.state.fill ? simpleOptions : []} />
+        </div>
+      )
+    }
+  }
+  return <Stateful />
+}
 
 storiesOf('Sync', module)
   .add('Basic', () =>
@@ -59,6 +81,20 @@ storiesOf('Sync', module)
       <Label />
       <List renderItem={Item} />
     </Container>
+  )
+  .add('Basic changing options', () =>
+    StatefulChangeOptions(props =>
+      <Container
+        name="context"
+        onChange={onChange}
+        style={{display: 'flex'}}
+        {...props}>
+        <div style={{flex: 1}}>
+          <Label />
+          <List renderItem={<Item render={renderingItem} />} />
+        </div>
+      </Container>
+    )
   )
   .add('Basic without close on blur', () =>
     <div>
