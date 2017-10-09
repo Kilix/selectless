@@ -18,6 +18,7 @@ It's accepting a lot of props :
 | `onChange`            | `function`      |    no    |          -          | Called when the value if changed, usefull for state management                    | selected Option(s)            |
 | `placeholder`         | `string`        |    no    | "Select an options" | Placeholder for the select label                                                  |                               |
 | `renderInputs`        | `function`      |    no    |          -          | Override the function used to render the inputs in the DOM                        | selectedOption, name          |
+| `referenceKey`        | `string`        |    no    |       "value"       | Allow to use a custom key for value                                               |                               |
 | `stayOpenOnSelect`    | `boolean`       |    no    |        false        | Allow to let the list open after a value is selected                              |                               |
 | `style`               | `Object`        |    no    |          -          | style the component (React prop)                                                  |                               |
 | `transform`           | `function`      |    no    |          -          | Function used to format/transform the options                                     | Option                        |
@@ -63,4 +64,6 @@ You can return a promise instead of using the callback:
 | `value`               | `any`           | value used for the input of the Select                                                       |
 
 The Option type above is the default used by `selectless`.
+By default the reference is "value". You can change that with the prop : `referenceKey`.
+
 If you need to change the format and the props, don't forget to change the functions `clearOneValue` and `renderInputs`.

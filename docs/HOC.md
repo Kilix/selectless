@@ -72,6 +72,9 @@ export default enhance(MyCustomComponent)
   `Array<Option>`
   `Option: { label: string, value: any }`
 
+##### referenceKey - string
+  Key use to test equality and to render input value (default: 'value').
+
 ##### searchValue - string
   Current value of the search input.
 
