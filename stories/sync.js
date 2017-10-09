@@ -29,6 +29,12 @@ const simpleOptions = [
   {value: 'tokyo', label: 'Tokyo'},
 ]
 
+const simpleOptionsWithId = [
+  {id: 'paris', label: 'Paris'},
+  {id: 'newyork', label: 'New-York'},
+  {id: 'tokyo', label: 'Tokyo'},
+]
+
 const Container = props => <Select {...props} />
 const StatefulDisabled = BaseComponent => {
   class Stateful extends React.Component {
@@ -78,6 +84,16 @@ const StatefulChangeOptions = BaseComponent => {
 storiesOf('Sync', module)
   .add('Basic', () =>
     <Container name="context" onChange={onChange} options={simpleOptions}>
+      <Label />
+      <List renderItem={Item} />
+    </Container>
+  )
+  .add('Basic withCustom Key', () =>
+    <Container
+      name="context"
+      onChange={onChange}
+      options={simpleOptionsWithId}
+      referenceKey="id">
       <Label />
       <List renderItem={Item} />
     </Container>
@@ -168,7 +184,7 @@ storiesOf('Sync', module)
       name="context"
       onChange={onChange}
       options={simpleOptions}
-      defaultValue={{label: 'Paris', value: 'paris'}}>
+      defaultValue={simpleOptions[1]}>
       <Label />
       <List
         renderItem={

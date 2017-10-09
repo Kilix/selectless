@@ -20,6 +20,7 @@ const defaultContext = [
   'placeholder',
   'onSelectValue',
   'opened',
+  'referenceKey',
   'selectedValue',
   'toggleSelect',
   'disabled',

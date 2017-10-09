@@ -96,6 +96,7 @@ AsyncSelect.propTypes = {
   loadOptions: PropTypes.func.isRequired,
   placeholder: PropTypes.any,
   renderInputs: PropTypes.func,
+  referenceKey: PropTypes.string.isRequired,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
   transform: PropTypes.func,
@@ -108,6 +109,7 @@ AsyncSelect.defaultProps = {
   stayOpenOnSelect: false,
   debounce: 300,
   closeOnBlur: true,
+  referenceKey: 'value',
   defaultChildren: props => <CoreSelect {...props} />,
 }
 

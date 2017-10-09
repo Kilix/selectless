@@ -19,6 +19,7 @@ class List extends React.Component {
       toggleSearch,
       searchValue,
       selectedValue,
+      referenceKey,
       setRef,
       options,
       passThrough,
@@ -32,7 +33,7 @@ class List extends React.Component {
         data: o,
         isCurrent,
         isSelected: selectedValue.reduce(
-          (acc, v) => acc || v.value === o.value,
+          (acc, v) => acc || v[referenceKey] === o[referenceKey],
           false
         ),
         passThrough: ['data', 'isCurrent', 'isSelected'],
@@ -58,6 +59,7 @@ const enhance = compose(
     'searchValue',
     'toggleSelect',
     'toggleSearch',
+    'referenceKey',
     'selectedValue',
     'onSelectValue',
   ]),

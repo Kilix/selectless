@@ -121,6 +121,7 @@ SyncSelect.propTypes = {
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.any,
   renderInputs: PropTypes.func,
+  referenceKey: PropTypes.string.isRequired,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
   transform: PropTypes.func,
@@ -133,6 +134,7 @@ SyncSelect.defaultProps = {
   stayOpenOnSelect: false,
   clearSearchOnSelect: false,
   closeOnBlur: true,
+  referenceKey: 'value',
   defaultChildren: props => <CoreSelect {...props} />,
 }
 
@@ -141,8 +143,8 @@ SyncSelect.childContextTypes = {
   clearSearchValue: PropTypes.func.isRequired,
   hasSearch: PropTypes.bool.isRequired,
   onChangeSearchValue: PropTypes.func.isRequired,
-  searchValue: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
+  searchValue: PropTypes.string.isRequired,
   sourceOptions: PropTypes.array.isRequired,
 
   toggleCaseSensitive: PropTypes.func.isRequired,

@@ -33,6 +33,7 @@ exports[`Storyshots Async With custom debounce 1`] = `
       }
     >
       <input
+        disabled={false}
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -72,6 +73,7 @@ exports[`Storyshots Async With promise 1`] = `
       }
     >
       <input
+        disabled={false}
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -423,6 +425,71 @@ exports[`Storyshots Sync Basic 1`] = `
 </div>
 `;
 
+exports[`Storyshots Sync Basic changing options 1`] = `
+<div>
+  <label
+    htmlFor="fill"
+  >
+    Fill: 
+  </label>
+  <input
+    id="fill"
+    name="fill"
+    onChange={[Function]}
+    type="checkbox"
+    value={true}
+  />
+  <div
+    className={undefined}
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <div
+        onClick={[Function]}
+      >
+        Select an option
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Basic disabled 1`] = `
+<div
+  className={undefined}
+  style={undefined}
+>
+  <div
+    onClick={[Function]}
+  >
+    Select an option
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Basic withCustom Key 1`] = `
+<div
+  className={undefined}
+  style={undefined}
+>
+  <div
+    onClick={[Function]}
+  >
+    Select an option
+  </div>
+</div>
+`;
+
 exports[`Storyshots Sync Basic without close on blur 1`] = `
 <div>
   <button
@@ -507,14 +574,14 @@ exports[`Storyshots Sync Default value 1`] = `
   style={undefined}
 >
   <input
-    name="context[Paris]"
+    name="context[newyork]"
     type="hidden"
-    value="paris"
+    value="newyork"
   />
   <div
     onClick={[Function]}
   >
-    Paris
+    New-York
   </div>
 </div>
 `;
@@ -541,6 +608,63 @@ exports[`Storyshots Sync Multi Custom Tag 1`] = `
     onClick={[Function]}
   >
     Select an option
+  </div>
+</div>
+`;
+
+exports[`Storyshots Sync Search disabled 1`] = `
+<div>
+  <label
+    htmlFor="disabled"
+  >
+    Disabled: 
+  </label>
+  <input
+    id="disabled"
+    name="disabled"
+    onChange={[Function]}
+    type="checkbox"
+    value={false}
+  />
+  <div
+    className={undefined}
+    style={
+      Object {
+        "display": "flex",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <button
+        disabled={false}
+        onClick={[Function]}
+      >
+        Clear
+      </button>
+      <br />
+      <input
+        disabled={false}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+        value=""
+      />
+      <div
+        style={
+          Object {
+            "color": "black",
+          }
+        }
+      >
+        Select an option
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -606,6 +730,7 @@ exports[`Storyshots Sync With Search 1`] = `
       </label>
       <div>
         <input
+          disabled={false}
           onChange={[Function]}
           onFocus={[Function]}
           type="text"
@@ -621,6 +746,7 @@ exports[`Storyshots Sync With Search 1`] = `
         onClick={undefined}
       >
         <input
+          disabled={false}
           onChange={[Function]}
           style={
             Object {

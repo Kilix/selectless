@@ -7,7 +7,7 @@ class TagList extends React.Component {
   renderTags = values =>
     values.map(tag =>
       renderOrCloneComponent(this.props.renderTag, {
-        key: `tag_${tag.value}`,
+        key: `tag_${tag[this.props.referenceKey]}`,
         tag,
       })
     )
@@ -17,6 +17,7 @@ class TagList extends React.Component {
       toggleSelect,
       placeholder,
       selectedValue,
+      referenceKey,
       render,
       renderTag,
       ...props
@@ -35,5 +36,10 @@ class TagList extends React.Component {
         })
   }
 }
-const enhance = controller(['toggleSelect', 'placeholder', 'selectedValue'])
+const enhance = controller([
+  'toggleSelect',
+  'placeholder',
+  'referenceKey',
+  'selectedValue',
+])
 export default enhance(TagList)

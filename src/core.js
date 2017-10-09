@@ -36,7 +36,14 @@ class SyncSelect extends Component {
   }
 
   getChildContext() {
-    const {defaultValue, name, multi, placeholder, disabled} = this.props
+    const {
+      defaultValue,
+      name,
+      multi,
+      placeholder,
+      disabled,
+      referenceKey,
+    } = this.props
     const {opened, selectedValue} = this.state
     return {
       defaultValue,
@@ -49,6 +56,7 @@ class SyncSelect extends Component {
       clearValue: this.clearValue,
       clearOneValue: this.clearOneValue,
       opened,
+      referenceKey,
       selectedValue,
     }
   }
@@ -59,16 +67,25 @@ class SyncSelect extends Component {
       : null
 
   onSelectValue = data => {
-    if (typeof this.props.onSelectValue !== 'undefined') {
-      this.props.onSelectValue(data)
+    const {
+      clearSearchOnSelect,
+      clearSearchValue,
+      multi,
+      onSelectValue,
+      referenceKey,
+      stayOpenOnSelect,
+    } = this.props
+    const {selectedValue} = this.state
+    if (typeof onSelectValue !== 'undefined') {
+      onSelectValue(data)
     }
-    this.props.clearSearchOnSelect && this.props.clearSearchValue()
+    clearSearchOnSelect && clearSearchValue()
     this.setState({
-      opened: this.props.stayOpenOnSelect,
-      selectedValue: this.props.multi
-        ? this.state.selectedValue.indexOf(data) !== -1
-          ? this.state.selectedValue.filter(x => x !== data)
-          : [...this.state.selectedValue, data]
+      opened: stayOpenOnSelect,
+      selectedValue: multi
+        ? selectedValue.indexOf(data) !== -1
+          ? selectedValue.filter(x => x[referenceKey] !== data[referenceKey])
+          : [...selectedValue, data]
         : [data],
     })
   }
@@ -81,12 +98,14 @@ class SyncSelect extends Component {
   }
 
   clearOneValue = t => {
-    if (!this.props.disabled) {
+    const {referenceKey, disabled, clearOneValue} = this.props
+    const {selectedValue} = this.state
+    if (!disabled) {
       this.setState({
         selectedValue:
-          typeof this.props.clearOneValue !== 'undefined'
-            ? this.props.clearOneValue(t, this.state.selectedValue)
-            : this.state.selectedValue.filter(v => v.value !== t.value),
+          typeof clearOneValue !== 'undefined'
+            ? clearOneValue(t, selectedValue)
+            : selectedValue.filter(v => v[referenceKey] !== t[referenceKey]),
       })
     }
   }
@@ -97,9 +116,9 @@ class SyncSelect extends Component {
       : selectedValue.map(v =>
           <input
             key={v.label}
-            name={`${name}[${v.label}]`}
+            name={`${name}[${v[this.props.referenceKey]}]`}
             type="hidden"
-            value={v.value}
+            value={v[this.props.referenceKey]}
           />
         )
   }
@@ -140,6 +159,7 @@ SyncSelect.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.any,
   renderInputs: PropTypes.func,
+  referenceKey: PropTypes.string.isRequired,
   stayOpenOnSelect: PropTypes.bool,
   style: PropTypes.object,
 }
@@ -154,6 +174,7 @@ SyncSelect.childContextTypes = {
   placeholder: PropTypes.any.isRequired,
   onSelectValue: PropTypes.func.isRequired,
   opened: PropTypes.bool.isRequired,
+  referenceKey: PropTypes.string.isRequired,
   selectedValue: PropTypes.array.isRequired,
   toggleSelect: PropTypes.func.isRequired,
 }
