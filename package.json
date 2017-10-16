@@ -81,6 +81,7 @@
   },
   "dependencies": {
     "debounce": "1.0.2",
+    "lodash.isequal": "4.5.0",
     "recompose": "0.25.0"
   },
   "lint-staged": {

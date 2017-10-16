@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import isEqual from 'lodash.isequal'
 
 class SyncSelect extends Component {
   state = {
@@ -16,13 +17,14 @@ class SyncSelect extends Component {
   }
   componentWillUpdate(nextProps, nextState) {
     if (
-      nextState.selectedValue !== this.state.selectedValue &&
+      !isEqual(nextState.selectedValue, this.state.selectedValue) &&
       typeof this.props.onChange !== 'undefined' &&
       !nextProps.disabled
     ) {
-      this.props.onChange(
-        nextProps.multi ? nextState.selectedValue : nextState.selectedValue[0]
-      )
+      const val = nextProps.multi
+        ? nextState.selectedValue
+        : nextState.selectedValue[0]
+      this.props.onChange(typeof val === 'undefined' ? null : val)
     }
     if (nextProps.disabled && !this.props.disabled) {
       this.setState(() => ({opened: false}))
