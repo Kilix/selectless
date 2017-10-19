@@ -103,12 +103,14 @@ export function withKeyboardEvent(BaseComponent) {
             case 13: // ENTER
             case 9: // TAB
               if (currentValue !== null) {
-                onSelectValue(this.props.options[currentValue])
-                toggleSelect(false)
-                clearSearchValue(false)
-                this.setState({currentValue: null})
-                e.stopPropagation()
-                e.preventDefault()
+                if (typeof this.props.options[currentValue] !== 'undefined') {
+                  onSelectValue(this.props.options[currentValue])
+                  toggleSelect(false)
+                  clearSearchValue(false)
+                  this.setState({currentValue: null})
+                  e.stopPropagation()
+                  e.preventDefault()
+                }
               }
               break
             case 40: // DOWN
